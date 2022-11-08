@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+
+    <!--补光灯-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="Setting"
+            android:textSize="38sp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/save_overlay_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right|center_vertical"
+            android:layout_marginRight="40dp"
+            android:textSize="24sp"
+            android:text="Done"
+            />
+
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/save_overlay_view"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="563dp"-->
+<!--            android:text="Done"-->
+<!--            android:textSize="38sp"-->
+<!--             />-->
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Light"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"/>
+
+    <!--    下划线 -->
+    <!--    <TextView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0.1mm"-->
+    <!--        android:background="#A38F8F"-->
+    <!--        android:layout_marginHorizontal="20dp"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:layout_marginBottom="20dp"-->
+    <!--        />-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="White light"
+            android:textSize="24sp"
+            android:layout_marginLeft="40dp"
+            android:layout_gravity="center_vertical|left"/>
+        <ToggleButton
+            android:id="@+id/button_2"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/menu_button_icon_selector"
+            android:gravity="right"
+            android:layout_marginRight="40dp"
+            android:textSize="0sp"
+            android:layout_alignParentRight="true" />
+
+
+    </RelativeLayout>
+
+    <SeekBar
+        android:id="@+id/led_bar"
+        android:layout_width="660dp"
+        android:layout_height="15dp"
+        android:max="8"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
+    <!--    <TextView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0.1mm"-->
+    <!--        android:background="#A38F8F"-->
+    <!--        android:layout_marginHorizontal="20dp"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:layout_marginBottom="20dp"-->
+    <!--        />-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Infrared LED"
+            android:textSize="24sp"
+            android:layout_marginLeft="40dp"
+            android:layout_gravity="center_vertical|left"/>
+
+        <ToggleButton
+            android:id="@+id/button_3"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/menu_button_icon_selector"
+
+            android:gravity="right"
+            android:layout_marginRight="40dp"
+            android:layout_alignParentRight="true"
+            android:textSize="0sp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="API"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="Predicted Orders"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/id_forecast_orders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:text="124.221.187.242:8081"
+            android:hint="default"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="Recommended Products"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/id_recommended_products"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="124.221.187.242:8081"
+            android:hint="default"
+            android:textSize="18sp"
+            android:layout_marginRight="40dp"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="40dp"
+        android:background="#E3E0E0"
+        />
+    <!--    人脸识别 开始-->
+    <TextView
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:text="Function Control"
+        android:textSize="38sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Face Recognition"
+            android:textSize="24sp"
+            android:layout_marginLeft="40dp"
+            android:layout_gravity="center_vertical|left"/>
+        <ToggleButton
+            android:id="@+id/button_1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/menu_button_icon_selector"
+            android:gravity="right"
+            android:layout_marginRight="40dp"
+            android:layout_alignParentRight="true"
+            android:textSize="0sp"/>
+
+
+    </RelativeLayout>
+
+
+
+    <!--    人脸识别 结束-->
+
+
+
+
+
+
+<!--保存按钮-->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        android:gravity="center">
+        <Button
+            android:id="@+id/exit"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@drawable/frame"
+            android:text="Exit APP"
+            android:textAllCaps="false"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
