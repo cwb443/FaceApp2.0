@@ -11,81 +11,59 @@
         android:orientation="vertical">
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="20dp"
-            android:text="Add User"
-            android:textSize="38sp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="20dp"
+                android:text="User Profile"
+                android:textSize="38sp"
+                android:textStyle="bold" />
+             <TextView
+                 android:id="@+id/confirm_btn"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textSize="30sp"
+                 android:text="Done"
+                 android:layout_gravity="right"
+                 android:layout_marginRight="40dp"
+                 android:layout_marginTop="-63dp"/>
 
         <LinearLayout
 
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical|left"
+                android:text="Please select a face image:"
+                android:textSize="20sp" />
 
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="10dp"
-                    android:text="Head Portrait:"
-                    android:textSize="20sp" />
-
-                <RelativeLayout
-                    android:layout_marginTop="6dp"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="588dp">
-                    <ImageView
-                        android:id="@+id/pho_btn"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/avator_border" />
-                    <ImageView
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/photo" />
-
-
-
-                </RelativeLayout>
-
-                <ImageView
-
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginLeft="640dp"
-                    android:layout_marginTop="18dp"
+            <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginTop="-25dp"
+                    android:layout_marginRight="40dp"
                     android:background="@drawable/right_arrow" />
-            </RelativeLayout>
-            <RelativeLayout
-
-                android:layout_marginTop="-55dp"
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
+            <ImageView
+                android:id="@+id/pho_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="-38dp"
+                android:layout_marginRight="66dp"/>
                 <TextView
                     android:id="@+id/take_pho"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
-
-            </RelativeLayout>
-
-
-
-
+                    android:layout_height="66dp"
+                    android:layout_marginTop="-58dp"/>
 
 
         </LinearLayout>
@@ -106,41 +84,25 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="13dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="18dp"
                 android:layout_marginRight="10dp"
                 android:text="Name:"
-                android:textSize="20sp" />
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-
-                <!--<ImageView-->
-                <!--    android:layout_width="240dp"-->
-                <!--    android:layout_height="58dp"-->
-                <!--    android:background="@drawable/frame"-->
-                <!--    android:layout_marginTop="10dp"/>-->
+                android:textSize="20sp"
+                android:gravity="left"
+                android:layout_weight="1"/>
                 <EditText
                     android:id="@+id/name_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="388dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="16dp"
                     android:hint="Please input name"
                     android:singleLine="true"
-                    android:textSize="20sp" />
-
-            </RelativeLayout>
-
-            <!--            <ImageView-->
-            <!--                android:layout_width="25dp"-->
-            <!--                android:layout_height="25dp"-->
-            <!--                android:layout_marginLeft="15dp"-->
-            <!--                android:layout_marginTop="18dp"-->
-            <!--                android:background="@drawable/right_arrow" />-->
+                    android:textSize="15sp"
+                    android:gravity="right"
+                    android:background="@null"
+                    android:layout_marginRight="40dp"
+                    />
         </LinearLayout>
 
         <TextView
@@ -148,45 +110,7 @@
             android:layout_height="1dp"
             android:layout_marginTop="8dp"
             android:background="#E3E0E0" />
-        <!--        公司-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_below="@id/lie_id1"
-            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginRight="10dp"
-                android:text="Company:"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="280dp"
-                android:layout_marginTop="18dp"
-                android:text="Face Recognition Company"
-                android:textColor="#A6A1A1"
-                android:textSize="20sp" />
-
-            <!--            <ImageView-->
-            <!--                android:layout_width="25dp"-->
-            <!--                android:layout_height="25dp"-->
-            <!--                android:layout_marginLeft="10dp"-->
-            <!--                android:layout_marginTop="18dp"-->
-            <!--                android:background="@drawable/right_arrow" />-->
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="#E3E0E0" />
 
         <!--        性别-->
         <LinearLayout
@@ -198,58 +122,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="40dp"
+                android:gravity="left"
+                android:layout_weight="1"
                 android:layout_marginTop="18dp"
-                android:layout_marginRight="10dp"
                 android:text="Gender:"
                 android:textSize="20sp" />
-
-            <!--            <EditText-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginLeft="353dp"-->
-            <!--                android:layout_marginTop="15dp"-->
-            <!--                android:hint="Please input gender"-->
-            <!--                android:singleLine="true"-->
-            <!--                android:textSize="20sp" />-->
-            <!--            单选框-->
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="483dp"
                 android:layout_marginTop="18dp"
-                android:hint="Female"
+                android:text="Female"
                 android:singleLine="true"
-                android:textSize="20sp" />
-
-<!--            <RadioGroup-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:layout_marginLeft="380dp"-->
-<!--                android:id="@+id/radiogroup1"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <RadioButton-->
-<!--                    android:id="@+id/radiobutton2"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:text="female" />-->
-<!--                <RadioButton-->
-<!--                    android:id="@+id/radiobutton1"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="male" />-->
-<!--            </RadioGroup>-->
-            <!--            <ImageView-->
-            <!--                android:layout_width="25dp"-->
-            <!--                android:layout_height="25dp"-->
-            <!--                android:layout_marginLeft="13dp"-->
-            <!--                android:layout_marginTop="18dp"-->
-            <!--                android:background="@drawable/right_arrow" />-->
-
-
+                android:textSize="20sp"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:layout_marginRight="40dp"
+                />
 
         </LinearLayout>
 
@@ -269,33 +159,66 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="18dp"
                 android:layout_marginRight="10dp"
                 android:text="Age:"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:gravity="left"
+                android:layout_weight="1"/>
 
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="280dp"-->
-<!--                android:layout_marginTop="18dp"-->
-<!--                android:text="Face Recognition Company"-->
-<!--                android:textColor="#A6A1A1"-->
-<!--                android:textSize="20sp" />-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="423dp"
                 android:layout_marginTop="18dp"
-                android:hint="Please input age"
                 android:singleLine="true"
+                android:text="18"
+                android:textSize="20sp"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:layout_marginRight="40dp"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="#E3E0E0" />
+
+        <!--        公司-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/lie_id1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="Company:"
+                android:textSize="20sp"
+                android:gravity="left"
+                android:layout_weight="1"
+                android:layout_marginLeft="40dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="18dp"
+                android:text="Network Company"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:layout_marginRight="40dp"
                 android:textSize="20sp" />
 
             <!--            <ImageView-->
             <!--                android:layout_width="25dp"-->
             <!--                android:layout_height="25dp"-->
-            <!--                android:layout_marginLeft="18dp"-->
+            <!--                android:layout_marginLeft="10dp"-->
             <!--                android:layout_marginTop="18dp"-->
             <!--                android:background="@drawable/right_arrow" />-->
 
@@ -306,24 +229,12 @@
             android:layout_height="1dp"
             android:layout_marginTop="8dp"
             android:background="#E3E0E0" />
-
-
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
             android:layout_marginTop="40dp"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/confirm_btn"
-                android:layout_width="250dp"
-                android:layout_height="66dp"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/frame"
-                android:text="Confirm"
-                android:textAllCaps="false" />
-
 <!--            <Button-->
 <!--                android:id="@+id/cancel_btn"-->
 <!--                android:layout_width="100dp"-->

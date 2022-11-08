@@ -15,110 +15,45 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="25dp"
             android:layout_marginBottom="20dp"
             android:text="Edit User"
             android:textSize="38sp"
             android:textStyle="bold" />
-
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="#E3E0E0" />
-
         <LinearLayout
             android:id="@+id/lie_id2"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_marginTop="20dp"
             android:layout_below="@id/lie_id1"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="13dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="40dp"
+                android:layout_gravity="left|center_vertical"
                 android:text="Name:"
-                android:textSize="20sp" />
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-
-                <!--<ImageView-->
-                <!--    android:layout_width="240dp"-->
-                <!--    android:layout_height="58dp"-->
-                <!--    android:background="@drawable/frame"-->
-                <!--    android:layout_marginTop="10dp"/>-->
+                android:textSize="20sp"
+                android:layout_weight="1"/>
                 <EditText
                     android:id="@+id/name_text_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="388dp"
-                    android:layout_marginTop="15dp"
                     android:hint="Please input name"
                     android:singleLine="true"
-                    android:textSize="20sp" />
-
-            </RelativeLayout>
-
-            <!--            <ImageView-->
-            <!--                android:layout_width="25dp"-->
-            <!--                android:layout_height="25dp"-->
-            <!--                android:layout_marginLeft="15dp"-->
-            <!--                android:layout_marginTop="18dp"-->
-            <!--                android:background="@drawable/right_arrow" />-->
+                    android:textSize="15sp"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="40dp"
+                    android:background="@null"
+                    />
         </LinearLayout>
+
+
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="#E3E0E0" />
-        <!--        公司-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_below="@id/lie_id1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginRight="10dp"
-                android:text="Company:"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="280dp"
-                android:layout_marginTop="18dp"
-                android:text="Face Recognition Company"
-                android:textColor="#A6A1A1"
-                android:textSize="20sp" />
-
-            <!--            <ImageView-->
-            <!--                android:layout_width="25dp"-->
-            <!--                android:layout_height="25dp"-->
-            <!--                android:layout_marginLeft="10dp"-->
-            <!--                android:layout_marginTop="18dp"-->
-            <!--                android:background="@drawable/right_arrow" />-->
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
             android:background="#E3E0E0" />
 
         <!--        性别-->
@@ -131,11 +66,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="40dp"
+                android:layout_gravity="center_vertical|left"
                 android:text="Gender:"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_weight="1"/>
 
             <!--            <EditText-->
             <!--                android:layout_width="wrap_content"-->
@@ -150,46 +85,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="483dp"
-                android:layout_marginTop="18dp"
-                android:hint="Female"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="40dp"
+                android:text="Female"
                 android:singleLine="true"
                 android:textSize="20sp" />
-
-            <!--            <RadioGroup-->
-            <!--                android:layout_marginTop="16dp"-->
-            <!--                android:layout_marginLeft="380dp"-->
-            <!--                android:id="@+id/radiogroup1"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:orientation="horizontal">-->
-
-            <!--                <RadioButton-->
-            <!--                    android:id="@+id/radiobutton2"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:text="female" />-->
-            <!--                <RadioButton-->
-            <!--                    android:id="@+id/radiobutton1"-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:text="male" />-->
-            <!--            </RadioGroup>-->
-            <!--            <ImageView-->
-            <!--                android:layout_width="25dp"-->
-            <!--                android:layout_height="25dp"-->
-            <!--                android:layout_marginLeft="13dp"-->
-            <!--                android:layout_marginTop="18dp"-->
-            <!--                android:background="@drawable/right_arrow" />-->
-
-
 
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="8dp"
             android:background="#E3E0E0" />
 
         <!--年龄-->
@@ -202,37 +108,65 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="40dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical|left"
                 android:text="Age:"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                />
 
-            <!--            <TextView-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginLeft="280dp"-->
-            <!--                android:layout_marginTop="18dp"-->
-            <!--                android:text="Face Recognition Company"-->
-            <!--                android:textColor="#A6A1A1"-->
-            <!--                android:textSize="20sp" />-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="423dp"
-                android:layout_marginTop="18dp"
-                android:hint="Please input age"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="40dp"
+                android:text="18"
                 android:singleLine="true"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                />
 
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="8dp"
             android:background="#E3E0E0" />
+        <!--        公司-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/lie_id1"
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_gravity="center_vertical|left"
+                android:layout_weight="1"
+                android:text="Company:"
+                android:textSize="20sp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Network Company"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="40dp"
+                android:textSize="20sp" />
+
+            <!--            <ImageView-->
+            <!--                android:layout_width="25dp"-->
+            <!--                android:layout_height="25dp"-->
+            <!--                android:layout_marginLeft="10dp"-->
+            <!--                android:layout_marginTop="18dp"-->
+            <!--                android:background="@drawable/right_arrow" />-->
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E3E0E0" />
 
 
 <!--        <LinearLayout-->

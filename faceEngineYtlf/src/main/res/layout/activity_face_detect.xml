@@ -2,86 +2,86 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<!--     原有控件-->
+    <!--     原有控件-->
     <RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black">
-
-
-
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="@color/black">
 
-        <FrameLayout
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <com.firefly.faceEngine.view.LivingSurfaceView
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="128dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="right|top">
+                <com.firefly.faceEngine.view.LivingSurfaceView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-                <com.firefly.faceEngine.view.GraySurfaceView
-                    android:id="@+id/grayInterface"
+                <LinearLayout
                     android:layout_width="128dp"
-                    android:layout_height="156dp" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="right|top">
 
-                <ImageView
-                    android:id="@+id/img_landmark"
-                    android:layout_width="128dp"
-                    android:layout_height="156dp" />
-            </LinearLayout>
-        </FrameLayout>
-    </LinearLayout>
+                    <com.firefly.faceEngine.view.GraySurfaceView
+                        android:id="@+id/grayInterface"
+                        android:layout_width="128dp"
+                        android:layout_height="156dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentBottom="true"
-        android:background="#15000000"
-        android:padding="10dp"
-        android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/img_landmark"
+                        android:layout_width="128dp"
+                        android:layout_height="156dp" />
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/txt1"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:lineSpacingMultiplier="1.3"
-            android:textColor="@color/white"
-            android:layout_marginRight="10dp"
-            android:gravity="center_horizontal"/>
+            android:layout_height="200dp"
+            android:layout_alignParentBottom="true"
+            android:background="#15000000"
+            android:padding="10dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/txt2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:lineSpacingMultiplier="1.3"
-            android:textColor="@color/white"
-            android:layout_marginRight="10dp"
-            android:gravity="center_horizontal" />
+            <TextView
+                android:id="@+id/txt1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:lineSpacingMultiplier="1.3"
+                android:textColor="@color/white"
+                android:layout_marginRight="10dp"
+                android:gravity="center_horizontal"/>
 
-        <TextView
-            android:id="@+id/txt3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:lineSpacingMultiplier="1.3"
-            android:textColor="@color/white"
-            android:visibility="gone"/>
-    </LinearLayout>
+            <TextView
+                android:id="@+id/txt2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:lineSpacingMultiplier="1.3"
+                android:textColor="@color/white"
+                android:layout_marginRight="10dp"
+                android:gravity="center_horizontal" />
 
-</RelativeLayout>
-<!--    覆盖页面的控件   蓝色-->
+            <TextView
+                android:id="@+id/txt3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:lineSpacingMultiplier="1.3"
+                android:textColor="@color/white"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+    <!--    覆盖页面的控件   蓝色-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -112,34 +112,51 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
-<!--输入文字控件-->
+                        <!--输入文字控件-->
+                        <RelativeLayout
+                            android:layout_width="665dp"
+                            android:layout_height="260dp"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center">
 
-
+                            <ImageView
+                                android:id="@+id/image_view"
+                                android:layout_width="665dp"
+                                android:layout_height="260dp"
+                                android:background="@drawable/erweima" />
+                            <!--    <ImageView-->
+                            <!--        android:layout_width="665dp"-->
+                            <!--        android:layout_height="260dp"-->
+                            <!--        />-->
+                        </RelativeLayout>
 
                         <ImageView
-                            android:id="@+id/image_view"
-                            android:layout_width="690dp"
-                            android:layout_height="162.5dp"
-                            android:layout_marginTop="40dp"
-                            android:background="@drawable/defaultpeople"/>
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="620dp"
+                            android:layout_marginTop="35dp"
+                            android:background="@drawable/settinghome"
+                            android:onClick="back" />
+                        <TextView
+                            android:id="@+id/image_wel"
+                            android:layout_width="188dp"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="325dp"
+                            android:layout_marginTop="88dp"
+                            android:textColor="#EB4C4F58"
+                            android:textSize="38sp" />
 
-                        <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_marginTop="50dp"
-                            android:layout_marginLeft="630dp"
-                            android:background="@drawable/setting"
-                            android:onClick="back"/>
                         <TextView
                             android:id="@+id/image_text"
-                            android:layout_width="350dp"
-                            android:layout_height="35dp"
-                            android:layout_marginLeft="260dp"
-                            android:layout_marginTop="104dp"
-                            android:text=""
+                            android:layout_width="280dp"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="325dp"
+                            android:layout_marginTop="150dp"
+                            android:maxEms="3"
+                            android:singleLine="true"
                             android:ellipsize="end"
-                            android:textColor="#000000"
-                            android:textSize="30sp" />
+                            android:textColor="#EB4C4F58"
+                            android:textSize="38sp" />
 
 
 
@@ -147,13 +164,13 @@
 
 
                 </LinearLayout>
-                <Button
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0.1px"
-                    android:background="#9EF8F6F6"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"/>
+                    android:layout_height="0.3px"
+                    android:background="#25131212"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -168,18 +185,83 @@
                         android:text="Predicted Orders"
                         android:textSize="30sp"
                         android:textStyle="bold"
-                        android:paddingLeft="20dp"/>
+                        android:paddingLeft="25dp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="25dp">
                     <ImageView
                         android:id="@+id/goods1"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:layout_marginLeft="20dp"/>
+                        android:layout_marginLeft="25dp"/>
+                    <!--                    <LinearLayout-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="match_parent"-->
+                    <!--                        android:layout_marginLeft="15px"-->
+                    <!--                        android:orientation="vertical">-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:orientation="horizontal">-->
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/name_text1"-->
+                    <!--                                android:layout_width="350dp"-->
+                    <!--                                android:layout_height="30dp"-->
+
+                    <!--                                android:textSize="24sp"-->
+                    <!--                                android:textStyle="normal"-->
+                    <!--                                android:singleLine="true"-->
+                    <!--                                android:ellipsize="end"-->
+                    <!--                                android:layout_marginTop="8dp"-->
+                    <!--                                android:layout_marginLeft="10dp"/>-->
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/price1"-->
+                    <!--                                android:layout_width="120dp"-->
+                    <!--                                android:layout_height="30dp"-->
+
+                    <!--                                android:textColor="@color/red"-->
+                    <!--                                android:layout_marginLeft="55dp"-->
+                    <!--                                android:layout_marginTop="20dp"-->
+                    <!--                                android:textSize="20sp"/>-->
+                    <!--                        </LinearLayout>-->
+
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="wrap_content"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tv_describe1"-->
+                    <!--                                android:layout_width="350dp"-->
+                    <!--                                android:layout_height="50dp"-->
+                    <!--                                android:layout_marginLeft="10dp"-->
+                    <!--                                android:ellipsize="end"-->
+                    <!--                                android:singleLine="true"-->
+
+                    <!--                                android:textColor="#DF5E5D5D"-->
+                    <!--                                android:textSize="18sp" />-->
+
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/edit_query1"-->
+                    <!--                                android:layout_width="120dp"-->
+                    <!--                                android:layout_height="match_parent"-->
+                    <!--                                android:layout_marginLeft="30dp"-->
+                    <!--                                android:gravity="right"-->
+                    <!--                                android:textSize="24sp"-->
+                    <!--                                android:textStyle="normal" />-->
+                    <!--                        </LinearLayout>-->
+                    <!--                        <Button-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="0.1px"-->
+                    <!--                            android:background="#9EF8F6F6"-->
+                    <!--                            android:layout_marginTop="15dp"-->
+                    <!--                            android:layout_marginLeft="10px"-->
+                    <!--                            android:layout_marginRight="20dp"/>-->
+                    <!--                    </LinearLayout>-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -193,60 +275,59 @@
                                 android:id="@+id/name_text1"
                                 android:layout_width="350dp"
                                 android:layout_height="30dp"
-
                                 android:textSize="24sp"
                                 android:textStyle="normal"
                                 android:singleLine="true"
                                 android:ellipsize="end"
-                                android:layout_marginTop="20dp"
+                                android:layout_marginTop="0dp"
                                 android:layout_marginLeft="10dp"/>
-                            <TextView
-                                android:id="@+id/price1"
-                                android:layout_width="120dp"
-                                android:layout_height="30dp"
 
-                                android:textColor="@color/red"
-                                android:layout_marginLeft="55dp"
-                                android:layout_marginTop="20dp"
-                                android:textSize="20sp"/>
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/tv_describe1"
-                                android:layout_width="350dp"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="10dp"
-                                android:ellipsize="end"
-                                android:singleLine="true"
-
-                                android:textColor="#DF5E5D5D"
-                                android:textSize="18sp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/tv_describe1"
+                                    android:layout_width="350dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:ellipsize="end"
+                                    android:singleLine="true"
+                                    android:textColor="#DF5E5D5D"
+                                    android:textSize="18sp" />
+                                <TextView
+                                    android:id="@+id/price1"
+                                    android:layout_width="120dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginTop="15dp"
+                                    android:textColor="@color/red"
+                                    android:textSize="20sp"
+                                    android:layout_marginLeft="10dp"/>
+                            </LinearLayout>
 
                             <TextView
                                 android:id="@+id/edit_query1"
                                 android:layout_width="120dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="30dp"
-                                android:gravity="bottom"
-
-                                android:textColor="#5E5D5D"
-                                android:textSize="20sp"
+                                android:layout_marginLeft="40dp"
+                                android:gravity="left"
+                                android:textSize="24sp"
                                 android:textStyle="normal" />
                         </LinearLayout>
-                        <Button
+                        <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="0.1px"
-                            android:background="#9EF8F6F6"
-                            android:layout_marginTop="15dp"
+                            android:layout_height="0.3px"
+                            android:background="#25131212"
+                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10px"
-                            android:layout_marginRight="20dp"/>
+                            android:layout_marginRight="25dp"/>
                     </LinearLayout>
-
                     <com.firefly.faceEngine.view.FaceView
                         android:id="@+id/faceview"
                         android:layout_width="match_parent"
@@ -263,7 +344,7 @@
                         android:id="@+id/goods2"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:layout_marginLeft="20dp"/>
+                        android:layout_marginLeft="25dp"/>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -277,58 +358,56 @@
                                 android:id="@+id/name_text2"
                                 android:layout_width="350dp"
                                 android:layout_height="30dp"
-
                                 android:textSize="24sp"
                                 android:textStyle="normal"
                                 android:singleLine="true"
                                 android:ellipsize="end"
-                                android:layout_marginTop="20dp"
                                 android:layout_marginLeft="10dp"/>
-                            <TextView
-                                android:id="@+id/price2"
-                                android:layout_width="120dp"
-                                android:layout_height="30dp"
 
-                                android:textColor="@color/red"
-                                android:layout_marginLeft="55dp"
-                                android:layout_marginTop="20dp"
-                                android:textSize="20sp"/>
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/tv_describe2"
-                                android:layout_width="350dp"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="10dp"
-                                android:ellipsize="end"
-                                android:singleLine="true"
-
-                                android:textColor="#DF5E5D5D"
-                                android:textSize="18sp" />
-
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/tv_describe2"
+                                    android:layout_width="350dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:ellipsize="end"
+                                    android:singleLine="true"
+                                    android:textColor="#DF5E5D5D"
+                                    android:textSize="18sp" />
+                                <TextView
+                                    android:id="@+id/price2"
+                                    android:layout_width="120dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginTop="15dp"
+                                    android:textColor="@color/red"
+                                    android:textSize="20sp"
+                                    android:layout_marginLeft="10dp"/>
+                            </LinearLayout>
                             <TextView
                                 android:id="@+id/edit_query2"
                                 android:layout_width="120dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="30dp"
-                                android:gravity="bottom"
-
-                                android:textColor="#5E5D5D"
-                                android:textSize="20sp"
+                                android:layout_marginLeft="40dp"
+                                android:gravity="left"
+                                android:textSize="24sp"
                                 android:textStyle="normal" />
                         </LinearLayout>
-                        <Button
+                        <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="0.1px"
-                            android:background="#9EF8F6F6"
-                            android:layout_marginTop="15dp"
+                            android:layout_height="0.3px"
+                            android:background="#25131212"
+                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10px"
-                            android:layout_marginRight="20dp"/>
+                            android:layout_marginRight="25dp"/>
                     </LinearLayout>
 
 
@@ -344,7 +423,7 @@
                         android:id="@+id/goods3"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:layout_marginLeft="20dp"/>
+                        android:layout_marginLeft="25dp"/>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -358,73 +437,71 @@
                                 android:id="@+id/name_text3"
                                 android:layout_width="350dp"
                                 android:layout_height="30dp"
-
                                 android:textSize="24sp"
                                 android:textStyle="normal"
                                 android:singleLine="true"
                                 android:ellipsize="end"
-                                android:layout_marginTop="20dp"
                                 android:layout_marginLeft="10dp"/>
-                            <TextView
-                                android:id="@+id/price3"
-                                android:layout_width="120dp"
-                                android:layout_height="30dp"
 
-                                android:textColor="@color/red"
-                                android:layout_marginLeft="55dp"
-                                android:layout_marginTop="20dp"
-                                android:textSize="20sp"/>
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/tv_describe3"
-                                android:layout_width="350dp"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="10dp"
-                                android:ellipsize="end"
-                                android:singleLine="true"
-                                android:textColor="#DF5E5D5D"
-                                android:textSize="18sp" />
-
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/tv_describe3"
+                                    android:layout_width="350dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:ellipsize="end"
+                                    android:singleLine="true"
+                                    android:textColor="#DF5E5D5D"
+                                    android:textSize="18sp" />
+                                <TextView
+                                    android:id="@+id/price3"
+                                    android:layout_width="120dp"
+                                    android:layout_height="30dp"
+                                    android:textColor="@color/red"
+                                    android:textSize="20sp"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginLeft="10dp"/>
+                            </LinearLayout>
                             <TextView
                                 android:id="@+id/edit_query3"
                                 android:layout_width="120dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="30dp"
-                                android:gravity="bottom"
-
-                                android:textColor="#5E5D5D"
-                                android:textSize="20sp"
+                                android:layout_marginLeft="40dp"
+                                android:gravity="left"
+                                android:textSize="24sp"
                                 android:textStyle="normal" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-                <Button
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0.1px"
-                    android:background="#9EF8F6F6"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"/>
+                    android:layout_height="0.3px"
+                    android:background="#25131212"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:orientation="horizontal"
                     android:layout_marginTop="5dp"
                     android:gravity="right">
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="30dp"
                         android:layout_weight="7"
-                        android:paddingLeft="20dp"
-                        android:layout_marginTop="0dp"
+                        android:paddingLeft="25dp"
                         android:text="Recommended Products"
                         android:textSize="30sp"
                         android:textStyle="bold" />
@@ -433,7 +510,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -452,17 +530,16 @@
                             android:textSize="24sp"
                             android:singleLine="true"
                             android:ellipsize="end"
-                            android:layout_marginTop="15dp"
-                       />
+                            android:layout_marginTop="5dp"
+                            />
 
                         <TextView
                             android:id="@+id/price4"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
                             android:layout_marginTop="10dp"
-
-                            android:textSize="18sp"
-                            android:textColor="#E13D09"/>
+                            android:textSize="20sp"
+                            android:textColor="@color/red"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -483,15 +560,15 @@
                             android:textSize="24sp"
                             android:singleLine="true"
                             android:ellipsize="end"
-                            android:layout_marginTop="15dp"/>
+                            android:layout_marginTop="5dp"/>
 
                         <TextView
                             android:id="@+id/price5"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
                             android:layout_marginTop="10dp"
-                            android:textSize="18sp"
-                            android:textColor="#E13D09"/>
+                            android:textSize="20sp"
+                            android:textColor="@color/red"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -511,17 +588,15 @@
                             android:textSize="24sp"
                             android:singleLine="true"
                             android:ellipsize="end"
-                            android:layout_marginTop="15dp"
-                           />
-
+                            android:layout_marginTop="5dp"
+                            />
                         <TextView
                             android:id="@+id/price6"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
                             android:layout_marginTop="10dp"
-
-                            android:textSize="18sp"
-                            android:textColor="#E13D09"/>
+                            android:textSize="20sp"
+                            android:textColor="@color/red"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

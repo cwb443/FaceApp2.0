@@ -99,7 +99,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
 
     TextView prePrice1,prePrice2,prePrice3;
 
-    TextView imageText;
+    TextView imageText,imageWel;
 
 
 
@@ -145,6 +145,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         query3=findViewById(R.id.edit_query3);
 
         imageview = findViewById(R.id.image_view);
+        imageWel=findViewById(R.id.image_wel);
 
         imageText = findViewById(R.id.image_text);
 
@@ -324,7 +325,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                 if(isNewUser != 2||isUserId!=userId) {
                     isNewUser = 2;
                     isUserId = Math.toIntExact(userId);
-                    setTitle(userId,"Welcome "+name);
+                    setTitle(userId,name);
                     setForecastGoods(userId);
                     setRecommendGoods(userId);
                 }
@@ -334,7 +335,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                     setForecastGoods(0l);
                     setRecommendGoods(0l);
                     isNewUser = 1;
-                    setTitle(0l,"Welcome new customer");
+                    setTitle(0l,"New customer");
                 }
             }
         }
@@ -545,6 +546,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                 }else {
                     imageview.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.greenpeople));
                 }
+                imageWel.setText("Welcome!");
                 imageText.setText(name);
             }
         });
@@ -624,21 +626,21 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                     Name1.setText(goodsMessage.getName());
                     description1.setText(goodsMessage.getDescription());
                     prePrice1.setText("$"+goodsMessage.getPrice());
-                    query1.setText("Quantity:"+goodsMessage.getQuantity());
+                    query1.setText("Qty:"+goodsMessage.getQuantity());
                     break;
                 case 2:
                     goods2.setImageBitmap(goodsMessage.getBitmap());
                     Name2.setText(goodsMessage.getName());
                     description2.setText(goodsMessage.getDescription());
                     prePrice2.setText("$"+goodsMessage.getPrice());
-                    query2.setText("Quantity:"+goodsMessage.getQuantity());
+                    query2.setText("Qty:"+goodsMessage.getQuantity());
                     break;
                 case 3:
                     goods3.setImageBitmap(goodsMessage.getBitmap());
                     Name3.setText(goodsMessage.getName());
                     description3.setText(goodsMessage.getDescription());
                     prePrice3.setText("$"+goodsMessage.getPrice());
-                    query3.setText("Quantity:"+goodsMessage.getQuantity());
+                    query3.setText("Qty:"+goodsMessage.getQuantity());
                     break;
                 case 4:
                     goods4.setImageBitmap(goodsMessage.getBitmap());

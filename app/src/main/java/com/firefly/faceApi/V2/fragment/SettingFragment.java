@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -39,7 +40,8 @@ public class SettingFragment extends Fragment {
     ToggleButton button1,button2,button3;
     SeekBar seekBar;
     EditText forecastOrders,recommended;
-    Button exit,save;
+    Button exit;
+    TextView save;
     Setting setting;
     Boolean flag1,flag2,flag3;
     int progressSeekBar;
@@ -100,6 +102,10 @@ public class SettingFragment extends Fragment {
                 button2.setChecked(true);
                 flag2 = true;
             }
+
+            seekBar.setClickable(flag2);
+            seekBar.setEnabled(flag2);
+            seekBar.setEnabled(flag2);
 
             if (setting.getInfrared() == 0){
                 button3.setChecked(false);
@@ -199,6 +205,10 @@ public class SettingFragment extends Fragment {
 //                    setting.setRed(0);
                 flag2 = b;
 //                SaveInfo.UpdateInformation(getContext(),setting);
+                seekBar.setClickable(flag2);
+                seekBar.setEnabled(flag2);
+                seekBar.setEnabled(flag2);
+
 
                 button2.setSelected(b);
             }

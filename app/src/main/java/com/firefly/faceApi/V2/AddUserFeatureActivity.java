@@ -45,7 +45,7 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
     private byte[] bitmapFeature = null;
 
 
-    Button confirm_btn,cancel_btn;
+    TextView confirm_btn;
 //    EditText name;
 
     @SuppressLint("MissingInflatedId")

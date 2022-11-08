@@ -2,234 +2,52 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-    <!--    <TextView-->
-    <!--        android:layout_width="200dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Open Face"-->
-    <!--        android:textSize="30sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        android:layout_marginLeft="20dp"-->
-    <!--        android:layout_marginTop="30dp"/>-->
-    <!--    <RelativeLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="20dp"-->
-    <!--        android:orientation="horizontal">-->
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="face recongnitondrgseftgsefgsg"-->
-    <!--            android:textSize="24sp"-->
-    <!--            android:layout_marginLeft="20dp"-->
-    <!--            android:layout_gravity="center_vertical|left"/>-->
-    <!--        <ToggleButton-->
-    <!--            android:id="@+id/button_"-->
-    <!--            android:layout_width="50dp"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:background="@drawable/menu_button_icon_selector"-->
 
-    <!--            android:gravity="right"-->
-    <!--            android:layout_marginRight="20dp"-->
-    <!--            android:layout_alignParentRight="true"-->
-    <!--            android:textSize="0sp"/>-->
+    <!--补光灯-->
 
 
-    <!--    </RelativeLayout>-->
-
-
-    <!--    <TextView-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Face Setting"-->
-    <!--        android:textSize="30sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        android:layout_marginLeft="20dp" />-->
-    <!--    <RelativeLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:gravity="center_vertical"-->
-    <!--        android:layout_marginTop="10dp">-->
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="Host"-->
-    <!--            android:textSize="24sp"-->
-    <!--            android:layout_marginLeft="20dp"/>-->
-
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="192.168.68.125"-->
-    <!--            android:textSize="18sp"-->
-    <!--            android:layout_marginRight="20dp"-->
-    <!--            android:layout_alignParentRight="true"/>-->
-
-    <!--    </RelativeLayout>-->
-
-    <!--    <RelativeLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:gravity="center_vertical"-->
-    <!--        android:layout_marginTop="20dp">-->
-
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginLeft="20dp"-->
-    <!--            android:text="API_KEY"-->
-    <!--            android:textSize="24sp" />-->
-
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_alignParentRight="true"-->
-    <!--            android:layout_marginRight="20dp"-->
-    <!--            android:text="xrZEJz51qfiBI#FB"-->
-    <!--            android:textSize="18sp" />-->
-
-    <!--    </RelativeLayout>-->
-    <!--    <RelativeLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:gravity="center_vertical"-->
-    <!--        android:layout_marginTop="20dp">-->
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="FACE_PATH"-->
-    <!--            android:textSize="24sp"-->
-    <!--            android:layout_marginLeft="20dp"/>-->
-
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_alignParentRight="true"-->
-    <!--            android:layout_marginRight="20dp"-->
-    <!--            android:text="/sdcard/firefly/"-->
-    <!--            android:textSize="18sp" />-->
-
-    <!--    </RelativeLayout>-->
-    <!--    <TextView-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Api"-->
-    <!--        android:textSize="30sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        android:layout_marginLeft="20dp"-->
-    <!--        android:layout_marginTop="20dp"/>-->
-    <!--    <RelativeLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:gravity="center_vertical"-->
-    <!--        android:layout_marginTop="20dp">-->
-
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginLeft="20dp"-->
-    <!--            android:text="Forecast orders"-->
-    <!--            android:textSize="24sp" />-->
-
-    <!--        <EditText-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="192.168.68.125"-->
-    <!--            android:textSize="18sp"-->
-    <!--            android:layout_marginRight="20dp"-->
-    <!--            android:layout_alignParentRight="true"/>-->
-
-    <!--    </RelativeLayout>-->
-    <!--    <RelativeLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:gravity="center_vertical"-->
-    <!--        android:layout_marginTop="20dp">-->
-
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginLeft="20dp"-->
-    <!--            android:text="REcommended Products"-->
-    <!--            android:textSize="24sp" />-->
-
-    <!--        <EditText-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="192.168.68.125"-->
-    <!--            android:textSize="18sp"-->
-    <!--            android:layout_marginRight="20dp"-->
-    <!--            android:layout_alignParentRight="true"/>-->
-
-    <!--    </RelativeLayout>-->
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="25dp"
         android:background="#ffffff"
-        android:layout_marginBottom="20dp"
         android:orientation="horizontal">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:text="Setting"
             android:textSize="38sp"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
-
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Open Face"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="10dp"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
+            android:textStyle="bold"
+            android:layout_weight="1"
+            />
         <TextView
+            android:id="@+id/save_overlay_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Face Recognition"
-            android:textSize="24sp"
-            android:layout_marginLeft="40dp"
-            android:layout_gravity="center_vertical|left"/>
-        <ToggleButton
-            android:id="@+id/button_1"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/menu_button_icon_selector"
             android:gravity="right"
             android:layout_marginRight="40dp"
-            android:layout_alignParentRight="true"
-            android:textSize="0sp"/>
+            android:textSize="30sp"
+            android:text="Done"
+            />
 
 
-    </RelativeLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
-        android:background="#E3E0E0"
-        />
-    <!--补光灯-->
+<!--        <TextView-->
+<!--            android:id="@+id/save_overlay_view"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="563dp"-->
+<!--            android:text="Done"-->
+<!--            android:textSize="38sp"-->
+<!--             />-->
+
+    </LinearLayout>
+
     <TextView
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -237,7 +55,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="20dp"/>
 
     <!--    下划线 -->
     <!--    <TextView-->
@@ -256,30 +74,27 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="White-light"
+            android:text="White light"
             android:textSize="24sp"
             android:layout_marginLeft="40dp"
             android:layout_gravity="center_vertical|left"/>
+
         <ToggleButton
             android:id="@+id/button_2"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
             android:background="@drawable/menu_button_icon_selector"
             android:gravity="right"
-            android:layout_marginRight="40dp"
-            android:layout_alignParentRight="true"
-            android:textSize="0sp"/>
-
-
+            android:textSize="0dp" />
     </RelativeLayout>
-
     <SeekBar
         android:id="@+id/led_bar"
-        android:layout_width="match_parent"
+        android:layout_width="655dp"
         android:layout_height="15dp"
         android:max="8"
-        android:min="0"
-        android:layout_marginHorizontal="15dp"
+        android:layout_marginHorizontal="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"/>
     <!--    <TextView-->
@@ -297,7 +112,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Infrared Led"
+            android:text="Infrared LED"
             android:textSize="24sp"
             android:layout_marginLeft="40dp"
             android:layout_gravity="center_vertical|left"/>
@@ -307,100 +122,16 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:background="@drawable/menu_button_icon_selector"
-
             android:gravity="right"
             android:layout_marginRight="40dp"
             android:layout_alignParentRight="true"
             android:textSize="0sp"/>
     </RelativeLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
-        android:background="#E3E0E0"
-        />
 
-    <!--    <TextView-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Face Setting"-->
-    <!--        android:textSize="30sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        android:layout_marginLeft="20dp" />-->
-    <!--    <RelativeLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:gravity="center_vertical"-->
-    <!--        android:layout_marginTop="10dp">-->
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="Host"-->
-    <!--            android:textSize="24sp"-->
-    <!--            android:layout_marginLeft="20dp"/>-->
-
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="192.168.68.125"-->
-    <!--            android:textSize="18sp"-->
-    <!--            android:layout_marginRight="20dp"-->
-    <!--            android:layout_alignParentRight="true"/>-->
-
-    <!--    </RelativeLayout>-->
-
-    <!--    <RelativeLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:gravity="center_vertical"-->
-    <!--        android:layout_marginTop="20dp">-->
-
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginLeft="20dp"-->
-    <!--            android:text="API_KEY"-->
-    <!--            android:textSize="24sp" />-->
-
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_alignParentRight="true"-->
-    <!--            android:layout_marginRight="20dp"-->
-    <!--            android:text="xrZEJz51qfiBI#FB"-->
-    <!--            android:textSize="18sp" />-->
-
-    <!--    </RelativeLayout>-->
-    <!--    <RelativeLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:gravity="center_vertical"-->
-    <!--        android:layout_marginTop="20dp">-->
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="FACE_PATH"-->
-    <!--            android:textSize="24sp"-->
-    <!--            android:layout_marginLeft="20dp"/>-->
-
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_alignParentRight="true"-->
-    <!--            android:layout_marginRight="20dp"-->
-    <!--            android:text="/sdcard/firefly/"-->
-    <!--            android:textSize="18sp" />-->
-
-    <!--    </RelativeLayout>-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Api"
+        android:text="API"
         android:textSize="30sp"
         android:textStyle="bold"
         android:layout_marginLeft="40dp"
@@ -455,32 +186,73 @@
             android:layout_alignParentRight="true"/>
 
     </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:background="#E3E0E0"
+        />
+    <!--    人脸识别 开始-->
+    <TextView
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:text="Function Start"
+        android:textSize="38sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Face Recognition"
+            android:textSize="24sp"
+            android:layout_marginLeft="40dp"
+            android:layout_gravity="center_vertical|left"/>
+        <ToggleButton
+            android:id="@+id/button_1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/menu_button_icon_selector"
+            android:gravity="right"
+            android:layout_marginRight="40dp"
+            android:layout_alignParentRight="true"
+            android:textSize="0sp"/>
+
+
+    </RelativeLayout>
+
+
+
+    <!--    人脸识别 结束-->
+
+
+
+
+
+
 <!--保存按钮-->
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="155dp"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/save_overlay_view"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:background="@drawable/frame"
-            android:textAllCaps="false"
-            android:layout_marginRight="60dp"
-            android:text="Save"
-            />
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        android:gravity="center">
         <Button
             android:id="@+id/exit"
-            android:layout_marginLeft="60dp"
             android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="0dp"
+            android:layout_height="50dp"
             android:background="@drawable/frame"
+            android:text="Exit APP"
             android:textAllCaps="false"
-            android:text="Exit"
-            />
+            android:layout_gravity="center"/>
+
     </LinearLayout>
 
 
