@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdk 28
+
+    defaultConfig {
+        applicationId "com.firefly.faceApi.V2"
+        minSdk 25
+        targetSdk 26
+        versionCode 2
+        versionName "2.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs','../faceEngineYtlf/libs'
+        }
+    }
+    // Fix: More than one file was found
+    packagingOptions {
+        pickFirst 'lib/armeabi-v7a/libarctern.so'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //noinspection GradleCompatible
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.google.android.material:material:1.4.+'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation project(':faceEngineYtlf')
+    implementation project(path: ':fireflyApi')
+
+    implementation(name: 'arctern-release', ext: 'aar')
+    implementation(name: 'iface-release', ext: 'aar')
+    implementation(name: 'faceEngineYtlfExternal', ext: 'aar')
+    implementation 'com.cysion:ImagePicker:1.0.6'
+    implementation 'org.greenrobot:greendao:3.2.2'
+
+    implementation 'com.squareup.okhttp3:okhttp:4.4.1'
+
+    //补光灯 fireflyApi库
+    implementation files('../fireflyApi/libs/fireflyapi.jar')
+    implementation project(':fireflyApi')
+
+    api 'org.greenrobot:eventbus:3.0.0'
+}

@@ -1,0 +1,95 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#ffffff" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:text="Add User"
+            android:textSize="24sp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/avator"
+            android:layout_gravity="center"
+            android:layout_marginTop="64dp" />
+
+
+
+
+        <LinearLayout
+            android:id="@+id/lie_id1"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="64dp"
+            >
+
+
+        </LinearLayout>
+
+
+        <EditText
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:hint="ID"
+            android:inputType="number" />
+
+        <LinearLayout
+            android:id="@+id/lie_id2"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/lie_id1">
+
+
+            <EditText
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:inputType="number"
+                android:hint="NAME" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="bottom|center">
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:background="#B0B3B1"
+                android:layout_marginTop="130dp"
+                android:text="CONFIRM"
+                android:layout_marginRight="48dp"/>
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:background="#DDDADA"
+                android:layout_marginTop="130dp"
+                android:text="CANCEL"
+                android:layout_marginLeft="48dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

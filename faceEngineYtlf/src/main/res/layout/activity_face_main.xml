@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context="com.firefly.faceEngine.activity.ArcternMainActivity">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="获取用户列表"
+        android:onClick="getAllPersonMain" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="删除用户"
+        android:onClick="deletePerson" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="修改商品"
+        android:onClick="updatePerson"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加商品"
+        android:id="@+id/add"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="获取商品列表"
+        android:id="@+id/show"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="修改商品"
+        android:id="@+id/update"/>
+<!--   人脸检测-->
+    <Button
+        android:id="@+id/btn_detect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ytlf_dictionaries7"
+        android:onClick="onEnterDetect"
+        android:layout_marginBottom="10dp"/>
+
+<!--    <Button-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/ytlf_dictionaries13"-->
+<!--        android:onClick="onEnterRegister"-->
+<!--        android:layout_marginBottom="10dp"/>-->
+
+<!--    <Button-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="test3"-->
+<!--        android:onClick="test3"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:visibility="gone"/>-->
+
+
+    <RelativeLayout
+        android:id="@+id/titl"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:orientation="horizontal"
+        android:background="#ffffff"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="20dp">
+        <ImageView
+            android:id="@+id/id_add"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/more"
+            android:layout_weight="1"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
+            android:onClick="onEnterRegister"
+            />
+
+    </RelativeLayout>
+
+
+<!--    <ImageView-->
+<!--        android:id="@+id/id_add"-->
+<!--        android:layout_width="60dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:onClick="onEnterRegister"-->
+<!--        android:src="@drawable/more" />-->
+</LinearLayout>
