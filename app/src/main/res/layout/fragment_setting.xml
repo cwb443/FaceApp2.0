@@ -29,9 +29,9 @@
             android:id="@+id/save_overlay_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="right|center_vertical"
             android:layout_marginRight="40dp"
-            android:textSize="30sp"
+            android:textSize="24sp"
             android:text="Done"
             />
 
@@ -78,20 +78,22 @@
             android:textSize="24sp"
             android:layout_marginLeft="40dp"
             android:layout_gravity="center_vertical|left"/>
-
         <ToggleButton
             android:id="@+id/button_2"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="40dp"
             android:background="@drawable/menu_button_icon_selector"
             android:gravity="right"
-            android:textSize="0dp" />
+            android:layout_marginRight="40dp"
+            android:textSize="0sp"
+            android:layout_alignParentRight="true" />
+
+
     </RelativeLayout>
+
     <SeekBar
         android:id="@+id/led_bar"
-        android:layout_width="655dp"
+        android:layout_width="660dp"
         android:layout_height="15dp"
         android:max="8"
         android:layout_marginHorizontal="30dp"
@@ -122,6 +124,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:background="@drawable/menu_button_icon_selector"
+
             android:gravity="right"
             android:layout_marginRight="40dp"
             android:layout_alignParentRight="true"
@@ -188,9 +191,9 @@
     </RelativeLayout>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="1.5dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
         android:layout_marginRight="40dp"
         android:background="#E3E0E0"
         />
@@ -198,11 +201,11 @@
     <TextView
         android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:text="Function Start"
+        android:text="Function Control"
         android:textSize="38sp"
         android:textStyle="bold"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="20dp"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

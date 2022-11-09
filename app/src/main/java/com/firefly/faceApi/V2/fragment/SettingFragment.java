@@ -208,8 +208,6 @@ public class SettingFragment extends Fragment {
                 seekBar.setClickable(flag2);
                 seekBar.setEnabled(flag2);
                 seekBar.setEnabled(flag2);
-
-
                 button2.setSelected(b);
             }
         });
