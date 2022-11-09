@@ -277,9 +277,6 @@ public class SettingFragment extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 //                setting.setBrightness(progress);
 //                SaveInfo.UpdateInformation(getContext(),setting);
-                if (flag1&&flag2){
-                    Toast.makeText(getContext(),"The brightness range is 1 to 8, brightness is "+progress,Toast.LENGTH_SHORT).show();
-                }
                 progressSeekBar = progress;
             }
 

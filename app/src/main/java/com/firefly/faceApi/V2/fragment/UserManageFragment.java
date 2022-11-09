@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ import com.firefly.faceApi.V2.EditUserActivity;
 import com.firefly.faceApi.V2.Event.UseManageAddEventClass;
 import com.firefly.faceApi.V2.R;
 import com.firefly.faceEngine.App;
+import com.firefly.faceEngine.activity.FaceDetectActivity;
 import com.firefly.faceEngine.dblib.DBManager;
 import com.firefly.faceEngine.dblib.bean.Person;
 import com.intellif.YTLFFaceManager;
@@ -45,6 +47,9 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
     private ArrayList<String> dataList;
     private ArrayList<Person> personArrayList;
 
+    Dialog dialog;
+
+
 ////    private GoodsUtils goodsUtils = new GoodsUtils();
 //    // 在线获取授权 API_KEY
 //    public final String API_KEY = "xrZEJz51qfiBI3FB";
@@ -56,7 +61,7 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
     private YTLFFaceManager YTLFFace = YTLFFaceManager.getInstance();
 //    private YTLFFaceManager YTLFFace = YTLFFaceManager.getInstance().initPath(FACE_PATH);
 
-    Dialog dialog;
+
     //  private CustomDialog dialog;
     @Nullable
     @Override
@@ -72,40 +77,7 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                personArrayList = new ArrayList<>();
-                dataList = new ArrayList<>();
-                List<Person> personList = dbManager.getPersonList();
-
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("All user will be deleted");
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-
-                builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dbManager.deletePersonAll();
-                        YTLFFaceManage.dataBaseClear();
-                        personArrayList = new ArrayList<>();
-                        dataList = new ArrayList<>();
-                        List<Person> personList = dbManager.getPersonList();
-                        for (Person person : personList) {
-                            personArrayList.add(person);
-                            dataList.add(person.getName());
-//            Log.e("", "name: "+person.getName()+" id："+person.getId() );
-                        }
-
-                        chatAdapter = new ChatAdapter(getActivity(), dataList, UserManageFragment.this);
-                        listView.setAdapter(chatAdapter);
-                        imageView.setClickable(true);
-                    }
-                });
-                builder.show();
+                showmyDialog(-1,"You will delete all");
             }
         });
 
@@ -158,7 +130,11 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
         chatAdapter.notifyDataSetChanged();
     }
 
+    private void showmyDialog(int position,String title) {
 
+        dialog=new UserManageFragment.CustomDialog(getContext(), R.style.mystyle, R.layout.delete_dlalog,position,title);
+        dialog.show();
+    }
 
     public void onClick(View item, View widget, int position, int which) {
         switch (which) {
@@ -166,27 +142,11 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
                 //final int position = (int) v.getTag(); //获取被点击的控件所在item 的位置，setTag 存储的object，所以此处要强转
 
                 //点击删除按钮之后，给出dialog提示
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("The data in position "+(position+1) +" will be deleted");
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-                builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
 
-                        Person person = personArrayList.get(position);
-                        dbManager.deletePerson(person.getId());
-                        YTLFFace.dataBaseDelete(person.getId());
+              showmyDialog(position,null);
 
-                        dataList.remove(position);
-                        personArrayList.remove(position);
-                        chatAdapter.notifyDataSetChanged();
-                    }
-                });
-                builder.show();
+
+
                 break;
             case R.id.image_edit:
          //showmyDialog(position);
@@ -200,12 +160,9 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
 
     }
 
-    private void showmyDialog(int position) {
 
-        dialog=new CustomDialog(getContext(),R.style.mystyle,R.layout.dialog,position);
-        dialog.show();
-    }
-    class CustomDialog extends Dialog implements
+    //弹窗
+    public class CustomDialog extends Dialog implements
             View.OnClickListener {
 
         /**
@@ -232,7 +189,9 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
          * 收获地址id
          */
         private int postion_1;
-        private EditText newName;
+        private TextView deleteTitle;
+
+        private String title;
 
         public CustomDialog(Context context) {
             super(context);
@@ -257,15 +216,15 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
          * @param context
          * @param theme
          * @param resLayout
-         * @param postion
          */
-        public CustomDialog(Context context, int theme, int resLayout,
-                            int postion) {
+        public CustomDialog(Context context, int theme, int resLayout,int position,String title) {
             super(context, theme);
             this.context = context;
             this.layoutRes = resLayout;
-            this.postion_1 = postion;
+            postion_1=position;
+            this .title = title;
         }
+
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -274,9 +233,17 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
             // 指定布局
             this.setContentView(layoutRes);
             // 根据id在布局中找到控件对象
-            bt_cancal = (Button) findViewById(R.id.id_cancel_btn);
-            bt_confirm = (Button) findViewById(R.id.id_comfirm_btn);
-            newName=(EditText)findViewById(R.id.id_new_name);
+            bt_cancal = (Button) findViewById(R.id.id_dialog_cancel_btn);
+            bt_confirm = (Button) findViewById(R.id.id_dialog_comfirm_btn);
+            deleteTitle=(TextView) findViewById(R.id.id_dialog_title);
+
+            if (title==null){
+                deleteTitle.setText("You will delete "+(postion_1+1)+" th");
+            }else {
+                deleteTitle.setText(title);
+            }
+
+
 
             // 为按钮绑定点击事件监听器
             bt_cancal.setOnClickListener(this);
@@ -286,38 +253,42 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
 
         @Override
         public void onClick(View v) {
-            switch (v.getId()) {
+            int id = v.getId();// 确定按钮
+            if (id == R.id.id_dialog_comfirm_btn ) {// 修改
 
-                // 确定按钮
-                case R.id.id_comfirm_btn:
-                    // 修改
-
-                    Person person = personArrayList.get(postion_1);
-                    String str=newName.getText().toString();
-                    dbManager.updatePersonById(person.getId(),str);
-
+                if (postion_1 == -1){
+                    dbManager.deletePersonAll();
+                    YTLFFaceManage.dataBaseClear();
                     personArrayList = new ArrayList<>();
                     dataList = new ArrayList<>();
                     List<Person> personList = dbManager.getPersonList();
-                    for (Person p: personList) {
-                        personArrayList.add(p);
-                        dataList.add(p.getName());
-//                        Log.e("", "name: "+person.getName()+" id："+person.getId() );
-                        Log.e("TAG," ,"onClick: ");
+                    for (Person person : personList) {
+                        personArrayList.add(person);
+                        dataList.add(person.getName());
+//            Log.e("", "name: "+person.getName()+" id："+person.getId() );
                     }
 
-                    listView.setAdapter(new ChatAdapter(getActivity(),dataList, UserManageFragment.this));
-                    dialog.dismiss();
-                    Toast.makeText(getContext(),"Succeed!",Toast.LENGTH_LONG).show();
-                    break;
+                    chatAdapter = new ChatAdapter(getActivity(), dataList, UserManageFragment.this);
+                    listView.setAdapter(chatAdapter);
+                    imageView.setClickable(true);
+                }else{
+                    Person person = personArrayList.get(postion_1);
+                    dbManager.deletePerson(person.getId());
+                    YTLFFace.dataBaseDelete(person.getId());
 
+                    dataList.remove(postion_1);
+                    personArrayList.remove(postion_1);
+                    chatAdapter.notifyDataSetChanged();
+                }
+                dialog.dismiss();
+            }else {
                 // 取消按钮
-                case R.id.id_cancel_btn:
-                    dialog.dismiss();
 
-                default:
-                    break;
+                dialog.dismiss();
+
             }
+
+
         }
     }
 

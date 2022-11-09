@@ -752,7 +752,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         dialog.show();
     }
     //弹窗
-    class CustomDialog extends Dialog implements
+    public class CustomDialog extends Dialog implements
             View.OnClickListener {
 
         /**
