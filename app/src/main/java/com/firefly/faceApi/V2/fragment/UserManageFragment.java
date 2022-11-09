@@ -77,7 +77,7 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showmyDialog(-1,"You will delete all");
+                showmyDialog(-1,"All user will be deleted");
             }
         });
 
