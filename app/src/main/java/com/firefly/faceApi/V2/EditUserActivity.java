@@ -1,29 +1,58 @@
 package com.firefly.faceApi.V2;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firefly.faceEngine.App;
+import com.firefly.faceEngine.activity.BaseActivity;
 import com.firefly.faceEngine.dblib.DBManager;
 import com.firefly.faceEngine.dblib.bean.Person;
+import com.intellif.YTLFFaceManager;
+import com.intellif.arctern.base.ArcternImage;
+import com.intellif.arctern.base.ArcternRect;
+import com.intellif.arctern.base.ExtractCallBack;
+import com.lzy.imagepicker.ImagePicker;
+import com.lzy.imagepicker.bean.ImageItem;
+import com.lzy.imagepicker.ui.ImageGridActivity;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditUserActivity extends AppCompatActivity {
+public class EditUserActivity extends BaseActivity implements ExtractCallBack {
+
+    private String mBitmapPath = "";
+    private byte[] bitmapFeature = null;
 
     private DBManager dbManager = App.getInstance().getDbManager();
+    private YTLFFaceManager YTLFFace = YTLFFaceManager.getInstance();
+
+    private Bitmap faceBitmap;
     EditText newName;
     Integer position;
+
+    TextView confirm;//提交
+
+    TextView takePho;
+
+    ImageView image;
+
+    Person person;//当前修改的用户
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +62,13 @@ public class EditUserActivity extends AppCompatActivity {
         Bundle bundle = intent.getBundleExtra("data");
         position = bundle.getInt("position");
         newName = findViewById(R.id.name_text_edit);
+        confirm = findViewById(R.id.confirm_btn);
+        takePho = findViewById(R.id.take_pho);
+        image = findViewById(R.id.pho_btn);
 
 
-    }
 
-    public void confirmClick(View view){
-        changeName();
-
-    }
-
-    public void changeName(){
-
+        //获取当前用户
         List<Person> personList = dbManager.getPersonList();//从数据库中拉取
         List<Person> personArrayList = new ArrayList<>();//展现的与拉取的id匹配
         List<String> dataList = new ArrayList<>();//展现
@@ -52,46 +77,142 @@ public class EditUserActivity extends AppCompatActivity {
             dataList.add(person.getName());
         }
 
-        Person person = personArrayList.get(position);
+        person = personArrayList.get(position);
+
+        newName.setHint(person.getName());
+
+
+
+        takePho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectImage(view);
+            }
+
+        });
+
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("", "onClick: "+"12234454");
+                changePerson();
+            }
+        });
+
+
+    }
+
+    public void changePerson(){
 
         String name=newName.getText().toString();
 
         String s = removeSpace(name);
+        int result =1;
+        String v = null;
+        if (s.equals("")||s==null) {
+            if (bitmapFeature == null){
+                finish();
+            }else {
+                long id = dbManager.updatePersonById(person.getId(), person.getName(), bitmapFeature);
+                //载入内存
+                YTLFFace.dataBaseDelete(id);
+                result = YTLFFace.dataBaseAdd(id, bitmapFeature);
+                v = result == 0 ? "Modify successfully" : "fail to Modify";
+            }
+        }
 
-        if (s.equals("")||s==null){
-            Toast.makeText(this,"Name Can't Be Null",Toast.LENGTH_LONG).show();
+        else if (bitmapFeature == null){
+            long id = dbManager.updatePersonById(person.getId(),s);
+            v = "Modify successfully";
+        }
+
+        else if (bitmapFeature != null) {
+            long id = dbManager.updatePersonById(person.getId(), s, bitmapFeature);
+            //载入内存
+            YTLFFace.dataBaseDelete(id);
+
+            result = YTLFFace.dataBaseAdd(id, bitmapFeature);
+            v = result == 0 ? "Modify successfully" : "fail to Modify";
+        }
+        showShortToast(v);
+        if (result == 0) {
+            //全部置空
             newName.setText("");
-            newName.setHint("Please input name");
-        }else {
-            dbManager.updatePersonById(person.getId(),s);
-            finish();
+            newName.setHint("Enter your name");
+            image.setImageResource(R.drawable.photo);
+
+            bitmapFeature = null;
+            mBitmapPath = "";
         }
 
-//
-//        personArrayList = new ArrayList<>();
-//        dataList = new ArrayList<>();
-//        personList = dbManager.getPersonList();
-//        for (Person p: personList) {
-//            personArrayList.add(p);
-//            dataList.add(p.getName());
-//        }
+        finish();
 
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
 
-            changeName();
 
+    public static Bitmap getLoacalBitmap(String url) {
+        try {
+            FileInputStream fis = new FileInputStream(url);
+            return BitmapFactory.decodeStream(fis);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
         }
-        return super.onKeyDown(keyCode, event);
     }
+
+
+    public void selectImage(View view) {
+        Intent intent = new Intent(this, ImageGridActivity.class);
+        startActivityForResult(intent, IMAGE_PICKER_ONE);
+    }
+
 
     public String removeSpace(String str){
         if ((str.equals("")||str == null)||(str.charAt(0) != ' '&&str.charAt(str.length()-1)!=' '))
             return str;
         String trim = str.trim();
         return removeSpace(trim);
+    }
+
+    //获取人脸特征值
+    private int getFeature(String bitmapPath) {
+        return YTLFFace.doFeature(bitmapPath, this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.i("", "onActivityResult: ");
+        if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
+            if (data != null && requestCode == IMAGE_PICKER_ONE) {
+                ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
+                if (images != null && images.size() > 0) {
+                    mBitmapPath = images.get(0).path;
+                    Bitmap bitmap = BitmapFactory.decodeFile(mBitmapPath);
+//                    Bitmap bm = BitmapFactory.decodeFile(mBitmapPath);
+//                    saveBitmap(bm);
+                    image.setImageBitmap(bitmap);
+                    faceBitmap = bitmap;
+//                    Tools.debugLog("bitmap path:%s", mBitmapPath);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            int result = getFeature(mBitmapPath);
+//                            Tools.debugLog("result: %s", result);
+                        }
+                    }).start();
+                }
+            }
+        }
+    }
+
+
+    @Override
+    public void onExtractFeatureListener(ArcternImage arcternImage, byte[][] features, ArcternRect[] arcternRects) {
+        Log.i("", "onExtractFeatureListener: "+"qqq");
+        if (features.length > 0) {
+            bitmapFeature = features[0];
+        }
     }
 }

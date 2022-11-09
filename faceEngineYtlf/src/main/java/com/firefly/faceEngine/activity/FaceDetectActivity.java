@@ -502,7 +502,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
             return;
         }
 
-        mCountDownTimer = new CountDownTimer(Long.MAX_VALUE, 1000) {
+        mCountDownTimer = new CountDownTimer(Long.MAX_VALUE, 10000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 if (lastOnAttributeCallBackTime + 3000 < System.currentTimeMillis()) {

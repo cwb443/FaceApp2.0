@@ -179,7 +179,6 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
 
                         Person person = personArrayList.get(position);
                         dbManager.deletePerson(person.getId());
-
                         YTLFFace.dataBaseDelete(person.getId());
 
                         dataList.remove(position);

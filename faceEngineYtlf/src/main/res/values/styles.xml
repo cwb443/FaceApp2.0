@@ -19,6 +19,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="buttonBarButtonStyle">@style/DialogButton</item>
     </style>
 
     <style name="AppThemeDayNight" parent="Theme.AppCompat.DayNight.DarkActionBar">
@@ -53,4 +54,8 @@
         <item name="android:windowBackground">@null</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
+    <style name="DialogButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="textAllCaps">false</item>
+    </style>
+
 </resources>

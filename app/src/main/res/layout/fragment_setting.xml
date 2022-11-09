@@ -34,9 +34,6 @@
             android:textSize="24sp"
             android:text="Done"
             />
-
-
-
 <!--        <TextView-->
 <!--            android:id="@+id/save_overlay_view"-->
 <!--            android:layout_width="wrap_content"-->
@@ -94,7 +91,9 @@
     <SeekBar
         android:id="@+id/led_bar"
         android:layout_width="660dp"
-        android:layout_height="15dp"
+        android:maxHeight="40dp"
+        android:minHeight="25dp"
+        android:layout_height="20dp"
         android:max="8"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="20dp"
@@ -144,6 +143,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_marginTop="20dp">
 
         <TextView
@@ -169,6 +170,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_marginTop="20dp">
 
         <TextView
@@ -191,11 +194,9 @@
     </RelativeLayout>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="1.5dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="40dp"
-        android:background="#E3E0E0"
+        android:layout_height="2dp"
+        android:layout_marginTop="30dp"
+        android:background="#B3ADAD"
         />
     <!--    人脸识别 开始-->
     <TextView
@@ -205,7 +206,7 @@
         android:textSize="38sp"
         android:textStyle="bold"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="25dp"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

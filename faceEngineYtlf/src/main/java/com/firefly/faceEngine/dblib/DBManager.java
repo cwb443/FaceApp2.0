@@ -93,6 +93,20 @@ public class DBManager {
 
     }
 
+    public int updatePersonById(long id,String name,byte[] feature){
+        Person person = personDao.load(id);
+
+        if (person==null)
+            return 0;
+        else {
+            person.setName(name);
+            person.setFeature(feature);
+            personDao.update(person);
+            return 1;
+        }
+
+    }
+
     //获取用户列表
     public List<Person> getPersonList(){
         QueryBuilder<Person> qb = personDao.queryBuilder();

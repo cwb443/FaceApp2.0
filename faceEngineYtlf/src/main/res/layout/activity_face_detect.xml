@@ -137,22 +137,25 @@
                             android:layout_marginTop="35dp"
                             android:background="@drawable/settinghome"
                             android:onClick="back" />
+
                         <TextView
                             android:id="@+id/image_wel"
                             android:layout_width="188dp"
                             android:layout_height="60dp"
                             android:layout_marginLeft="325dp"
                             android:layout_marginTop="88dp"
+                            android:fontFamily="serif"
                             android:textColor="#EB4C4F58"
                             android:textSize="38sp" />
-
                         <TextView
                             android:id="@+id/image_text"
                             android:layout_width="280dp"
                             android:layout_height="60dp"
-                            android:layout_marginLeft="325dp"
+                            android:layout_marginLeft="275dp"
                             android:layout_marginTop="150dp"
                             android:maxEms="3"
+                            android:fontFamily="serif"
+                            android:gravity="center"
                             android:singleLine="true"
                             android:ellipsize="end"
                             android:textColor="#EB4C4F58"

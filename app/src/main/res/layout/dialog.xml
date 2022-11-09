@@ -38,7 +38,6 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:text="cancel"
-                android:textColor="#91c11e"
                 android:textSize="15dp" />
 
             <LinearLayout
@@ -53,7 +52,6 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:text="comfirm"
-                android:textColor="#91c11e"
                 android:textSize="15dp" />
         </LinearLayout>
     </LinearLayout>

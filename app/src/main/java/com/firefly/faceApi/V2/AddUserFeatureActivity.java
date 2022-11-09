@@ -4,7 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +26,7 @@ import com.firefly.faceEngine.App;
 import com.firefly.faceEngine.activity.BaseActivity;
 import com.firefly.faceEngine.dblib.DBManager;
 import com.firefly.faceEngine.dblib.SettingManage;
+import com.firefly.faceEngine.dblib.bean.Person;
 import com.intellif.YTLFFaceManager;
 import com.intellif.arctern.base.ArcternImage;
 import com.intellif.arctern.base.ArcternRect;
@@ -27,6 +35,11 @@ import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class AddUserFeatureActivity extends BaseActivity implements ExtractCallBack {
@@ -36,7 +49,6 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
     private ImageView image;
     private EditText et_name;
     private TextView take_pho;
-
 
 //    private Button btn_register;
     private DBManager dbManager = App.getInstance().getDbManager();
@@ -52,6 +64,8 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_add_user_featur);
         et_name=(EditText)findViewById(R.id.name_text);
 //        cancel_btn=findViewById(R.id.cancel_btn);
@@ -87,7 +101,6 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
 
     public void selectImage(View view) {
         Intent intent = new Intent(this, ImageGridActivity.class);
-//        intent.putExtra(ImageGridActivity.EXTRAS_TAKE_PICKERS, true);
         startActivityForResult(intent, IMAGE_PICKER_ONE);
     }
 
@@ -99,44 +112,52 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
     }
 
     public void onRegister(View view) {
-
-        if (bitmapFeature  == null)
-            Log.i("TAG", "onRegister: "+"554");
-
         String name = et_name.getText().toString();
         name = removeSpace(name);
-        if (name.equals("")||name==null){
-            Toast.makeText(this,"Name Can't Be Null",Toast.LENGTH_LONG).show();
-            et_name.setText("");
-            et_name.setHint("Please input name");
-        }else{
-            if (bitmapFeature != null) {
-                long searchId = YTLFFace.doSearch(bitmapFeature);
-                if (searchId > 0) {
-                    showShortToast("The user is registered");
-                    return;
-                }
-            }
+        if (bitmapFeature == null&& (name.equals("")||name==null)){
+            Toast.makeText(this,"Please enter the content and try again",Toast.LENGTH_LONG).show();
+        }else if (bitmapFeature  == null){
+            Toast.makeText(this,"Don't hava pictures",Toast.LENGTH_LONG).show();
+        }else {
 
-            if (bitmapFeature != null) {
-                long id = dbManager.insertPerson(name, bitmapFeature);
-                //载入内存
-                int result = YTLFFace.dataBaseAdd(id, bitmapFeature);
-
-                String s = result == 0 ? "registered successfully" : "fail to register";
-                showShortToast(s);
-                if (result == 0) {
-                    //全部置空
-                    et_name.setText("");
-                    image.setImageResource(R.drawable.photo);
-                    bitmapFeature = null;
-                    mBitmapPath = "";
+            if (name.equals("")||name==null){
+                Toast.makeText(this,"Name Can't Be Null",Toast.LENGTH_LONG).show();
+                et_name.setText("");
+//            et_name.setHint("Please input name");
+            }else{
+                if (bitmapFeature != null) {
+                    long searchId = YTLFFace.doSearch(bitmapFeature);
+                    if (searchId > 0) {
+                        showShortToast("The user is registered");
+                        return;
+                    }
                 }
+
+                if (bitmapFeature != null) {
+//                Person person = new Person();
+//                person.setFeature(bitmapFeature);
+//                person.setName(name);
+                    long id = dbManager.insertPerson(name,bitmapFeature,mBitmapPath);
+                    //载入内存
+                    int result = YTLFFace.dataBaseAdd(id, bitmapFeature);
+
+                    String s = result == 0 ? "registered successfully" : "fail to register";
+                    showShortToast(s);
+                    if (result == 0) {
+                        //全部置空
+                        et_name.setText("");
+                        image.setImageResource(R.drawable.photo);
+
+                        bitmapFeature = null;
+                        mBitmapPath = "";
+                    }
+                }
+                finish();
             }
-            finish();
         }
-
     }
+
+
 
     //获取人脸特征值
     private int getFeature(String bitmapPath) {
@@ -165,6 +186,8 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
                 if (images != null && images.size() > 0) {
                     mBitmapPath = images.get(0).path;
                     Bitmap bitmap = BitmapFactory.decodeFile(mBitmapPath);
+//                    Bitmap bm = BitmapFactory.decodeFile(mBitmapPath);
+//                    saveBitmap(bm);
                     image.setImageBitmap(bitmap);
                     faceBitmap = bitmap;
 //                    Tools.debugLog("bitmap path:%s", mBitmapPath);
@@ -179,5 +202,4 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
             }
         }
     }
-
 }
