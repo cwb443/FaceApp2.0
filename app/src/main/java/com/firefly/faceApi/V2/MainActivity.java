@@ -3,6 +3,7 @@ package com.firefly.faceApi.V2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import com.firefly.faceApi.V2.Event.UseManageAddEventClass;
@@ -55,6 +56,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); //隐藏状态栏、
+
         setContentView(R.layout.activity_main);
         thisMainActivity = this;
        // textView=(TextView)findViewById(R.id.title);
@@ -88,31 +92,32 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         if (settingFragment.getFlag()){
             //檢測
             thisMainActivity.DetectRun();
-//            Runnable runnable = new Runnable() {
-//                @Override
-//                public void run() {
-//////                    Intent intent = new Intent();
-//////                    intent.setAction(Intent.ACTION_MAIN);
-//////                    intent.addCategory(Intent.CATEGORY_LAUNCHER);
-//////                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//////                    ComponentName cn = new ComponentName(context, FaceDetectActivity.class);
-//////                    intent.setComponent(cn);
-//////                    startActivity(intent);
-////
-//                    Intent it=new Intent(context, FaceDetectActivity.class);
-//                    it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    context.startActivity(it);
-////
-//////                    Intent intent = new Intent(context, FaceDetectActivity.class);
-//////                    startActivity(intent);
-////                    Intent intent = new Intent(context, KeepLiveActivity.class);
-////                    startActivity(intent);
-//                }
-//            };
-//
-//            runOnFaceSdkReady(runnable);
+
         }
     }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus){
+            hideSystemUI();
+        }
+    }
+
+    private void hideSystemUI() {
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY //(修改这个选项，可以设置不同模式)
+                        //使用下面三个参数，可以使内容显示在system bar的下面，防止system bar显示或
+                        //隐藏时，Activity的大小被resize。
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        // 隐藏导航栏和状态栏
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
+
 
     @Override
     protected void onDestroy() {

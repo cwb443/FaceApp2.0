@@ -2,10 +2,59 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!--     原有控件-->
+
+
+
+<!--    覆盖页面的控件   蓝色-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:layout_marginTop="13dp"
+            android:gravity="center_horizontal">
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+<!--输入文字控件-->
+<RelativeLayout
+    android:layout_width="665dp"
+    android:layout_height="260dp"
+    android:layout_marginTop="20dp"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="665dp"
+        android:layout_height="260dp"
+        android:background="@drawable/erweima" />
+    <!--    <ImageView-->
+<!--        android:layout_width="665dp"-->
+<!--        android:layout_height="260dp"-->
+<!--        />-->
+    <RelativeLayout
+        android:layout_width="1px"
+        android:layout_height="1px"
         android:background="@color/black">
 
 
@@ -81,87 +130,31 @@
         </LinearLayout>
 
     </RelativeLayout>
-    <!--    覆盖页面的控件   蓝色-->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/white">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:orientation="horizontal"
-            android:background="#ffffff"
-            android:layout_marginTop="13dp"
-            android:gravity="center_horizontal">
-        </LinearLayout>
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:layout_marginTop="10dp">
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <!--输入文字控件-->
-                        <RelativeLayout
-                            android:layout_width="665dp"
-                            android:layout_height="260dp"
-                            android:layout_marginTop="20dp"
-                            android:gravity="center">
-
-                            <ImageView
-                                android:id="@+id/image_view"
-                                android:layout_width="665dp"
-                                android:layout_height="260dp"
-                                android:background="@drawable/erweima" />
-                            <!--    <ImageView-->
-                            <!--        android:layout_width="665dp"-->
-                            <!--        android:layout_height="260dp"-->
-                            <!--        />-->
-                        </RelativeLayout>
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_marginLeft="620dp"
-                            android:layout_marginTop="35dp"
-                            android:background="@drawable/settinghome"
-                            android:onClick="back" />
+</RelativeLayout>
 
                         <TextView
                             android:id="@+id/image_wel"
-                            android:layout_width="188dp"
+                            android:layout_width="200dp"
                             android:layout_height="60dp"
-                            android:layout_marginLeft="325dp"
+                            android:layout_marginLeft="322dp"
                             android:layout_marginTop="88dp"
-                            android:fontFamily="serif"
-                            android:textColor="#EB4C4F58"
-                            android:textSize="38sp" />
+                            android:textStyle="bold"
+                            android:textSize="38sp"
+                            android:fontFamily="serif"/>
+
                         <TextView
                             android:id="@+id/image_text"
-                            android:layout_width="280dp"
+                            android:layout_width="150dp"
                             android:layout_height="60dp"
-                            android:layout_marginLeft="275dp"
-                            android:layout_marginTop="150dp"
+                            android:layout_marginLeft="355dp"
+                            android:layout_marginTop="135dp"
+                            android:text=""
                             android:maxEms="3"
-                            android:fontFamily="serif"
-                            android:gravity="center"
                             android:singleLine="true"
                             android:ellipsize="end"
-                            android:textColor="#EB4C4F58"
-                            android:textSize="38sp" />
-
-
+                            android:textSize="38sp"
+                            android:textStyle="bold"
+                            android:fontFamily="serif"/>
 
                     </RelativeLayout>
 
@@ -197,74 +190,11 @@
                     android:layout_marginTop="25dp">
                     <ImageView
                         android:id="@+id/goods1"
+                        android:background="@drawable/yangli15"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_marginLeft="25dp"/>
-                    <!--                    <LinearLayout-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="match_parent"-->
-                    <!--                        android:layout_marginLeft="15px"-->
-                    <!--                        android:orientation="vertical">-->
-                    <!--                        <LinearLayout-->
-                    <!--                            android:layout_width="match_parent"-->
-                    <!--                            android:layout_height="wrap_content"-->
-                    <!--                            android:orientation="horizontal">-->
-                    <!--                            <TextView-->
-                    <!--                                android:id="@+id/name_text1"-->
-                    <!--                                android:layout_width="350dp"-->
-                    <!--                                android:layout_height="30dp"-->
 
-                    <!--                                android:textSize="24sp"-->
-                    <!--                                android:textStyle="normal"-->
-                    <!--                                android:singleLine="true"-->
-                    <!--                                android:ellipsize="end"-->
-                    <!--                                android:layout_marginTop="8dp"-->
-                    <!--                                android:layout_marginLeft="10dp"/>-->
-                    <!--                            <TextView-->
-                    <!--                                android:id="@+id/price1"-->
-                    <!--                                android:layout_width="120dp"-->
-                    <!--                                android:layout_height="30dp"-->
-
-                    <!--                                android:textColor="@color/red"-->
-                    <!--                                android:layout_marginLeft="55dp"-->
-                    <!--                                android:layout_marginTop="20dp"-->
-                    <!--                                android:textSize="20sp"/>-->
-                    <!--                        </LinearLayout>-->
-
-                    <!--                        <LinearLayout-->
-                    <!--                            android:layout_width="wrap_content"-->
-                    <!--                            android:layout_height="wrap_content"-->
-                    <!--                            android:orientation="horizontal">-->
-
-                    <!--                            <TextView-->
-                    <!--                                android:id="@+id/tv_describe1"-->
-                    <!--                                android:layout_width="350dp"-->
-                    <!--                                android:layout_height="50dp"-->
-                    <!--                                android:layout_marginLeft="10dp"-->
-                    <!--                                android:ellipsize="end"-->
-                    <!--                                android:singleLine="true"-->
-
-                    <!--                                android:textColor="#DF5E5D5D"-->
-                    <!--                                android:textSize="18sp" />-->
-
-
-                    <!--                            <TextView-->
-                    <!--                                android:id="@+id/edit_query1"-->
-                    <!--                                android:layout_width="120dp"-->
-                    <!--                                android:layout_height="match_parent"-->
-                    <!--                                android:layout_marginLeft="30dp"-->
-                    <!--                                android:gravity="right"-->
-                    <!--                                android:textSize="24sp"-->
-                    <!--                                android:textStyle="normal" />-->
-                    <!--                        </LinearLayout>-->
-                    <!--                        <Button-->
-                    <!--                            android:layout_width="match_parent"-->
-                    <!--                            android:layout_height="0.1px"-->
-                    <!--                            android:background="#9EF8F6F6"-->
-                    <!--                            android:layout_marginTop="15dp"-->
-                    <!--                            android:layout_marginLeft="10px"-->
-                    <!--                            android:layout_marginRight="20dp"/>-->
-                    <!--                    </LinearLayout>-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -278,11 +208,11 @@
                                 android:id="@+id/name_text1"
                                 android:layout_width="350dp"
                                 android:layout_height="30dp"
+                                android:text="Good name2"
                                 android:textSize="24sp"
                                 android:textStyle="normal"
                                 android:singleLine="true"
                                 android:ellipsize="end"
-                                android:layout_marginTop="0dp"
                                 android:layout_marginLeft="10dp"/>
 
                         </LinearLayout>
@@ -301,6 +231,7 @@
                                     android:layout_height="30dp"
                                     android:layout_marginLeft="10dp"
                                     android:ellipsize="end"
+                                    android:text="i am afjj a student aaaaa"
                                     android:singleLine="true"
                                     android:textColor="#DF5E5D5D"
                                     android:textSize="18sp" />
@@ -310,15 +241,16 @@
                                     android:layout_height="30dp"
                                     android:layout_marginTop="15dp"
                                     android:textColor="@color/red"
+                                    android:text="$9.9"
                                     android:textSize="20sp"
                                     android:layout_marginLeft="10dp"/>
                             </LinearLayout>
-
                             <TextView
                                 android:id="@+id/edit_query1"
-                                android:layout_width="120dp"
+                                android:layout_width="88dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="40dp"
+                                android:layout_marginLeft="66dp"
+                                android:text="Qty:2"
                                 android:gravity="left"
                                 android:textSize="24sp"
                                 android:textStyle="normal" />
@@ -346,6 +278,7 @@
                     <ImageView
                         android:id="@+id/goods2"
                         android:layout_width="120dp"
+                        android:background="@drawable/yangli"
                         android:layout_height="120dp"
                         android:layout_marginLeft="25dp"/>
                     <LinearLayout
@@ -361,6 +294,7 @@
                                 android:id="@+id/name_text2"
                                 android:layout_width="350dp"
                                 android:layout_height="30dp"
+                                android:text="Good name2"
                                 android:textSize="24sp"
                                 android:textStyle="normal"
                                 android:singleLine="true"
@@ -383,6 +317,7 @@
                                     android:layout_height="30dp"
                                     android:layout_marginLeft="10dp"
                                     android:ellipsize="end"
+                                    android:text="i am afjj a student aaaaa"
                                     android:singleLine="true"
                                     android:textColor="#DF5E5D5D"
                                     android:textSize="18sp" />
@@ -392,14 +327,16 @@
                                     android:layout_height="30dp"
                                     android:layout_marginTop="15dp"
                                     android:textColor="@color/red"
+                                    android:text="$9.9"
                                     android:textSize="20sp"
                                     android:layout_marginLeft="10dp"/>
                             </LinearLayout>
                             <TextView
                                 android:id="@+id/edit_query2"
-                                android:layout_width="120dp"
+                                android:layout_width="88dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="40dp"
+                                android:layout_marginLeft="66dp"
+                                android:text="Qty:2"
                                 android:gravity="left"
                                 android:textSize="24sp"
                                 android:textStyle="normal" />
@@ -424,6 +361,7 @@
                     android:layout_marginTop="20dp">
                     <ImageView
                         android:id="@+id/goods3"
+                        android:background="@drawable/yangli16"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_marginLeft="25dp"/>
@@ -437,9 +375,11 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <TextView
+                                android:text="Good name3"
                                 android:id="@+id/name_text3"
                                 android:layout_width="350dp"
                                 android:layout_height="30dp"
+
                                 android:textSize="24sp"
                                 android:textStyle="normal"
                                 android:singleLine="true"
@@ -460,6 +400,7 @@
                                     android:id="@+id/tv_describe3"
                                     android:layout_width="350dp"
                                     android:layout_height="30dp"
+                                    android:text="ddid adiafj; afaiee fasdfsfffff"
                                     android:layout_marginLeft="10dp"
                                     android:ellipsize="end"
                                     android:singleLine="true"
@@ -470,16 +411,19 @@
                                     android:layout_width="120dp"
                                     android:layout_height="30dp"
                                     android:textColor="@color/red"
+                                    android:text="$9.9"
                                     android:textSize="20sp"
                                     android:layout_marginTop="15dp"
                                     android:layout_marginLeft="10dp"/>
                             </LinearLayout>
+
                             <TextView
                                 android:id="@+id/edit_query3"
-                                android:layout_width="120dp"
+                                android:layout_width="88dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="40dp"
+                                android:layout_marginLeft="66dp"
                                 android:gravity="left"
+                                android:text="Qty:44"
                                 android:textSize="24sp"
                                 android:textStyle="normal" />
                         </LinearLayout>
@@ -523,24 +467,27 @@
                         android:layout_marginHorizontal="40dp">
                         <ImageView
                             android:id="@+id/goods4"
+                            android:background="@drawable/yangli3"
                             android:layout_width="120dp"
                             android:layout_height="120dp"/>
                         <TextView
                             android:id="@+id/name_text4"
                             android:layout_width="match_parent"
+                            android:text="good anme4 aafifj"
                             android:layout_height="30dp"
                             android:textStyle="normal"
                             android:textSize="24sp"
                             android:singleLine="true"
                             android:ellipsize="end"
                             android:layout_marginTop="5dp"
-                            />
+                       />
 
                         <TextView
                             android:id="@+id/price4"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
                             android:layout_marginTop="10dp"
+                            android:text="$9.9"
                             android:textSize="20sp"
                             android:textColor="@color/red"/>
                     </LinearLayout>
@@ -554,6 +501,7 @@
                         <ImageView
                             android:id="@+id/goods5"
                             android:layout_width="120dp"
+                            android:background="@drawable/yangli8"
                             android:layout_height="120dp"/>
                         <TextView
                             android:id="@+id/name_text5"
@@ -561,6 +509,7 @@
                             android:layout_height="30dp"
                             android:textStyle="normal"
                             android:textSize="24sp"
+                            android:text="aaddj dndnajrjfg"
                             android:singleLine="true"
                             android:ellipsize="end"
                             android:layout_marginTop="5dp"/>
@@ -569,6 +518,7 @@
                             android:id="@+id/price5"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
+                            android:text="$9.9"
                             android:layout_marginTop="10dp"
                             android:textSize="20sp"
                             android:textColor="@color/red"/>
@@ -582,21 +532,25 @@
                         <ImageView
                             android:id="@+id/goods6"
                             android:layout_width="120dp"
+                            android:background="@drawable/yangli6"
                             android:layout_height="120dp"/>
+
                         <TextView
                             android:id="@+id/name_text6"
                             android:layout_width="match_parent"
-                            android:layout_height="30dp"
-                            android:textStyle="normal"
-                            android:textSize="24sp"
-                            android:singleLine="true"
-                            android:ellipsize="end"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            />
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="fsdafjfieoytn"
+                            android:textSize="24sp"
+                            android:textStyle="normal" />
+
                         <TextView
                             android:id="@+id/price6"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
+                            android:text="$9.9"
                             android:layout_marginTop="10dp"
                             android:textSize="20sp"
                             android:textColor="@color/red"/>
@@ -605,4 +559,55 @@
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>
+
+
+<!--    最上层控件 透明-->
+ <RelativeLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+  <ImageView
+      android:id="@+id/close_goods_image"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" />
+ </RelativeLayout>
+
+<!--    按钮-->
+    <ImageView
+        android:layout_width="28dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="640dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/settinghome"
+        android:onClick="back" />
+
+
+
+    <!--    输入框  欢迎新老客户-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/close_goods_text_wel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="45sp"
+            android:fontFamily="serif"
+            android:textStyle="bold"
+            android:layout_marginTop="210dp"
+            android:textColor="#F3555555"/>
+        <TextView
+            android:id="@+id/close_goods_text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="45sp"
+            android:fontFamily="serif"
+            android:textStyle="bold"
+            android:layout_marginTop="295dp"
+            android:textColor="#F3555555"/>
+
+    </RelativeLayout>
+
+
 </RelativeLayout>

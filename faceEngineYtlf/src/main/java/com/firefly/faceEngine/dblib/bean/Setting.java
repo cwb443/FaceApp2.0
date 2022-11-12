@@ -14,9 +14,11 @@ public class Setting {
     private Integer infrared;
     private String forecast;
     private String products;
-    @Generated(hash = 1872241443)
+    private Integer goodsOpen;
+
+    @Generated(hash = 1362182370)
     public Setting(Long id, Integer recognition, Integer red, Integer brightness,
-            Integer infrared, String forecast, String products) {
+            Integer infrared, String forecast, String products, Integer goodsOpen) {
         this.id = id;
         this.recognition = recognition;
         this.red = red;
@@ -24,6 +26,7 @@ public class Setting {
         this.infrared = infrared;
         this.forecast = forecast;
         this.products = products;
+        this.goodsOpen = goodsOpen;
     }
     @Generated(hash = 909716735)
     public Setting() {
@@ -82,5 +85,11 @@ public class Setting {
                 ", forecast='" + forecast + '\'' +
                 ", products='" + products + '\'' +
                 '}';
+    }
+    public Integer getGoodsOpen() {
+        return this.goodsOpen;
+    }
+    public void setGoodsOpen(Integer goodsOpen) {
+        this.goodsOpen = goodsOpen;
     }
 }

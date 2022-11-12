@@ -37,13 +37,13 @@ public class SettingFragment extends Fragment {
     public  Boolean flag=true;
     private boolean isCreated=false;
 
-    ToggleButton button1,button2,button3;
+    ToggleButton button1,button2,button3,button4;
     SeekBar seekBar;
     EditText forecastOrders,recommended;
     Button exit;
     TextView save;
     Setting setting;
-    Boolean flag1,flag2,flag3;
+    Boolean flag1,flag2,flag3,flag4;
     int progressSeekBar;
     @Nullable
     @Override
@@ -73,11 +73,13 @@ public class SettingFragment extends Fragment {
     public void flushed(){
         List<Setting> saveInformation = settingManage.getSaveInformation();
         if (saveInformation.size() == 0){
-            Setting setting = new Setting(null,0,0,0,0,"124.221.187.242:8081","124.221.187.242:8081");
+            Setting setting = new Setting(null,0,0,0,0,
+                    "124.221.187.242:8081","124.221.187.242:8081",0);
             settingManage.SaveInformation(setting);
             button1.setChecked(false);
             button2.setChecked(false);
             button3.setChecked(false);
+            button4.setChecked(false);
             seekBar.setProgress(0);
         }else {
 
@@ -117,6 +119,15 @@ public class SettingFragment extends Fragment {
                 flag3 = true;
             }
 
+            if (setting.getGoodsOpen() == 0){
+                button4.setChecked(false);
+                flag4 = false;
+            }
+
+            else {
+                button4.setChecked(true);
+                flag4 = true;
+            }
 
             seekBar.setProgress(setting.getBrightness());
             progressSeekBar = setting.getBrightness();
@@ -146,6 +157,8 @@ public class SettingFragment extends Fragment {
         button1=getActivity().findViewById(R.id.button_1);
         button2=getActivity().findViewById(R.id.button_2);
         button3=getActivity().findViewById(R.id.button_3);
+        button4=getActivity().findViewById(R.id.button_4);
+
         seekBar=getActivity().findViewById(R.id.led_bar);
         forecastOrders=getActivity().findViewById(R.id.id_forecast_orders);
         recommended=getActivity().findViewById(R.id.id_recommended_products);
@@ -169,12 +182,16 @@ public class SettingFragment extends Fragment {
                     setting.setInfrared(1);
                 else
                     setting.setInfrared(0);
+                if (flag4)
+                    setting.setGoodsOpen(1);
+                else
+                    setting.setGoodsOpen(0);
 
                 setting.setBrightness(progressSeekBar);
 
                 setting.setProducts(recommended.getText().toString());
                 setting.setForecast(forecastOrders.getText().toString());
-                settingManage.SaveInformation(setting);
+                settingManage.UpdateInformation(setting);
                 Toast.makeText(getContext(),"Save Success!",Toast.LENGTH_LONG).show();
             }
         });
@@ -188,7 +205,7 @@ public class SettingFragment extends Fragment {
                 else
                     setting.setRecognition(0);
 
-                SaveInfo.UpdateInformation(getContext(),setting);
+                settingManage.UpdateInformation(setting);
                 flag1=b;
                 button1.setSelected(b);
 
@@ -225,6 +242,15 @@ public class SettingFragment extends Fragment {
                 button3.setSelected(b);
             }
         });
+
+        button4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                flag4 = b;
+                button4.setSelected(b);
+            }
+        });
+
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

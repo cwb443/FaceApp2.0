@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -85,6 +86,9 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
     private long lastOnAttributeCallBackTime;
     private long lastOnSearchCallBackTime;
 
+    ImageView closeImage;
+    TextView closeTextWel,closeTextName;
+
     ImageView imageview;
 
     ImageView goods1,goods2,goods3,goods4,goods5,goods6;
@@ -114,6 +118,10 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         startCountDownTimer();
         setInfraredFillLight(true); //补光灯
         ActionBar actionBar = getSupportActionBar(); if (actionBar != null) { actionBar.hide(); }
+
+        closeImage=findViewById(R.id.close_goods_image);
+        closeTextWel=findViewById(R.id.close_goods_text_wel);
+        closeTextName=findViewById(R.id.close_goods_text_name);
 
         goods1=findViewById(R.id.goods1);
         goods2=findViewById(R.id.goods2);
@@ -149,15 +157,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
 
         imageText = findViewById(R.id.image_text);
 
-//        getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
         getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
-
-
-//        tileText=findViewById(R.id.text_title);
-//
-//        qrCode=findViewById(R.id.qr_code);
-
-
     }
 
     @Override
@@ -169,19 +169,21 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
     public void noFace(){
         List<Setting> saveInformation = SaveInfo.getSaveInformation(context);
         Integer recognition = saveInformation.get(0).getRecognition();
-        if (recognition == 0){
-            setForecastGoods(0l);
-            setRecommendGoods(0l);
+        Integer goodsOpen = saveInformation.get(0).getGoodsOpen();
+
+        Log.e("TAG", "noFace: "+goodsOpen );
+
+        if (goodsOpen == 1){
+            if (recognition == 0){
+                setForecastGoods(0l);
+                setRecommendGoods(0l);
+            }
+        }else{
+            closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_defaultpeople));
         }
-
-    }
-
-    public void getOut(View view){
-        this.finish();
     }
 
     private void initView() {
-//        setActionBarTitle(R.string.app_name);
         texttxt = findViewById(R.id.test);
         txt1 = findViewById(R.id.txt1);
         txt2 = findViewById(R.id.txt2);
@@ -190,7 +192,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         imgLandmark = findViewById(R.id.img_landmark);
 
         grayInterface = findViewById(R.id.grayInterface);
-//        grayInterface.setZOrderOnTop(true);
+
         grayInterface.getHolder().setFormat(PixelFormat.TRANSLUCENT);
 
         LivingInterface.getInstance().init(this);
@@ -291,7 +293,15 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                 Tools.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        YTLFFace.doDelivery(rbgImage, irImage);
+
+                        List<Setting> saveInformation = SaveInfo.getSaveInformation(getContext());
+                        Integer red = saveInformation.get(0).getRed();
+                        if (red==0)
+                            YTLFFace.doDelivery(rbgImage, rbgImage);
+                        else
+                            YTLFFace.doDelivery(rbgImage, irImage);
+
+
                     }
                 });
             }
@@ -307,13 +317,17 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         Integer recognition = saveInformation.get(0).getRecognition();
 
         Boolean flag;
-
-        Log.e("TAG", "handlePerson: "+recognition );
+        Boolean goodsFlag;
 
         if (recognition == 0)
             flag = false;
         else
             flag = true;
+
+        if (saveInformation.get(0).getGoodsOpen()==0)
+            goodsFlag = false;
+        else
+            goodsFlag = true;
 
         if (flag){
             Person person = mMapPeople.get(faceInfo.getSearchId());
@@ -325,17 +339,29 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                 if(isNewUser != 2||isUserId!=userId) {
                     isNewUser = 2;
                     isUserId = Math.toIntExact(userId);
-                    setTitle(userId,name);
-                    setForecastGoods(userId);
-                    setRecommendGoods(userId);
+
+                    if (goodsFlag){
+                        setTitle(userId,name,true);
+                        setForecastGoods(userId);
+                        setRecommendGoods(userId);
+                    }else {
+                        setTitle(userId,name,false);
+                    }
                 }
             } else {
                 faceView.isRed = true;
                 if(isNewUser != 1) {
-                    setForecastGoods(0l);
-                    setRecommendGoods(0l);
-                    isNewUser = 1;
-                    setTitle(0l,"New customer");
+
+                    if (goodsFlag){
+                        setForecastGoods(0l);
+                        setRecommendGoods(0l);
+                        isNewUser = 1;
+                        setTitle(0l,"New User",true);
+                    }else{
+                        isNewUser = 1;
+                        setTitle(0l,"New User",false);
+                    }
+
                 }
             }
         }
@@ -537,17 +563,29 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         }
     }
 
-    public void setTitle(Long userId,String name){
+    public void setTitle(Long userId,String name,Boolean goodsOpen){
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (userId==0l){
-                    imageview.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.bluepeople));
+                if (goodsOpen){
+                    if (userId==0l){
+                        imageview.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.bluepeople));
+                    }else {
+                        imageview.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.greenpeople));
+                    }
+                    imageWel.setText("Welcome!");
+                    imageText.setText(name);
                 }else {
-                    imageview.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.greenpeople));
+
+                    if (userId == 0l){
+                        closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_bluepeople));
+                    }else {
+                        closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_greenpeople));
+                    }
+                    closeTextWel.setText("Welcome");
+//                    Log.e("TAG", "run: "+name);
+                    closeTextName.setText(name);
                 }
-                imageWel.setText("Welcome!");
-                imageText.setText(name);
             }
         });
     }

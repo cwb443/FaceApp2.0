@@ -40,10 +40,10 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:background="@drawable/home_selector"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="5dp"/>
         </LinearLayout>
 
         <LinearLayout

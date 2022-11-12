@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -66,6 +67,9 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+
+
         View view= inflater.inflate(R.layout.fragment_user_manage,container,false);
         listView=view.findViewById(R.id.main_list_view);
         chatAdapter=new ChatAdapter(getActivity(),dataList, UserManageFragment.this);

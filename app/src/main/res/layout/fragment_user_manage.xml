@@ -7,27 +7,29 @@
     <RelativeLayout
         android:id="@+id/titl"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:background="#ffffff"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="20dp">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:text="User List"
-            android:textSize="38sp"
+            android:textSize="36sp"
             android:textStyle="bold"
             android:layout_marginLeft="40dp"/>
+
         <ImageView
             android:id="@+id/id_del"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="8dp"
-            android:layout_marginRight="92dp"
+            android:layout_marginRight="80dp"
             android:layout_weight="1"
             android:src="@drawable/dustbin" />
+
         <ImageView
             android:id="@+id/id_add"
             android:layout_width="30dp"
@@ -35,7 +37,7 @@
             android:src="@drawable/more"
             android:layout_weight="1"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="42dp"
             android:layout_marginTop="10dp"
             />
 
@@ -55,31 +57,31 @@
             <TextView
                 android:layout_width="150dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="50dp"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="Name"
                 android:textSize="24sp" />
 
             <TextView
-                android:layout_width="60dp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:ellipsize="end"
-                android:layout_marginLeft="40dp"
+                android:layout_marginRight="20dp"
                 android:gravity="center_vertical"
                 android:text="Age"
                 android:textSize="24dp" />
 
             <TextView
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:gravity="center_vertical"
                 android:text="Gender"
                 android:textSize="24dp"
+                android:layout_marginRight="20dp"
                 android:ellipsize="end" />
             <TextView
-                android:layout_marginLeft="50dp"
-                android:layout_width="180dp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:gravity="center_vertical"
                 android:text="Company"

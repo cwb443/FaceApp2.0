@@ -34,6 +34,9 @@
             android:textSize="24sp"
             android:text="Done"
             />
+
+
+
 <!--        <TextView-->
 <!--            android:id="@+id/save_overlay_view"-->
 <!--            android:layout_width="wrap_content"-->
@@ -44,7 +47,6 @@
 <!--             />-->
 
     </LinearLayout>
-
     <TextView
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -66,38 +68,51 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="White light"
+            android:text="White Light"
             android:textSize="24sp"
             android:layout_marginLeft="40dp"
-            android:layout_gravity="center_vertical|left"/>
+            android:layout_gravity="center_vertical|left"
+            android:layout_centerVertical="true"/>
         <ToggleButton
             android:id="@+id/button_2"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/menu_button_icon_selector"
             android:gravity="right"
             android:layout_marginRight="40dp"
             android:textSize="0sp"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
 
 
     </RelativeLayout>
-
-    <SeekBar
-        android:id="@+id/led_bar"
-        android:layout_width="660dp"
-        android:maxHeight="40dp"
-        android:minHeight="25dp"
-        android:layout_height="20dp"
-        android:max="8"
-        android:layout_marginHorizontal="30dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="Light Brightness"
+            android:layout_marginLeft="40dp"
+            />
+        <SeekBar
+            android:id="@+id/led_bar"
+            android:layout_width="460dp"
+            android:layout_height="15dp"
+            android:max="8"
+            android:layout_marginHorizontal="10dp"
+            android:layout_gravity="center_vertical"
+            />
+    </LinearLayout>
+
     <!--    <TextView-->
     <!--        android:layout_width="match_parent"-->
     <!--        android:layout_height="0.1mm"-->
@@ -116,43 +131,70 @@
             android:text="Infrared LED"
             android:textSize="24sp"
             android:layout_marginLeft="40dp"
-            android:layout_gravity="center_vertical|left"/>
+            android:layout_gravity="center_vertical|left"
+            android:layout_centerVertical="true"/>
 
         <ToggleButton
             android:id="@+id/button_3"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/menu_button_icon_selector"
-
             android:gravity="right"
             android:layout_marginRight="40dp"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:textSize="0sp"/>
     </RelativeLayout>
-
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="API"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginRight="40dp"
+        android:background="#25555555"
+        android:layout_marginBottom="8dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="API"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="40dp"
+            android:layout_gravity="left|center_vertical"
+            android:layout_weight="1"
+            />
+        <ToggleButton
+            android:id="@+id/button_4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/menu_button_icon_selector"
+            android:layout_gravity="right"
+            android:layout_marginRight="40dp"
+            android:layout_centerVertical="true"
+            android:textSize="0sp"/>
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:text="Predicted Orders"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:layout_centerVertical="true"
+            />
 
         <EditText
             android:id="@+id/id_forecast_orders"
@@ -170,8 +212,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
         android:layout_marginTop="20dp">
 
         <TextView
@@ -179,7 +219,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:text="Recommended Products"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:layout_centerVertical="true"/>
 
         <EditText
             android:id="@+id/id_recommended_products"
@@ -190,13 +231,12 @@
             android:textSize="18sp"
             android:layout_marginRight="40dp"
             android:layout_alignParentRight="true"/>
-
     </RelativeLayout>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="30dp"
-        android:background="#B3ADAD"
+        android:layout_height="1.5dp"
+        android:layout_marginTop="20dp"
+        android:background="#B9555555"
         />
     <!--    人脸识别 开始-->
     <TextView
@@ -206,7 +246,7 @@
         android:textSize="38sp"
         android:textStyle="bold"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="25dp"/>
+        android:layout_marginTop="20dp"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -221,12 +261,13 @@
             android:layout_gravity="center_vertical|left"/>
         <ToggleButton
             android:id="@+id/button_1"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/menu_button_icon_selector"
             android:gravity="right"
             android:layout_marginRight="40dp"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:textSize="0sp"/>
 
 
@@ -250,11 +291,12 @@
         android:gravity="center">
         <Button
             android:id="@+id/exit"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_width="150dp"
+            android:layout_height="66dp"
             android:background="@drawable/frame"
             android:text="Exit APP"
             android:textAllCaps="false"
+            android:textSize="26sp"
             android:layout_gravity="center"/>
 
     </LinearLayout>

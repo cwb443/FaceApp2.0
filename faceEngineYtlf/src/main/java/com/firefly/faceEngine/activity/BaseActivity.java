@@ -115,9 +115,8 @@ public class BaseActivity extends AppCompatActivity {
             else
                 flag = true;
 
-
             Tools.debugLog("isSupportInfraredFillLight = %s", isSupportInfraredFillLight());
-            HardwareCtrl.setInfraredFillLight(flag);
+            HardwareCtrl.setInfraredFillLight(redFlag&&flag);
 
             Integer brightness = saveInformation.get(0).getBrightness();
 
