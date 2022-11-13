@@ -574,7 +574,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                     }else {
                         imageview.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.greenpeople));
                     }
-                    imageWel.setText("Welcome!");
+                    imageWel.setText("Welcome");
                     imageText.setText(name);
                 }else {
 
