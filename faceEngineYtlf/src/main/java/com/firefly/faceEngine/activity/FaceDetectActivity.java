@@ -355,10 +355,10 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                         setForecastGoods(0l);
                         setRecommendGoods(0l);
                         isNewUser = 1;
-                        setTitle(0l,"New User",true);
+                        setTitle(0l,"New Customer",true);
                     }else{
                         isNewUser = 1;
-                        setTitle(0l,"New User",false);
+                        setTitle(0l,"New Customer",false);
                     }
 
                 }
