@@ -32,6 +32,7 @@
             android:gravity="right|center_vertical"
             android:layout_marginRight="40dp"
             android:textSize="24sp"
+            android:layout_marginTop="8dp"
             android:text="Done"
             />
 
@@ -101,15 +102,17 @@
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:text="Light Brightness"
+            android:layout_gravity="left"
+            android:layout_weight="1"
             android:layout_marginLeft="40dp"
             />
         <SeekBar
             android:id="@+id/led_bar"
-            android:layout_width="460dp"
+            android:layout_width="388dp"
             android:layout_height="15dp"
             android:max="8"
-            android:layout_marginHorizontal="10dp"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="27dp"
             />
     </LinearLayout>
 
@@ -185,7 +188,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -204,7 +207,9 @@
             android:layout_marginRight="40dp"
             android:text="124.221.187.242:8081"
             android:hint="default"
-            android:textSize="18sp" />
+            android:background="@null"
+            android:textCursorDrawable="@null"
+            android:textSize="24sp" />
 
     </RelativeLayout>
     <RelativeLayout
@@ -228,14 +233,16 @@
             android:layout_height="wrap_content"
             android:text="124.221.187.242:8081"
             android:hint="default"
-            android:textSize="18sp"
+            android:textSize="24sp"
+            android:background="@null"
+            android:textCursorDrawable="@null"
             android:layout_marginRight="40dp"
             android:layout_alignParentRight="true"/>
     </RelativeLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1.5dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="23dp"
         android:background="#B9555555"
         />
     <!--    人脸识别 开始-->
@@ -291,12 +298,12 @@
         android:gravity="center">
         <Button
             android:id="@+id/exit"
-            android:layout_width="150dp"
-            android:layout_height="66dp"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
             android:background="@drawable/frame"
             android:text="Exit APP"
             android:textAllCaps="false"
-            android:textSize="26sp"
+            android:textSize="24sp"
             android:layout_gravity="center"/>
 
     </LinearLayout>

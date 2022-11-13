@@ -20,7 +20,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +27,7 @@ import androidx.appcompat.app.ActionBar;
 
 import com.firefly.arcterndemo.R;
 import com.firefly.faceEngine.App;
-import com.firefly.faceEngine.dblib.SaveInfo;
+import com.firefly.faceEngine.dblib.SettingManage;
 import com.firefly.faceEngine.dblib.bean.Person;
 import com.firefly.faceEngine.dblib.bean.Setting;
 import com.firefly.faceEngine.goods.GoodsMessage;
@@ -75,6 +74,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
     private Map<Long, Person> mMapPeople = new HashMap<>();
     private CountDownTimer mCountDownTimer;
     private YTLFFaceManager YTLFFace = YTLFFaceManager.getInstance();
+    private SettingManage settingManage = App.getInstance().getSettingManage();
     private ExecutorService executorService;
     private Future future;
     private FaceInfo faceInfo;
@@ -86,24 +86,24 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
     private long lastOnAttributeCallBackTime;
     private long lastOnSearchCallBackTime;
 
-    ImageView closeImage;
-    TextView closeTextWel,closeTextName;
+    private ImageView closeImage;
+    private TextView closeTextWel,closeTextName;
 
-    ImageView imageview;
+    private ImageView imageview;
 
-    ImageView goods1,goods2,goods3,goods4,goods5,goods6;
-    TextView Name1,Name2,Name3,Name4,Name5,Name6;
-    TextView recPrice4,recPrice5,recPrice6;
-    TextView description1,description2,description3;
-    TextView query1,query2,query3;
-    ImageView qrCode;
-    TextView tileText;
+    private ImageView goods1,goods2,goods3,goods4,goods5,goods6;
+    private TextView Name1,Name2,Name3,Name4,Name5,Name6;
+    private TextView recPrice4,recPrice5,recPrice6;
+    private TextView description1,description2,description3;
+    private TextView query1,query2,query3;
+    private ImageView qrCode;
+    private TextView tileText;
 
-    ImageView back;
+    private ImageView back;
 
-    TextView prePrice1,prePrice2,prePrice3;
+    private TextView prePrice1,prePrice2,prePrice3;
 
-    TextView imageText,imageWel;
+    private TextView imageText,imageWel;
 
 
 
@@ -167,7 +167,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
     }
 
     public void noFace(){
-        List<Setting> saveInformation = SaveInfo.getSaveInformation(context);
+        List<Setting> saveInformation = settingManage.getSaveInformation();
         Integer recognition = saveInformation.get(0).getRecognition();
         Integer goodsOpen = saveInformation.get(0).getGoodsOpen();
 
@@ -294,14 +294,12 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                     @Override
                     public void run() {
 
-                        List<Setting> saveInformation = SaveInfo.getSaveInformation(getContext());
+                        List<Setting> saveInformation = settingManage.getSaveInformation();
                         Integer red = saveInformation.get(0).getRed();
                         if (red==0)
                             YTLFFace.doDelivery(rbgImage, rbgImage);
                         else
                             YTLFFace.doDelivery(rbgImage, irImage);
-
-
                     }
                 });
             }
@@ -313,7 +311,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
     // 处理人员信息
     private void handlePerson() {
 
-        List<Setting> saveInformation = SaveInfo.getSaveInformation(context);
+        List<Setting> saveInformation = settingManage.getSaveInformation();
         Integer recognition = saveInformation.get(0).getRecognition();
 
         Boolean flag;
@@ -345,6 +343,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                         setForecastGoods(userId);
                         setRecommendGoods(userId);
                     }else {
+                        //如果关闭商品推荐只对Title进行修改
                         setTitle(userId,name,false);
                     }
                 }
@@ -417,9 +416,6 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                     }
                 }
             });
-
-            //保存bitmap本地图片
-            //saveBitmap2Jpeg(bitmap);
         } catch (Throwable e) {
             Tools.printStackTrace(e);
         }
@@ -503,7 +499,6 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         }
 
         times ++;
-        //"/sdcard/firefly/ytlf_v2/"
         String path = YTLFFaceManager.getInstance().getYTIFFacthPath() + "img/" + System.currentTimeMillis() + ".jpg";
         boolean result = Tools.saveBitmap2Jpeg(bitmap, path);
         Tools.debugLog("result=%s, path=%s", result, path);
@@ -563,6 +558,12 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         }
     }
 
+    /**
+     * 对头部信息进行修改
+     * @param userId 用户id
+     * @param name 用户名或New User
+     * @param goodsOpen 判断是否打开商品的获取
+     */
     public void setTitle(Long userId,String name,Boolean goodsOpen){
         runOnUiThread(new Runnable() {
             @Override
@@ -590,7 +591,10 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         });
     }
 
-    //渲染信息
+    /**
+     * 获取Predicted Orders商品
+     * @param userId 用户id
+     */
     public void setForecastGoods(Long userId){
 
         Log.e("", "setForecastGoods: " );
@@ -622,11 +626,14 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         }).start();
     }
 
+    /**
+     * 获取Recommended Products商品数据
+     * @param userId 用户id
+     */
     public void setRecommendGoods(Long userId){
         new Thread(new Runnable() {
             @Override
             public void run() {
-
                 try {
                     ArrayList<Goods> recommendGoods = getRecommendGoods(userId);
                     for (int i=0;i<recommendGoods.size();i++){
@@ -643,7 +650,6 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                                 msg.obj = goodsMessage;
                                 handle.sendMessage(msg);
                             }
-
                         }).start();
                     }
                 } catch (Exception e) {
@@ -653,9 +659,10 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         }).start();
     }
 
-    //在消息队列中实现对控件的更改
+    /**
+     * 对首页商品进行实时渲染
+     */
     private Handler handle = new Handler() {
-
         public void handleMessage(Message msg) {
             GoodsMessage goodsMessage = (GoodsMessage)msg.obj;
             switch (msg.what) {

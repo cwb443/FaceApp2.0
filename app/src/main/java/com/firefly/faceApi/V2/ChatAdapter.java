@@ -26,7 +26,6 @@ public class ChatAdapter extends BaseAdapter  {
 
 
     public ChatAdapter(Context context, ArrayList<String> dataList, ListItemClickHelp callback) {
-//        this.listener=listener;
         //获得布局解析器
         this.callback=callback;
         data=dataList;
@@ -34,14 +33,6 @@ public class ChatAdapter extends BaseAdapter  {
 
 
     }
-//
-//    public ChatAdapter(View.OnClickListener listener , ArrayList<String> dataList) {
-//        this.listener=listener;
-//        //获得布局解析器
-//
-//        data=dataList;
-//
-//    }
 
     @Override
     public int getCount() {
@@ -66,22 +57,16 @@ public class ChatAdapter extends BaseAdapter  {
         ViewHolder viewHolder=new ViewHolder();
         if (convertView==null){
             convertView= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_chat_list,null);
-//            inspect= (TextView) messageLayout.findViewById(R.id.inspect);
-            //viewHolder.message=  view.findViewById(R.id.friend_message_text_view);
             viewHolder.friendName=  convertView.findViewById(R.id.name_text_view);
             viewHolder.delete=convertView.findViewById(R.id.image_delete);
             viewHolder.edit=convertView.findViewById(R.id.image_edit);
             convertView.setTag(viewHolder);
-
         }
         else {
-
             viewHolder= (ViewHolder) convertView.getTag();
         }
         final View view = convertView;
-        //viewHolder.message.setText((String) data.get(i).get("message"));
         viewHolder.friendName.setText((String) data.get(i));
-        //viewHolder.delete.setOnClickListener(listener);
         int one=viewHolder.delete.getId();
         int two=viewHolder.edit.getId();
         viewHolder.delete.setOnClickListener(new View.OnClickListener() {
@@ -96,13 +81,6 @@ public class ChatAdapter extends BaseAdapter  {
                 callback.onClick(view, viewGroup, i, two);
             }
         });
-
-
-
-       // viewHolder.edit.setOnClickListener(listener);
-        //通过setTag 将被点击控件所在条目的位置传递出去
-
-
 
 
         viewHolder.delete.setTag(i);

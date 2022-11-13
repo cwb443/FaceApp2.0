@@ -3,6 +3,6 @@
 <!--菜单选择器-->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/home_new_b" android:state_selected="true"></item>
-    <item android:drawable="@drawable/home_new_w"></item>
+    <item android:drawable="@drawable/home_new_black" android:state_selected="true"></item>
+    <item android:drawable="@drawable/home_new_white"></item>
 </selector>

@@ -22,14 +22,15 @@ import androidx.fragment.app.Fragment;
 
 import com.firefly.faceApi.V2.R;
 import com.firefly.faceEngine.App;
-import com.firefly.faceEngine.dblib.SaveInfo;
 import com.firefly.faceEngine.dblib.SettingManage;
 import com.firefly.faceEngine.dblib.bean.Setting;
 
 
 import java.util.List;
 
-
+/**
+ * 设置页面
+ */
 public class SettingFragment extends Fragment {
 
     private SettingManage settingManage = App.getInstance().getSettingManage();
@@ -48,11 +49,9 @@ public class SettingFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // View view=inflater.inflate(R.layout.fragment_news,parent ,false);
         View view1=LayoutInflater.from(getContext()).inflate(R.layout.fragment_setting,container,false);
 
         return view1;
-//        button1.is
     }
 
 
@@ -70,8 +69,13 @@ public class SettingFragment extends Fragment {
             flushed();
     }
 
+    /**
+     * 对setting页面所对应的数据库进行初始化
+     * 以及对setting页面的信息进行即使的修改
+     */
     public void flushed(){
         List<Setting> saveInformation = settingManage.getSaveInformation();
+        //对setting数据库进行初始化
         if (saveInformation.size() == 0){
             Setting setting = new Setting(null,0,0,0,0,
                     "124.221.187.242:8081","124.221.187.242:8081",0);
@@ -169,11 +173,6 @@ public class SettingFragment extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                if (flag1)
-//                    setting.setRecognition(1);
-//                else
-//                    setting.setRecognition(0);
                 if (flag2)
                     setting.setRed(1);
                 else
@@ -215,13 +214,7 @@ public class SettingFragment extends Fragment {
         button2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-//                if (b)
-//                    setting.setRed(1);
-//                else
-//                    setting.setRed(0);
                 flag2 = b;
-//                SaveInfo.UpdateInformation(getContext(),setting);
                 seekBar.setClickable(flag2);
                 seekBar.setEnabled(flag2);
                 seekBar.setEnabled(flag2);
@@ -231,14 +224,7 @@ public class SettingFragment extends Fragment {
         button3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-//                if (b)
-//                    setting.setInfrared(1);
-//                else
-//                    setting.setInfrared(0);
                 flag3 = b;
-//                SaveInfo.UpdateInformation(getContext(),setting);
-
                 button3.setSelected(b);
             }
         });
@@ -260,55 +246,52 @@ public class SettingFragment extends Fragment {
 
 
 
-        forecastOrders.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-//                setting.setForecast(forecastOrders.getText().toString());
-////                setting.setProducts(recommended.getText().toString());
-////                SaveInfo.UpdateInformation(getContext(),setting);
-            }
-        });
-
-        recommended.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
+//        forecastOrders.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 //
-//                setting.setProducts(recommended.getText().toString());
-////                SaveInfo.UpdateInformation(getContext(),setting);
-            }
-        });
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+////                setting.setForecast(forecastOrders.getText().toString());
+//////                setting.setProducts(recommended.getText().toString());
+//////                SaveInfo.UpdateInformation(getContext(),setting);
+//            }
+//        });
+//
+//        recommended.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+////
+////                setting.setProducts(recommended.getText().toString());
+//////                SaveInfo.UpdateInformation(getContext(),setting);
+//            }
+//        });
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                setting.setBrightness(progress);
-//                SaveInfo.UpdateInformation(getContext(),setting);
                 progressSeekBar = progress;
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
@@ -316,20 +299,12 @@ public class SettingFragment extends Fragment {
 
             }
         });
-
-
-
-
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         Log.e("TAG", "onDestroy: qqq");
-
-
-
-
     }
 }
 

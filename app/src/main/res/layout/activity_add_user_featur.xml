@@ -20,16 +20,18 @@
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_marginLeft="40dp"
-         android:text="User Profile"
+         android:text="Customer Profile"
          android:textSize="38sp"
          android:textStyle="bold"
-         android:layout_weight="1"/>
+         android:layout_weight="1"
+         android:layout_gravity="center_vertical"/>
      <TextView
          android:id="@+id/confirm_btn"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:textSize="24sp"
          android:text="Done"
+         android:layout_marginTop="8dp"
          android:layout_gravity="right|center_vertical"
          android:layout_marginRight="40dp"
          />
@@ -43,34 +45,37 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="*"
-                android:textColor="@color/red"
-                android:layout_marginLeft="33dp"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="18dp"
+                android:text="Name"
+                android:textSize="24sp"
+                android:gravity="left" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/red"
+            android:layout_marginTop="12dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
+                android:text=":"
+                android:textSize="24sp"
                 android:layout_marginTop="18dp"
-                android:layout_marginRight="10dp"
-                android:text="Name:"
-                android:textSize="20sp"
-                android:gravity="left"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:id="@+id/name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="40dp"
                 android:layout_weight="1"
-                />
-                <EditText
-                    android:id="@+id/name_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:hint="Enter your name"
-                    android:singleLine="true"
-                    android:textSize="15sp"
-                    android:gravity="right"
-                    android:background="@null"
-                    android:layout_marginRight="40dp"
-                    android:layout_weight="1"
-                    />
+                android:background="@null"
+                android:gravity="right"
+                android:singleLine="true"
+                android:textCursorDrawable="@null"
+                android:textSize="24sp" />
         </LinearLayout>
 
         <TextView
@@ -95,7 +100,7 @@
                 android:layout_weight="1"
                 android:layout_marginTop="18dp"
                 android:text="Gender:"
-                android:textSize="20sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -103,7 +108,7 @@
                 android:layout_marginTop="18dp"
                 android:text="Female"
                 android:singleLine="true"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:gravity="right"
                 android:layout_weight="1"
                 android:layout_marginRight="40dp"
@@ -131,7 +136,7 @@
                 android:layout_marginTop="18dp"
                 android:layout_marginRight="10dp"
                 android:text="Age:"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:gravity="left"
                 android:layout_weight="1"/>
 
@@ -141,7 +146,7 @@
                 android:layout_marginTop="18dp"
                 android:singleLine="true"
                 android:text="18"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:gravity="right"
                 android:layout_weight="1"
                 android:layout_marginRight="40dp"
@@ -166,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
                 android:text="Company:"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:gravity="left"
                 android:layout_weight="1"
                 android:layout_marginLeft="40dp"/>
@@ -180,7 +185,7 @@
                 android:gravity="right"
                 android:layout_weight="1"
                 android:layout_marginRight="40dp"
-                android:textSize="20sp" />
+                android:textSize="24sp" />
 
             <!--            <ImageView-->
             <!--                android:layout_width="25dp"-->
@@ -202,21 +207,40 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:orientation="vertical">
-
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center_vertical|left"
-                android:text="Add your face image:"
-                android:textSize="20sp" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center_vertical|left"
+                    android:text="Add your face image"
+                    android:textSize="24sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/red"
+                    android:layout_marginTop="13dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:layout_marginTop="18dp"
+                    android:textSize="24sp"
+                    />
+            </LinearLayout>
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center_vertical|right"
-                android:layout_marginTop="-25dp"
+                android:layout_marginTop="-34dp"
                 android:layout_marginRight="40dp"
                 android:background="@drawable/right_arrow" />
             <ImageView

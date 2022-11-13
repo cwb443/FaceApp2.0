@@ -8,6 +8,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.SpannedString;
+import android.text.style.AbsoluteSizeSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -35,6 +39,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 对用户信息进行修改
+ */
 public class EditUserActivity extends BaseActivity implements ExtractCallBack {
 
     private String mBitmapPath = "";
@@ -55,6 +62,7 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
 
     Person person;//当前修改的用户
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,12 +75,10 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
         takePho = findViewById(R.id.take_pho);
         image = findViewById(R.id.pho_btn);
 
-
-
         //获取当前用户
         List<Person> personList = dbManager.getPersonList();//从数据库中拉取
-        List<Person> personArrayList = new ArrayList<>();//展现的与拉取的id匹配
-        List<String> dataList = new ArrayList<>();//展现
+        List<Person> personArrayList = new ArrayList<>();//将dataList与personList的顺序进行关联使其与数据库中的id匹配
+        List<String> dataList = new ArrayList<>();//显示在页面用户的顺序
         for (Person person : personList) {
             personArrayList.add(person);
             dataList.add(person.getName());
@@ -81,8 +87,6 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
         person = personArrayList.get(position);
 
         newName.setHint(person.getName());
-
-
 
         takePho.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,16 +99,29 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("", "onClick: "+"12234454");
                 changePerson();
             }
         });
 
-
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); //隐藏状态栏、
+
+        init();
 
     }
 
+    public void init(){
+        EditText hint = (EditText) findViewById(R.id.name_text_edit);
+        // 新建一个可以添加属性的文本对象
+        SpannableString ss = new SpannableString("Enter your name");
+        // 新建一个属性对象,设置文字的大小
+        AbsoluteSizeSpan ass = new AbsoluteSizeSpan(20,true);
+        // 附加属性到文本
+        ss.setSpan(ass, 0, ss.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // 设置hint
+        hint.setHint(new SpannedString(ss)); // 一定要进行转换,否则属性会消失
+    }
+
+    //隐藏状态栏
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -127,8 +144,8 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 
+    //修改用户
     public void changePerson(){
-
         String name=newName.getText().toString();
 
         String s = removeSpace(name);
@@ -169,9 +186,7 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
             bitmapFeature = null;
             mBitmapPath = "";
         }
-
         finish();
-
     }
 
 
@@ -215,16 +230,15 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
                 if (images != null && images.size() > 0) {
                     mBitmapPath = images.get(0).path;
                     Bitmap bitmap = BitmapFactory.decodeFile(mBitmapPath);
-//                    Bitmap bm = BitmapFactory.decodeFile(mBitmapPath);
-//                    saveBitmap(bm);
+
                     image.setImageBitmap(bitmap);
                     faceBitmap = bitmap;
-//                    Tools.debugLog("bitmap path:%s", mBitmapPath);
+
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
                             int result = getFeature(mBitmapPath);
-//                            Tools.debugLog("result: %s", result);
+
                         }
                     }).start();
                 }

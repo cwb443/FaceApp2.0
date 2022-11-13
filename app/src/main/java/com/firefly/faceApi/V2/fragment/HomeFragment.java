@@ -29,16 +29,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     ImageView imageView;
-//    GoodsUtils goodsUtils = new GoodsUtils();
 
-//    // 在线获取授权 API_KEY
-//    public final String API_KEY = "xrZEJz51qfiBI3FB";
-//
-//    // 指定本地SD卡目录，用于存放models和license公钥等文件
-//    public static String FACE_PATH = "/sdcard/firefly/";
-//
-//    // SDK
-//    private YTLFFaceManager YTLFFace = YTLFFaceManager.getInstance().initPath(FACE_PATH);
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

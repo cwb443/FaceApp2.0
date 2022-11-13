@@ -10,7 +10,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.firefly.api.HardwareCtrl;
-import com.firefly.faceEngine.dblib.SaveInfo;
+import com.firefly.faceEngine.App;
+import com.firefly.faceEngine.dblib.SettingManage;
 import com.firefly.faceEngine.dblib.bean.Setting;
 import com.firefly.faceEngine.utils.Tools;
 
@@ -95,8 +96,8 @@ public class BaseActivity extends AppCompatActivity {
     //打开/关闭 红外补光灯
     protected void setInfraredFillLight(boolean enable) {
         try {
-
-            List<Setting> saveInformation = SaveInfo.getSaveInformation(context);
+            SettingManage settingManage = App.getInstance().getSettingManage();
+            List<Setting> saveInformation = settingManage.getSaveInformation();
             Integer white = saveInformation.get(0).getRed();
             Integer red = saveInformation.get(0).getInfrared();
             Boolean whiteFlag,redFlag,flag;
@@ -128,8 +129,6 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void setLightLight(boolean enable, int l){
         try {
-//            int maxValue = HardwareCtrl.getFillLightBrightnessMax();
-//            int minValue = HardwareCtrl.getFillLightBrightnessMin();
             HardwareCtrl.ctrlLedWhite(enable, l);
         } catch (Exception e) {
             Tools.printStackTrace(e);

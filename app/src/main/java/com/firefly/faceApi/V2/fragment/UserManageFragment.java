@@ -1,22 +1,17 @@
 package com.firefly.faceApi.V2.fragment;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,7 +22,6 @@ import com.firefly.faceApi.V2.EditUserActivity;
 import com.firefly.faceApi.V2.Event.UseManageAddEventClass;
 import com.firefly.faceApi.V2.R;
 import com.firefly.faceEngine.App;
-import com.firefly.faceEngine.activity.FaceDetectActivity;
 import com.firefly.faceEngine.dblib.DBManager;
 import com.firefly.faceEngine.dblib.bean.Person;
 import com.intellif.YTLFFaceManager;
@@ -37,6 +31,10 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 用户管理页面
+ * 对用户增删改查的入口
+ */
 public class UserManageFragment extends Fragment  implements ListItemClickHelp {
 
     private YTLFFaceManager YTLFFaceManage = YTLFFaceManager.getInstance();
@@ -50,26 +48,13 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
 
     Dialog dialog;
 
-
-////    private GoodsUtils goodsUtils = new GoodsUtils();
-//    // 在线获取授权 API_KEY
-//    public final String API_KEY = "xrZEJz51qfiBI3FB";
-//
-//    // 指定本地SD卡目录，用于存放models和license公钥等文件
-//    public static String FACE_PATH = "/sdcard/firefly/";
-
     // SDK
     private YTLFFaceManager YTLFFace = YTLFFaceManager.getInstance();
-//    private YTLFFaceManager YTLFFace = YTLFFaceManager.getInstance().initPath(FACE_PATH);
 
 
-    //  private CustomDialog dialog;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-
-
         View view= inflater.inflate(R.layout.fragment_user_manage,container,false);
         listView=view.findViewById(R.id.main_list_view);
         chatAdapter=new ChatAdapter(getActivity(),dataList, UserManageFragment.this);
@@ -105,9 +90,6 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (!EventBus.getDefault().isRegistered(this)) {
-//            EventBus.getDefault().register(this);
-//        }
         personArrayList = new ArrayList<>();
         dataList = new ArrayList<>();
         List<Person> personList = dbManager.getPersonList();
@@ -117,13 +99,7 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
             Log.e("", "name: "+person.getName()+" id："+person.getId() );
         }
     }
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-//        if (EventBus.getDefault().isRegistered(this)) {
-//            EventBus.getDefault().unregister(this);
-//        }
-    }
+
     /**
      * 删除ListView中的数据
      *
@@ -135,7 +111,6 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
     }
 
     private void showmyDialog(int position,String title) {
-
         dialog=new UserManageFragment.CustomDialog(getContext(), R.style.mystyle, R.layout.delete_dlalog,position,title);
         dialog.show();
     }
@@ -143,17 +118,9 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
     public void onClick(View item, View widget, int position, int which) {
         switch (which) {
             case R.id.image_delete:   //lv条目中 iv_del
-                //final int position = (int) v.getTag(); //获取被点击的控件所在item 的位置，setTag 存储的object，所以此处要强转
-
-                //点击删除按钮之后，给出dialog提示
-
               showmyDialog(position,null);
-
-
-
                 break;
             case R.id.image_edit:
-         //showmyDialog(position);
                 Intent intent=new Intent(getActivity(), EditUserActivity.class);
                 Bundle data=new Bundle();
                 data.putInt("position",position);
@@ -161,7 +128,6 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
                 startActivity(intent);
                 break;
         }
-
     }
 
 
@@ -259,7 +225,6 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
         public void onClick(View v) {
             int id = v.getId();// 确定按钮
             if (id == R.id.id_dialog_comfirm_btn ) {// 修改
-
                 if (postion_1 == -1){
                     dbManager.deletePersonAll();
                     YTLFFaceManage.dataBaseClear();
@@ -269,9 +234,7 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
                     for (Person person : personList) {
                         personArrayList.add(person);
                         dataList.add(person.getName());
-//            Log.e("", "name: "+person.getName()+" id："+person.getId() );
                     }
-
                     chatAdapter = new ChatAdapter(getActivity(), dataList, UserManageFragment.this);
                     listView.setAdapter(chatAdapter);
                     imageView.setClickable(true);
@@ -279,7 +242,6 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
                     Person person = personArrayList.get(postion_1);
                     dbManager.deletePerson(person.getId());
                     YTLFFace.dataBaseDelete(person.getId());
-
                     dataList.remove(postion_1);
                     personArrayList.remove(postion_1);
                     chatAdapter.notifyDataSetChanged();
@@ -287,38 +249,25 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
                 dialog.dismiss();
             }else {
                 // 取消按钮
-
                 dialog.dismiss();
-
             }
-
-
         }
     }
 
     @Override
     public void onStart() {
         super.onStart();
-
-
         personArrayList = new ArrayList<>();
         dataList = new ArrayList<>();
         List<Person> personList = dbManager.getPersonList();
         for (Person person : personList) {
             personArrayList.add(person);
             dataList.add(person.getName());
-//            Log.e("", "name: "+person.getName()+" id："+person.getId() );
         }
-
         chatAdapter = new ChatAdapter(getActivity(), dataList, UserManageFragment.this);
         listView.setAdapter(chatAdapter);
         imageView.setClickable(true);
-
-
     }
-
-
-
 }
 
 

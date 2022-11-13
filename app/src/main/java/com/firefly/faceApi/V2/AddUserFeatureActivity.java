@@ -12,6 +12,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.SpannedString;
+import android.text.style.AbsoluteSizeSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -43,6 +47,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
+/**
+ * 添加用户信息
+ */
 public class AddUserFeatureActivity extends BaseActivity implements ExtractCallBack {
 
 
@@ -69,16 +77,11 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
 
         setContentView(R.layout.activity_add_user_featur);
         et_name=(EditText)findViewById(R.id.name_text);
-//        cancel_btn=findViewById(R.id.cancel_btn);
+
         confirm_btn=findViewById(R.id.confirm_btn);
         image=findViewById(R.id.pho_btn);
         take_pho = findViewById(R.id.take_pho);
-//        cancel_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finish();
-//            }
-//        });
+
         confirm_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,8 +101,26 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); //隐藏状态栏、
 
+        init();
+
     }
 
+    public void init(){
+        EditText hint = (EditText) findViewById(R.id.name_text);
+        // 新建一个可以添加属性的文本对象
+        SpannableString ss = new SpannableString("Enter your name");
+        // 新建一个属性对象,设置文字的大小
+        AbsoluteSizeSpan ass = new AbsoluteSizeSpan(20,true);
+        // 附加属性到文本
+        ss.setSpan(ass, 0, ss.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // 设置hint
+        hint.setHint(new SpannedString(ss)); // 一定要进行转换,否则属性会消失
+    }
+
+    /**
+     * 隐藏状态栏
+     * @param hasFocus
+     */
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -123,11 +144,16 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
     }
 
 
+    /**
+     * 调用图库以及拍照
+     * @param view
+     */
     public void selectImage(View view) {
         Intent intent = new Intent(this, ImageGridActivity.class);
         startActivityForResult(intent, IMAGE_PICKER_ONE);
     }
 
+    //去除输入名字前后的空格
     public String removeSpace(String str){
         if ((str.equals("")||str == null)||(str.charAt(0) != ' '&&str.charAt(str.length()-1)!=' '))
             return str;
@@ -135,6 +161,10 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
         return removeSpace(trim);
     }
 
+    /**
+     * 提交
+     * @param view
+     */
     public void onRegister(View view) {
         String name = et_name.getText().toString();
         name = removeSpace(name);
@@ -147,7 +177,6 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
             if (name.equals("")||name==null){
                 Toast.makeText(this,"Name Can't Be Null",Toast.LENGTH_LONG).show();
                 et_name.setText("");
-//            et_name.setHint("Please input name");
             }else{
                 if (bitmapFeature != null) {
                     long searchId = YTLFFace.doSearch(bitmapFeature);
@@ -158,9 +187,6 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
                 }
 
                 if (bitmapFeature != null) {
-//                Person person = new Person();
-//                person.setFeature(bitmapFeature);
-//                person.setName(name);
                     long id = dbManager.insertPerson(name,bitmapFeature,mBitmapPath);
                     //载入内存
                     int result = YTLFFace.dataBaseAdd(id, bitmapFeature);

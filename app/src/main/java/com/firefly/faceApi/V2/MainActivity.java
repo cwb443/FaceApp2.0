@@ -145,10 +145,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
         runOnFaceSdkReady(runnable);
     }
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void getDataEvent(DataEvent event) {
-//
-//    }
 
 
     /**
@@ -158,17 +154,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         Home=(LinearLayout) this.findViewById(R.id.menu_home);
         User=(LinearLayout) this.findViewById(R.id.menu_user);
         Setting=(LinearLayout) this.findViewById(R.id.menu_setting);
-        //add=findViewById(R.id.id_add);
 
-       // id_add=this.findViewById(R.id.id_add);
-        //baidu=(LinearLayout) this.findViewByI`d(R.id.menu_baidu);
-        //添加点击事件
         Home.setOnClickListener(this);
         User.setOnClickListener(this);
         Setting.setOnClickListener(this);
-        //add.setOnClickListener(this);
-        //baidu.setOnClickListener(this);
-
     }
 
     @Override
@@ -192,9 +181,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 Home.setSelected(false);
                 User.setSelected(true);
                 Setting.setSelected(false);
-
-               // textView.setText("User");
-                //baidu.setSelected(false);
                 break;
             case  R.id.menu_home://home
              //   textView.setText("Home");
