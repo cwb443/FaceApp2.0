@@ -86,7 +86,7 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
 
         person = personArrayList.get(position);
 
-        newName.setHint(person.getName());
+        newName.setText(person.getName());
 
         takePho.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,45 +148,50 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
     public void changePerson(){
         String name=newName.getText().toString();
 
-        String s = removeSpace(name);
-        int result =1;
-        String v = null;
-        if (s.equals("")||s==null) {
-            if (bitmapFeature == null){
-                finish();
-            }else {
-                long id = dbManager.updatePersonById(person.getId(), person.getName(), bitmapFeature);
+        if (name.equals(person.getName())){
+            finish();
+        }else {
+            String s = removeSpace(name);
+            int result =1;
+            String v = null;
+            if (s.equals("")||s==null) {
+                if (bitmapFeature == null){
+                    finish();
+                }else {
+                    long id = dbManager.updatePersonById(person.getId(), person.getName(), bitmapFeature);
+                    //载入内存
+                    YTLFFace.dataBaseDelete(id);
+                    result = YTLFFace.dataBaseAdd(id, bitmapFeature);
+                    v = result == 0 ? "Modify successfully" : "fail to Modify";
+                }
+            }
+
+            else if (bitmapFeature == null){
+                long id = dbManager.updatePersonById(person.getId(),s);
+                v = "Modify successfully";
+            }
+
+            else if (bitmapFeature != null) {
+                long id = dbManager.updatePersonById(person.getId(), s, bitmapFeature);
                 //载入内存
                 YTLFFace.dataBaseDelete(id);
+
                 result = YTLFFace.dataBaseAdd(id, bitmapFeature);
                 v = result == 0 ? "Modify successfully" : "fail to Modify";
             }
+            showShortToast(v);
+            if (result == 0) {
+                //全部置空
+                newName.setText("");
+                newName.setHint("Enter your name");
+                image.setImageResource(R.drawable.photo);
+
+                bitmapFeature = null;
+                mBitmapPath = "";
+            }
+            finish();
         }
 
-        else if (bitmapFeature == null){
-            long id = dbManager.updatePersonById(person.getId(),s);
-            v = "Modify successfully";
-        }
-
-        else if (bitmapFeature != null) {
-            long id = dbManager.updatePersonById(person.getId(), s, bitmapFeature);
-            //载入内存
-            YTLFFace.dataBaseDelete(id);
-
-            result = YTLFFace.dataBaseAdd(id, bitmapFeature);
-            v = result == 0 ? "Modify successfully" : "fail to Modify";
-        }
-        showShortToast(v);
-        if (result == 0) {
-            //全部置空
-            newName.setText("");
-            newName.setHint("Enter your name");
-            image.setImageResource(R.drawable.photo);
-
-            bitmapFeature = null;
-            mBitmapPath = "";
-        }
-        finish();
     }
 
 
