@@ -2,9 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-
-
 <!--    覆盖页面的控件   蓝色-->
     <RelativeLayout
         android:layout_width="match_parent"
@@ -56,9 +53,6 @@
         android:layout_width="1px"
         android:layout_height="1px"
         android:background="@color/black">
-
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -154,13 +148,12 @@
                             android:gravity="center"
                             android:layout_below="@+id/image_wel"
                             android:layout_marginTop="6dp"
-                            android:text=""
                             android:textColor="#4f4f53"
                             android:layout_marginLeft="293dp"
                             android:maxEms="10"
                             android:singleLine="true"
                             android:ellipsize="end"
-                            android:textSize="31sp"
+                            android:textSize="35sp"
                             android:fontFamily="serif"/>
 
                     </RelativeLayout>
@@ -197,7 +190,6 @@
                     android:layout_marginTop="25dp">
                     <ImageView
                         android:id="@+id/goods1"
-                        android:background="@drawable/yangli15"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_marginLeft="25dp"/>
@@ -215,7 +207,6 @@
                                 android:id="@+id/name_text1"
                                 android:layout_width="350dp"
                                 android:layout_height="30dp"
-                                android:text="Good name2"
                                 android:textSize="24sp"
                                 android:textStyle="normal"
                                 android:singleLine="true"
@@ -238,7 +229,6 @@
                                     android:layout_height="30dp"
                                     android:layout_marginLeft="10dp"
                                     android:ellipsize="end"
-                                    android:text="i am afjj a student aaaaa"
                                     android:singleLine="true"
                                     android:textColor="#DF5E5D5D"
                                     android:textSize="18sp" />
@@ -248,7 +238,6 @@
                                     android:layout_height="30dp"
                                     android:layout_marginTop="15dp"
                                     android:textColor="@color/red"
-                                    android:text="$9.9"
                                     android:textSize="20sp"
                                     android:layout_marginLeft="10dp"/>
                             </LinearLayout>
@@ -257,7 +246,6 @@
                                 android:layout_width="88dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="66dp"
-                                android:text="Qty:2"
                                 android:gravity="left"
                                 android:textSize="24sp"
                                 android:textStyle="normal" />
@@ -285,7 +273,6 @@
                     <ImageView
                         android:id="@+id/goods2"
                         android:layout_width="120dp"
-                        android:background="@drawable/yangli"
                         android:layout_height="120dp"
                         android:layout_marginLeft="25dp"/>
                     <LinearLayout
@@ -301,7 +288,6 @@
                                 android:id="@+id/name_text2"
                                 android:layout_width="350dp"
                                 android:layout_height="30dp"
-                                android:text="Good name2"
                                 android:textSize="24sp"
                                 android:textStyle="normal"
                                 android:singleLine="true"
@@ -324,7 +310,6 @@
                                     android:layout_height="30dp"
                                     android:layout_marginLeft="10dp"
                                     android:ellipsize="end"
-                                    android:text="i am afjj a student aaaaa"
                                     android:singleLine="true"
                                     android:textColor="#DF5E5D5D"
                                     android:textSize="18sp" />
@@ -334,7 +319,6 @@
                                     android:layout_height="30dp"
                                     android:layout_marginTop="15dp"
                                     android:textColor="@color/red"
-                                    android:text="$9.9"
                                     android:textSize="20sp"
                                     android:layout_marginLeft="10dp"/>
                             </LinearLayout>
@@ -343,7 +327,6 @@
                                 android:layout_width="88dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="66dp"
-                                android:text="Qty:2"
                                 android:gravity="left"
                                 android:textSize="24sp"
                                 android:textStyle="normal" />
@@ -368,7 +351,6 @@
                     android:layout_marginTop="20dp">
                     <ImageView
                         android:id="@+id/goods3"
-                        android:background="@drawable/yangli16"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_marginLeft="25dp"/>
@@ -382,7 +364,6 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <TextView
-                                android:text="Good name3"
                                 android:id="@+id/name_text3"
                                 android:layout_width="350dp"
                                 android:layout_height="30dp"
@@ -407,7 +388,6 @@
                                     android:id="@+id/tv_describe3"
                                     android:layout_width="350dp"
                                     android:layout_height="30dp"
-                                    android:text="ddid adiafj; afaiee fasdfsfffff"
                                     android:layout_marginLeft="10dp"
                                     android:ellipsize="end"
                                     android:singleLine="true"
@@ -418,7 +398,6 @@
                                     android:layout_width="120dp"
                                     android:layout_height="30dp"
                                     android:textColor="@color/red"
-                                    android:text="$9.9"
                                     android:textSize="20sp"
                                     android:layout_marginTop="15dp"
                                     android:layout_marginLeft="10dp"/>
@@ -430,7 +409,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="66dp"
                                 android:gravity="left"
-                                android:text="Qty:44"
                                 android:textSize="24sp"
                                 android:textStyle="normal" />
                         </LinearLayout>
@@ -474,13 +452,11 @@
                         android:layout_marginHorizontal="40dp">
                         <ImageView
                             android:id="@+id/goods4"
-                            android:background="@drawable/yangli3"
                             android:layout_width="120dp"
                             android:layout_height="120dp"/>
                         <TextView
                             android:id="@+id/name_text4"
                             android:layout_width="match_parent"
-                            android:text="good anme4 aafifj"
                             android:layout_height="30dp"
                             android:textStyle="normal"
                             android:textSize="24sp"
@@ -494,7 +470,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
                             android:layout_marginTop="10dp"
-                            android:text="$9.9"
                             android:textSize="20sp"
                             android:textColor="@color/red"/>
                     </LinearLayout>
@@ -508,7 +483,6 @@
                         <ImageView
                             android:id="@+id/goods5"
                             android:layout_width="120dp"
-                            android:background="@drawable/yangli8"
                             android:layout_height="120dp"/>
                         <TextView
                             android:id="@+id/name_text5"
@@ -516,7 +490,6 @@
                             android:layout_height="30dp"
                             android:textStyle="normal"
                             android:textSize="24sp"
-                            android:text="aaddj dndnajrjfg"
                             android:singleLine="true"
                             android:ellipsize="end"
                             android:layout_marginTop="5dp"/>
@@ -525,7 +498,6 @@
                             android:id="@+id/price5"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
-                            android:text="$9.9"
                             android:layout_marginTop="10dp"
                             android:textSize="20sp"
                             android:textColor="@color/red"/>
@@ -539,7 +511,6 @@
                         <ImageView
                             android:id="@+id/goods6"
                             android:layout_width="120dp"
-                            android:background="@drawable/yangli6"
                             android:layout_height="120dp"/>
 
                         <TextView
@@ -549,7 +520,6 @@
                             android:layout_marginTop="5dp"
                             android:ellipsize="end"
                             android:singleLine="true"
-                            android:text="fsdafjfieoytn"
                             android:textSize="24sp"
                             android:textStyle="normal" />
 
@@ -557,7 +527,6 @@
                             android:id="@+id/price6"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
-                            android:text="$9.9"
                             android:layout_marginTop="10dp"
                             android:textSize="20sp"
                             android:textColor="@color/red"/>
@@ -608,7 +577,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:textSize="35sp"
+            android:textSize="45sp"
             android:fontFamily="serif"
             android:layout_marginTop="296dp"
             android:textColor="#4f4f53"/>

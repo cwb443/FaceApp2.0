@@ -29,7 +29,7 @@ import com.firefly.faceEngine.dblib.bean.Setting;
 import java.util.List;
 
 /**
- * 设置页面
+ * Setting页面
  */
 public class SettingFragment extends Fragment {
 
@@ -219,13 +219,24 @@ public class SettingFragment extends Fragment {
                 seekBar.setEnabled(flag2);
                 seekBar.setEnabled(flag2);
                 button2.setSelected(b);
+
+                if (flag2){
+                    flag3 = true;
+                    button3.setSelected(true);
+                    button3.setChecked(true);
+                }
             }
         });
         button3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                flag3 = b;
-                button3.setSelected(b);
+
+                if(!flag2){
+                    flag3 = b;
+                    button3.setSelected(b);
+                }else if (!b){
+                    Toast.makeText(getContext(), "When white light is on, infrared light is on by default", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -243,46 +254,6 @@ public class SettingFragment extends Fragment {
                 System.exit(0);
             }
         });
-
-
-
-//        forecastOrders.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-////                setting.setForecast(forecastOrders.getText().toString());
-//////                setting.setProducts(recommended.getText().toString());
-//////                SaveInfo.UpdateInformation(getContext(),setting);
-//            }
-//        });
-//
-//        recommended.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-////
-////                setting.setProducts(recommended.getText().toString());
-//////                SaveInfo.UpdateInformation(getContext(),setting);
-//            }
-//        });
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

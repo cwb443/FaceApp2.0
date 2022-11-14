@@ -2,6 +2,8 @@ package com.firefly.faceEngine.activity;
 
 import static com.firefly.faceEngine.App.getContext;
 
+import static java.lang.Thread.sleep;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
@@ -25,6 +27,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 
+import com.firefly.api.HardwareCtrl;
 import com.firefly.arcterndemo.R;
 import com.firefly.faceEngine.App;
 import com.firefly.faceEngine.dblib.SettingManage;
@@ -337,7 +340,6 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                 if(isNewUser != 2||isUserId!=userId) {
                     isNewUser = 2;
                     isUserId = Math.toIntExact(userId);
-
                     if (goodsFlag){
                         setTitle(userId,name,true);
                         setForecastGoods(userId);
@@ -350,7 +352,6 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
             } else {
                 faceView.isRed = true;
                 if(isNewUser != 1) {
-
                     if (goodsFlag){
                         setForecastGoods(0l);
                         setRecommendGoods(0l);
@@ -360,7 +361,6 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                         isNewUser = 1;
                         setTitle(0l,"New Customer",false);
                     }
-
                 }
             }
         }
