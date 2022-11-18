@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<!--    覆盖页面的控件   蓝色-->
+    <!--    覆盖页面的控件   蓝色-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,98 +33,98 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
-<!--输入文字控件-->
-<RelativeLayout
-    android:layout_width="665dp"
-    android:layout_height="260dp"
-    android:layout_marginTop="20dp"
-    android:gravity="center">
+                        <!--输入文字控件-->
+                        <RelativeLayout
+                            android:layout_width="665dp"
+                            android:layout_height="260dp"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center">
 
-    <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="665dp"
-        android:layout_height="260dp"
-        android:background="@drawable/erweima" />
-    <!--    <ImageView-->
-<!--        android:layout_width="665dp"-->
-<!--        android:layout_height="260dp"-->
-<!--        />-->
-    <RelativeLayout
-        android:layout_width="1px"
-        android:layout_height="1px"
-        android:background="@color/black">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+                            <ImageView
+                                android:id="@+id/image_view"
+                                android:layout_width="665dp"
+                                android:layout_height="260dp"
+                                android:background="@drawable/erweima" />
+                            <!--    <ImageView-->
+                            <!--        android:layout_width="665dp"-->
+                            <!--        android:layout_height="260dp"-->
+                            <!--        />-->
+                            <RelativeLayout
+                                android:layout_width="1px"
+                                android:layout_height="1px"
+                                android:background="@color/black">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                                    <FrameLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent">
 
-                <com.firefly.faceEngine.view.LivingSurfaceView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                                        <com.firefly.faceEngine.view.LivingSurfaceView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent" />
 
-                <LinearLayout
-                    android:layout_width="128dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_gravity="right|top">
+                                        <LinearLayout
+                                            android:layout_width="128dp"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:layout_gravity="right|top">
 
-                    <com.firefly.faceEngine.view.GraySurfaceView
-                        android:id="@+id/grayInterface"
-                        android:layout_width="128dp"
-                        android:layout_height="156dp" />
+                                            <com.firefly.faceEngine.view.GraySurfaceView
+                                                android:id="@+id/grayInterface"
+                                                android:layout_width="128dp"
+                                                android:layout_height="156dp" />
 
-                    <ImageView
-                        android:id="@+id/img_landmark"
-                        android:layout_width="128dp"
-                        android:layout_height="156dp" />
-                </LinearLayout>
-            </FrameLayout>
-        </LinearLayout>
+                                            <ImageView
+                                                android:id="@+id/img_landmark"
+                                                android:layout_width="128dp"
+                                                android:layout_height="156dp" />
+                                        </LinearLayout>
+                                    </FrameLayout>
+                                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_alignParentBottom="true"
-            android:background="#15000000"
-            android:padding="10dp"
-            android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="200dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:background="#15000000"
+                                    android:padding="10dp"
+                                    android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/txt1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:lineSpacingMultiplier="1.3"
-                android:textColor="@color/white"
-                android:layout_marginRight="10dp"
-                android:gravity="center_horizontal"/>
+                                    <TextView
+                                        android:id="@+id/txt1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:lineSpacingMultiplier="1.3"
+                                        android:textColor="@color/white"
+                                        android:layout_marginRight="10dp"
+                                        android:gravity="center_horizontal"/>
 
-            <TextView
-                android:id="@+id/txt2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:lineSpacingMultiplier="1.3"
-                android:textColor="@color/white"
-                android:layout_marginRight="10dp"
-                android:gravity="center_horizontal" />
+                                    <TextView
+                                        android:id="@+id/txt2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:lineSpacingMultiplier="1.3"
+                                        android:textColor="@color/white"
+                                        android:layout_marginRight="10dp"
+                                        android:gravity="center_horizontal" />
 
-            <TextView
-                android:id="@+id/txt3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:lineSpacingMultiplier="1.3"
-                android:textColor="@color/white"
-                android:visibility="gone"/>
-        </LinearLayout>
+                                    <TextView
+                                        android:id="@+id/txt3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:lineSpacingMultiplier="1.3"
+                                        android:textColor="@color/white"
+                                        android:visibility="gone"/>
+                                </LinearLayout>
 
-    </RelativeLayout>
-</RelativeLayout>
+                            </RelativeLayout>
+                        </RelativeLayout>
 
 
 
@@ -463,7 +463,7 @@
                             android:singleLine="true"
                             android:ellipsize="end"
                             android:layout_marginTop="5dp"
-                       />
+                            />
 
                         <TextView
                             android:id="@+id/price4"
@@ -537,17 +537,17 @@
     </RelativeLayout>
 
 
-<!--    最上层控件 透明-->
- <RelativeLayout
-     android:layout_width="match_parent"
-     android:layout_height="match_parent">
-  <ImageView
-      android:id="@+id/close_goods_image"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent" />
- </RelativeLayout>
+    <!--    最上层控件 透明-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/close_goods_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
 
-<!--    按钮-->
+    <!--    按钮-->
     <ImageView
         android:layout_width="35dp"
         android:layout_height="28dp"

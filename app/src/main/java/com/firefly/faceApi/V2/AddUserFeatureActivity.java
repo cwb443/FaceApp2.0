@@ -236,16 +236,15 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
                 if (images != null && images.size() > 0) {
                     mBitmapPath = images.get(0).path;
                     Bitmap bitmap = BitmapFactory.decodeFile(mBitmapPath);
-//                    Bitmap bm = BitmapFactory.decodeFile(mBitmapPath);
-//                    saveBitmap(bm);
+
                     image.setImageBitmap(bitmap);
                     faceBitmap = bitmap;
-//                    Tools.debugLog("bitmap path:%s", mBitmapPath);
+
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
                             int result = getFeature(mBitmapPath);
-//                            Tools.debugLog("result: %s", result);
+
                         }
                     }).start();
                 }

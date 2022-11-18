@@ -23,6 +23,7 @@ import com.firefly.faceApi.V2.Event.UseManageAddEventClass;
 import com.firefly.faceApi.V2.R;
 import com.firefly.faceEngine.App;
 import com.firefly.faceEngine.dblib.DBManager;
+import com.firefly.faceEngine.dblib.SettingManage;
 import com.firefly.faceEngine.dblib.bean.Person;
 import com.intellif.YTLFFaceManager;
 
@@ -39,12 +40,14 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
 
     private YTLFFaceManager YTLFFaceManage = YTLFFaceManager.getInstance();
     private DBManager dbManager = App.getInstance().getDbManager();
+    private SettingManage settingManage = App.getInstance().getSettingManage();
     ChatAdapter chatAdapter;
     ListView listView;
     ImageView imageView;
     ImageView delete;
-    private ArrayList<String> dataList;
-    private ArrayList<Person> personArrayList;
+    private ArrayList<String> showList;
+    private ArrayList<Person> connectList;
+    private int customerList = settingManage.getSaveInformation().get(0).getCustomerList();
 
     Dialog dialog;
 
@@ -52,13 +55,17 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
     private YTLFFaceManager YTLFFace = YTLFFaceManager.getInstance();
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_user_manage,container,false);
         listView=view.findViewById(R.id.main_list_view);
-        chatAdapter=new ChatAdapter(getActivity(),dataList, UserManageFragment.this);
-        listView.setAdapter(chatAdapter);
+        chatAdapter=new ChatAdapter(getActivity(),showList, UserManageFragment.this);
+
+        if (customerList==1){
+            listView.setAdapter(chatAdapter);
+        }
 
         imageView=view.findViewById(R.id.id_add);
         delete = view.findViewById(R.id.id_del);
@@ -90,13 +97,12 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        personArrayList = new ArrayList<>();
-        dataList = new ArrayList<>();
+        connectList = new ArrayList<>();
+        showList = new ArrayList<>();
         List<Person> personList = dbManager.getPersonList();
         for (Person person: personList) {
-            personArrayList.add(person);
-            dataList.add(person.getName());
-            Log.e("", "name: "+person.getName()+" id："+person.getId() );
+            connectList.add(person);
+            showList.add(person.getName());
         }
     }
 
@@ -228,22 +234,13 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
                 if (postion_1 == -1){
                     dbManager.deletePersonAll();
                     YTLFFaceManage.dataBaseClear();
-                    personArrayList = new ArrayList<>();
-                    dataList = new ArrayList<>();
-                    List<Person> personList = dbManager.getPersonList();
-                    for (Person person : personList) {
-                        personArrayList.add(person);
-                        dataList.add(person.getName());
-                    }
-                    chatAdapter = new ChatAdapter(getActivity(), dataList, UserManageFragment.this);
-                    listView.setAdapter(chatAdapter);
-                    imageView.setClickable(true);
+                    setUserList();
                 }else{
-                    Person person = personArrayList.get(postion_1);
+                    Person person = connectList.get(postion_1);
                     dbManager.deletePerson(person.getId());
                     YTLFFace.dataBaseDelete(person.getId());
-                    dataList.remove(postion_1);
-                    personArrayList.remove(postion_1);
+                    showList.remove(postion_1);
+                    connectList.remove(postion_1);
                     chatAdapter.notifyDataSetChanged();
                 }
                 dialog.dismiss();
@@ -255,18 +252,37 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
     }
 
     @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden){
+            customerList = settingManage.getSaveInformation().get(0).getCustomerList();
+            setUserList();
+        }
+    }
+
+    public void setUserList(){
+        if (customerList==1){
+            connectList = new ArrayList<>();
+            showList = new ArrayList<>();
+            List<Person> personList = dbManager.getPersonList();
+            for (Person person : personList) {
+                connectList.add(person);
+                showList.add(person.getName());
+            }
+            chatAdapter = new ChatAdapter(getActivity(), showList, UserManageFragment.this);
+            listView.setAdapter(chatAdapter);
+        }else {
+            ArrayList<String> arrayList = new ArrayList<>();
+
+            chatAdapter = new ChatAdapter(getActivity(), arrayList, UserManageFragment.this);
+            listView.setAdapter(chatAdapter);
+        }
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
-        personArrayList = new ArrayList<>();
-        dataList = new ArrayList<>();
-        List<Person> personList = dbManager.getPersonList();
-        for (Person person : personList) {
-            personArrayList.add(person);
-            dataList.add(person.getName());
-        }
-        chatAdapter = new ChatAdapter(getActivity(), dataList, UserManageFragment.this);
-        listView.setAdapter(chatAdapter);
-        imageView.setClickable(true);
+        setUserList();
     }
 }
 

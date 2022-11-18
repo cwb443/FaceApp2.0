@@ -7,6 +7,7 @@ import static java.lang.Thread.sleep;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
@@ -107,8 +108,6 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
     private TextView prePrice1,prePrice2,prePrice3;
 
     private TextView imageText,imageWel;
-
-
 
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
@@ -254,7 +253,11 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
 
         lastOnSearchCallBackTime = System.currentTimeMillis();
         faceInfo.setSearchId(searchIds[0]);
-        handlePerson();
+        try {
+            handlePerson();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         handleLandmark(arcternImage, landmarks);
     }
 
@@ -298,7 +301,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                     public void run() {
 
                         List<Setting> saveInformation = settingManage.getSaveInformation();
-                        Integer red = saveInformation.get(0).getRed();
+                        Integer red = saveInformation.get(0).getInfrared();
                         if (red==0)
                             YTLFFace.doDelivery(rbgImage, rbgImage);
                         else
@@ -312,13 +315,15 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
     int isNewUser = 0;//0 初始 1 新用户 2 老用户
     int isUserId = 0;
     // 处理人员信息
-    private void handlePerson() {
+    private void handlePerson() throws InterruptedException {
 
         List<Setting> saveInformation = settingManage.getSaveInformation();
         Integer recognition = saveInformation.get(0).getRecognition();
 
         Boolean flag;
         Boolean goodsFlag;
+        saveInformation.get(0).getJumpInterval();
+        int time = (int) (1000*Double.parseDouble(saveInformation.get(0).getJumpInterval()));
 
         if (recognition == 0)
             flag = false;
@@ -347,19 +352,40 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                     }else {
                         //如果关闭商品推荐只对Title进行修改
                         setTitle(userId,name,false);
+                        sleep(time);
+
+                        Bundle bundle = new Bundle();
+                        bundle.putLong("userId",userId);
+                        Intent intent = new Intent(context,GoodsActivity.class);
+                        intent.putExtra("bundle",bundle);
+//                        closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_defaultpeople));
+
+                        context.startActivity(intent);
+//                        setTitle(-1l,"",false);
+                        finish();
                     }
                 }
             } else {
                 faceView.isRed = true;
                 if(isNewUser != 1) {
                     if (goodsFlag){
-                        setForecastGoods(0l);
-                        setRecommendGoods(0l);
-                        isNewUser = 1;
-                        setTitle(0l,"New Customer",true);
+//                        setForecastGoods(0l);
+//                        setRecommendGoods(0l);
+//                        isNewUser = 1;
+//                        setTitle(0l,"New Customer",true);
                     }else{
                         isNewUser = 1;
                         setTitle(0l,"New Customer",false);
+                        sleep(time);
+                        Bundle bundle = new Bundle();
+                        bundle.putLong("userId",0l);
+                        Intent intent = new Intent(context,GoodsActivity.class);
+                        intent.putExtra("bundle",bundle);
+//                        closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_defaultpeople));
+
+                        context.startActivity(intent);
+//                        setTitle(-1l,"",false);
+                        finish();
                     }
                 }
             }
@@ -571,21 +597,30 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                 if (goodsOpen){
                     if (userId==0l){
                         imageview.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.bluepeople));
+                        imageWel.setText("Welcome");
+                        imageText.setText(name);
                     }else {
                         imageview.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.greenpeople));
+                        imageWel.setText("Welcome");
+                        imageText.setText(name);
                     }
-                    imageWel.setText("Welcome");
-                    imageText.setText(name);
+
                 }else {
 
                     if (userId == 0l){
                         closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_bluepeople));
+                        closeTextWel.setText("Welcome");
+                        closeTextName.setText(name);
+                    }else if (userId == -1l){
+                        closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_defaultpeople));
+                        closeTextWel.setText("");
+                        closeTextName.setText(name);
                     }else {
                         closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_greenpeople));
+                        closeTextWel.setText("Welcome");
+                        closeTextName.setText(name);
                     }
-                    closeTextWel.setText("Welcome");
-//                    Log.e("TAG", "run: "+name);
-                    closeTextName.setText(name);
+
                 }
             }
         });

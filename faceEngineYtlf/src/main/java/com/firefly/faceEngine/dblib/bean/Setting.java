@@ -8,25 +8,29 @@ import org.greenrobot.greendao.annotation.Id;
 public class Setting {
     @Id(autoincrement = true)
     private Long id;
-    private Integer recognition;
-    private Integer red;
-    private Integer brightness;
-    private Integer infrared;
-    private String forecast;
-    private String products;
-    private Integer goodsOpen;
-
-    @Generated(hash = 1362182370)
-    public Setting(Long id, Integer recognition, Integer red, Integer brightness,
-            Integer infrared, String forecast, String products, Integer goodsOpen) {
+    private Integer recognition;//人脸识别
+    private Integer white;//白光
+    private Integer brightness;//白光强度
+    private Integer infrared;//红外光
+    private String predicted;//预测
+    private String recommended;//推荐
+    private Integer goodsOpen;//商品推荐是否打开
+    private Integer customerList;
+    private String jumpInterval;
+    @Generated(hash = 137075545)
+    public Setting(Long id, Integer recognition, Integer white, Integer brightness,
+            Integer infrared, String predicted, String recommended,
+            Integer goodsOpen, Integer customerList, String jumpInterval) {
         this.id = id;
         this.recognition = recognition;
-        this.red = red;
+        this.white = white;
         this.brightness = brightness;
         this.infrared = infrared;
-        this.forecast = forecast;
-        this.products = products;
+        this.predicted = predicted;
+        this.recommended = recommended;
         this.goodsOpen = goodsOpen;
+        this.customerList = customerList;
+        this.jumpInterval = jumpInterval;
     }
     @Generated(hash = 909716735)
     public Setting() {
@@ -43,11 +47,11 @@ public class Setting {
     public void setRecognition(Integer recognition) {
         this.recognition = recognition;
     }
-    public Integer getRed() {
-        return this.red;
+    public Integer getWhite() {
+        return this.white;
     }
-    public void setRed(Integer red) {
-        this.red = red;
+    public void setWhite(Integer white) {
+        this.white = white;
     }
     public Integer getBrightness() {
         return this.brightness;
@@ -61,35 +65,34 @@ public class Setting {
     public void setInfrared(Integer infrared) {
         this.infrared = infrared;
     }
-    public String getForecast() {
-        return this.forecast;
+    public String getPredicted() {
+        return this.predicted;
     }
-    public void setForecast(String forecast) {
-        this.forecast = forecast;
+    public void setPredicted(String predicted) {
+        this.predicted = predicted;
     }
-    public String getProducts() {
-        return this.products;
+    public String getRecommended() {
+        return this.recommended;
     }
-    public void setProducts(String products) {
-        this.products = products;
-    }
-
-    @Override
-    public String toString() {
-        return "Setting{" +
-                "id=" + id +
-                ", recognition=" + recognition +
-                ", red=" + red +
-                ", brightness=" + brightness +
-                ", infrared=" + infrared +
-                ", forecast='" + forecast + '\'' +
-                ", products='" + products + '\'' +
-                '}';
+    public void setRecommended(String recommended) {
+        this.recommended = recommended;
     }
     public Integer getGoodsOpen() {
         return this.goodsOpen;
     }
     public void setGoodsOpen(Integer goodsOpen) {
         this.goodsOpen = goodsOpen;
+    }
+    public Integer getCustomerList() {
+        return this.customerList;
+    }
+    public void setCustomerList(Integer customerList) {
+        this.customerList = customerList;
+    }
+    public String getJumpInterval() {
+        return this.jumpInterval;
+    }
+    public void setJumpInterval(String jumpInterval) {
+        this.jumpInterval = jumpInterval;
     }
 }

@@ -1,10 +1,10 @@
 package com.firefly.faceEngine.dblib;
 
-import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
 
 import com.firefly.faceEngine.dblib.bean.Person;
 import com.firefly.faceEngine.dblib.greendao.DaoMaster;
@@ -111,5 +111,9 @@ public class DBManager {
     public List<Person> getPersonList(){
         QueryBuilder<Person> qb = personDao.queryBuilder();
         return qb.list();
+    }
+
+    public Person getPersonById(Long id){
+        return personDao.load(id);
     }
 }

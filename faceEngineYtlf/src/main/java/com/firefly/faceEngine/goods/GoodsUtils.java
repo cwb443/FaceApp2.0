@@ -27,7 +27,7 @@ public class GoodsUtils {
             params.add("userId",userId.toString());
 
             List<Setting> settings = settingManage.getSaveInformation();
-            String url  = settings.get(0).getForecast();
+            String url  = settings.get(0).getPredicted();
 
             Log.e("", "getPredictGoods: "+url);
 
@@ -53,7 +53,7 @@ public class GoodsUtils {
             params.add("userId",userId.toString());
 
             List<Setting> settings = settingManage.getSaveInformation();
-            String url  = settings.get(0).getProducts();
+            String url  = settings.get(0).getRecommended();
 
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()

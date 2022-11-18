@@ -329,18 +329,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         return YTLFFaceManager.isLoadDB;
     }
 
-    // 人脸检测
-//    public void onEnterDetect(View view) {
-//        Runnable runnable = new Runnable() {
-//            @Override
-//            public void run() {
-//                Intent intent = new Intent(context, FaceDetectActivity.class);
-//                startActivity(intent);
-//            }
-//        };
-//
-//        runOnFaceSdkReady(runnable);
-//    }
     public void DetectRun(){
         Runnable runnable = new Runnable() {
             @Override

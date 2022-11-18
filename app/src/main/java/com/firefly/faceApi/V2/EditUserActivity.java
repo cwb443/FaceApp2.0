@@ -77,11 +77,11 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
 
         //获取当前用户
         List<Person> personList = dbManager.getPersonList();//从数据库中拉取
-        List<Person> personArrayList = new ArrayList<>();//将dataList与personList的顺序进行关联使其与数据库中的id匹配
-        List<String> dataList = new ArrayList<>();//显示在页面用户的顺序
+        List<Person> personArrayList = new ArrayList<>();//将showList与personList的顺序进行关联使其与数据库中的id匹配
+        List<String> showList = new ArrayList<>();//显示在页面用户的顺序
         for (Person person : personList) {
             personArrayList.add(person);
-            dataList.add(person.getName());
+            showList.add(person.getName());
         }
 
         person = personArrayList.get(position);

@@ -26,12 +26,14 @@ public class SettingDao extends AbstractDao<Setting, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Recognition = new Property(1, Integer.class, "recognition", false, "RECOGNITION");
-        public final static Property Red = new Property(2, Integer.class, "red", false, "RED");
+        public final static Property White = new Property(2, Integer.class, "white", false, "WHITE");
         public final static Property Brightness = new Property(3, Integer.class, "brightness", false, "BRIGHTNESS");
         public final static Property Infrared = new Property(4, Integer.class, "infrared", false, "INFRARED");
-        public final static Property Forecast = new Property(5, String.class, "forecast", false, "FORECAST");
-        public final static Property Products = new Property(6, String.class, "products", false, "PRODUCTS");
+        public final static Property Predicted = new Property(5, String.class, "predicted", false, "PREDICTED");
+        public final static Property Recommended = new Property(6, String.class, "recommended", false, "RECOMMENDED");
         public final static Property GoodsOpen = new Property(7, Integer.class, "goodsOpen", false, "GOODS_OPEN");
+        public final static Property CustomerList = new Property(8, Integer.class, "customerList", false, "CUSTOMER_LIST");
+        public final static Property JumpInterval = new Property(9, String.class, "jumpInterval", false, "JUMP_INTERVAL");
     }
 
 
@@ -49,12 +51,14 @@ public class SettingDao extends AbstractDao<Setting, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"SETTING\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"RECOGNITION\" INTEGER," + // 1: recognition
-                "\"RED\" INTEGER," + // 2: red
+                "\"WHITE\" INTEGER," + // 2: white
                 "\"BRIGHTNESS\" INTEGER," + // 3: brightness
                 "\"INFRARED\" INTEGER," + // 4: infrared
-                "\"FORECAST\" TEXT," + // 5: forecast
-                "\"PRODUCTS\" TEXT," + // 6: products
-                "\"GOODS_OPEN\" INTEGER);"); // 7: goodsOpen
+                "\"PREDICTED\" TEXT," + // 5: predicted
+                "\"RECOMMENDED\" TEXT," + // 6: recommended
+                "\"GOODS_OPEN\" INTEGER," + // 7: goodsOpen
+                "\"CUSTOMER_LIST\" INTEGER," + // 8: customerList
+                "\"JUMP_INTERVAL\" TEXT);"); // 9: jumpInterval
     }
 
     /** Drops the underlying database table. */
@@ -77,9 +81,9 @@ public class SettingDao extends AbstractDao<Setting, Long> {
             stmt.bindLong(2, recognition);
         }
  
-        Integer red = entity.getRed();
-        if (red != null) {
-            stmt.bindLong(3, red);
+        Integer white = entity.getWhite();
+        if (white != null) {
+            stmt.bindLong(3, white);
         }
  
         Integer brightness = entity.getBrightness();
@@ -92,19 +96,29 @@ public class SettingDao extends AbstractDao<Setting, Long> {
             stmt.bindLong(5, infrared);
         }
  
-        String forecast = entity.getForecast();
-        if (forecast != null) {
-            stmt.bindString(6, forecast);
+        String predicted = entity.getPredicted();
+        if (predicted != null) {
+            stmt.bindString(6, predicted);
         }
  
-        String products = entity.getProducts();
-        if (products != null) {
-            stmt.bindString(7, products);
+        String recommended = entity.getRecommended();
+        if (recommended != null) {
+            stmt.bindString(7, recommended);
         }
  
         Integer goodsOpen = entity.getGoodsOpen();
         if (goodsOpen != null) {
             stmt.bindLong(8, goodsOpen);
+        }
+ 
+        Integer customerList = entity.getCustomerList();
+        if (customerList != null) {
+            stmt.bindLong(9, customerList);
+        }
+ 
+        String jumpInterval = entity.getJumpInterval();
+        if (jumpInterval != null) {
+            stmt.bindString(10, jumpInterval);
         }
     }
 
@@ -122,9 +136,9 @@ public class SettingDao extends AbstractDao<Setting, Long> {
             stmt.bindLong(2, recognition);
         }
  
-        Integer red = entity.getRed();
-        if (red != null) {
-            stmt.bindLong(3, red);
+        Integer white = entity.getWhite();
+        if (white != null) {
+            stmt.bindLong(3, white);
         }
  
         Integer brightness = entity.getBrightness();
@@ -137,19 +151,29 @@ public class SettingDao extends AbstractDao<Setting, Long> {
             stmt.bindLong(5, infrared);
         }
  
-        String forecast = entity.getForecast();
-        if (forecast != null) {
-            stmt.bindString(6, forecast);
+        String predicted = entity.getPredicted();
+        if (predicted != null) {
+            stmt.bindString(6, predicted);
         }
  
-        String products = entity.getProducts();
-        if (products != null) {
-            stmt.bindString(7, products);
+        String recommended = entity.getRecommended();
+        if (recommended != null) {
+            stmt.bindString(7, recommended);
         }
  
         Integer goodsOpen = entity.getGoodsOpen();
         if (goodsOpen != null) {
             stmt.bindLong(8, goodsOpen);
+        }
+ 
+        Integer customerList = entity.getCustomerList();
+        if (customerList != null) {
+            stmt.bindLong(9, customerList);
+        }
+ 
+        String jumpInterval = entity.getJumpInterval();
+        if (jumpInterval != null) {
+            stmt.bindString(10, jumpInterval);
         }
     }
 
@@ -163,12 +187,14 @@ public class SettingDao extends AbstractDao<Setting, Long> {
         Setting entity = new Setting( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getInt(offset + 1), // recognition
-            cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2), // red
+            cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2), // white
             cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3), // brightness
             cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4), // infrared
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // forecast
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // products
-            cursor.isNull(offset + 7) ? null : cursor.getInt(offset + 7) // goodsOpen
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // predicted
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // recommended
+            cursor.isNull(offset + 7) ? null : cursor.getInt(offset + 7), // goodsOpen
+            cursor.isNull(offset + 8) ? null : cursor.getInt(offset + 8), // customerList
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9) // jumpInterval
         );
         return entity;
     }
@@ -177,12 +203,14 @@ public class SettingDao extends AbstractDao<Setting, Long> {
     public void readEntity(Cursor cursor, Setting entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setRecognition(cursor.isNull(offset + 1) ? null : cursor.getInt(offset + 1));
-        entity.setRed(cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2));
+        entity.setWhite(cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2));
         entity.setBrightness(cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3));
         entity.setInfrared(cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4));
-        entity.setForecast(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setProducts(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setPredicted(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setRecommended(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setGoodsOpen(cursor.isNull(offset + 7) ? null : cursor.getInt(offset + 7));
+        entity.setCustomerList(cursor.isNull(offset + 8) ? null : cursor.getInt(offset + 8));
+        entity.setJumpInterval(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
      }
     
     @Override

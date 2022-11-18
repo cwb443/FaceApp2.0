@@ -38,13 +38,16 @@ public class SettingFragment extends Fragment {
     public  Boolean flag=true;
     private boolean isCreated=false;
 
-    ToggleButton button1,button2,button3,button4;
+    ToggleButton button1,button2,button3,button4,button5;
     SeekBar seekBar;
-    EditText forecastOrders,recommended;
+    EditText forecastOrders,recommended,jump;
     Button exit;
     TextView save;
     Setting setting;
     Boolean flag1,flag2,flag3,flag4;
+
+    public static Boolean flag5;
+
     int progressSeekBar;
     @Nullable
     @Override
@@ -78,12 +81,13 @@ public class SettingFragment extends Fragment {
         //对setting数据库进行初始化
         if (saveInformation.size() == 0){
             Setting setting = new Setting(null,0,0,0,0,
-                    "124.221.187.242:8081","124.221.187.242:8081",0);
+                    "124.221.187.242:8081","124.221.187.242:8081",0,0,"0.5");
             settingManage.SaveInformation(setting);
             button1.setChecked(false);
             button2.setChecked(false);
             button3.setChecked(false);
             button4.setChecked(false);
+            button5.setChecked(false);
             seekBar.setProgress(0);
         }else {
 
@@ -99,7 +103,7 @@ public class SettingFragment extends Fragment {
                 flag1 = true;
             }
 
-            if (setting.getRed() == 0){
+            if (setting.getWhite() == 0){
                 button2.setChecked(false);
                 flag2=false;
             }
@@ -133,18 +137,30 @@ public class SettingFragment extends Fragment {
                 flag4 = true;
             }
 
+            if (setting.getCustomerList()==0){
+                button5.setChecked(false);
+                flag5 = false;
+            }else {
+                button5.setChecked(true);
+                flag5 = true;
+            }
+
             seekBar.setProgress(setting.getBrightness());
             progressSeekBar = setting.getBrightness();
 
-            if ("".equals(setting.getForecast()))
+            if ("".equals(setting.getPredicted()))
                 forecastOrders.setHint("default");
             else
-                forecastOrders.setText(setting.getForecast());
+                forecastOrders.setText(setting.getPredicted());
 
-            if ("".equals(setting.getProducts()))
+            if ("".equals(setting.getRecommended()))
                 recommended.setHint("default");
             else
-                recommended.setText(setting.getProducts());
+                recommended.setText(setting.getRecommended());
+            if ("".equals(setting.getRecommended()))
+                jump.setText("0.5");
+            else
+                jump.setText(setting.getJumpInterval());
         }
     }
 
@@ -162,10 +178,12 @@ public class SettingFragment extends Fragment {
         button2=getActivity().findViewById(R.id.button_2);
         button3=getActivity().findViewById(R.id.button_3);
         button4=getActivity().findViewById(R.id.button_4);
+        button5=getActivity().findViewById(R.id.button_list);
 
         seekBar=getActivity().findViewById(R.id.led_bar);
         forecastOrders=getActivity().findViewById(R.id.id_forecast_orders);
         recommended=getActivity().findViewById(R.id.id_recommended_products);
+        jump = getActivity().findViewById(R.id.id_jump);
 
         exit=getActivity().findViewById(R.id.exit);
         save = getActivity().findViewById(R.id.save_overlay_view);
@@ -174,9 +192,9 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (flag2)
-                    setting.setRed(1);
+                    setting.setWhite(1);
                 else
-                    setting.setRed(0);
+                    setting.setWhite(0);
                 if (flag3)
                     setting.setInfrared(1);
                 else
@@ -185,11 +203,16 @@ public class SettingFragment extends Fragment {
                     setting.setGoodsOpen(1);
                 else
                     setting.setGoodsOpen(0);
+                if (flag5)
+                    setting.setCustomerList(1);
+                else
+                    setting.setCustomerList(0);
 
                 setting.setBrightness(progressSeekBar);
 
-                setting.setProducts(recommended.getText().toString());
-                setting.setForecast(forecastOrders.getText().toString());
+                setting.setRecommended(recommended.getText().toString());
+                setting.setPredicted(forecastOrders.getText().toString());
+                setting.setJumpInterval(jump.getText().toString());
                 settingManage.UpdateInformation(setting);
                 Toast.makeText(getContext(),"Save Success!",Toast.LENGTH_LONG).show();
             }
@@ -248,12 +271,22 @@ public class SettingFragment extends Fragment {
             }
         });
 
+        button5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
+                flag5 = b;
+                button5.setSelected(b);
+            }
+        });
+
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.exit(0);
             }
         });
+
+
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

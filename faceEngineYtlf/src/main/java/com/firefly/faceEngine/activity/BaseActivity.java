@@ -98,7 +98,7 @@ public class BaseActivity extends AppCompatActivity {
         try {
             SettingManage settingManage = App.getInstance().getSettingManage();
             List<Setting> saveInformation = settingManage.getSaveInformation();
-            Integer white = saveInformation.get(0).getRed();
+            Integer white = saveInformation.get(0).getWhite();
             Integer red = saveInformation.get(0).getInfrared();
             Boolean whiteFlag,redFlag,flag;
             Integer recognition = saveInformation.get(0).getRecognition();
