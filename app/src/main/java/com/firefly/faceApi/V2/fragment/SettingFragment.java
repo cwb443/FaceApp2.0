@@ -243,23 +243,23 @@ public class SettingFragment extends Fragment {
                 seekBar.setEnabled(flag2);
                 button2.setSelected(b);
 
-                if (flag2){
-                    flag3 = true;
-                    button3.setSelected(true);
-                    button3.setChecked(true);
-                }
+//                if (flag2){
+//                    flag3 = true;
+//                    button3.setSelected(true);
+//                    button3.setChecked(true);
+//                }
             }
         });
         button3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
-                if(!flag2){
+//                if(!flag2){
                     flag3 = b;
                     button3.setSelected(b);
-                }else if (!b){
-                    Toast.makeText(getContext(), "When white light is on, infrared light is on by default", Toast.LENGTH_SHORT).show();
-                }
+//                }else if (!b){
+//                    Toast.makeText(getContext(), "When white light is on, infrared light is on by default", Toast.LENGTH_SHORT).show();
+//                }
             }
         });
 

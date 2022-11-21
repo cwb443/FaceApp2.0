@@ -84,6 +84,14 @@ android:background="@color/white">
                     android:textSize="35sp"
                     android:fontFamily="serif"/>
 
+                <!--    按钮-->
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="32dp"
+                    android:layout_marginLeft="610dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@drawable/settinghome"
+                    android:onClick="back" />
             </RelativeLayout>
 
 
@@ -110,11 +118,6 @@ android:background="@color/white">
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:paddingLeft="25dp"/>
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:onClick="back"/>
-
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

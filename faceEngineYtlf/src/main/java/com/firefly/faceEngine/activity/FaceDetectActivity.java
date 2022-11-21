@@ -368,25 +368,25 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
             } else {
                 faceView.isRed = true;
                 if(isNewUser != 1) {
-                    if (goodsFlag){
+//                    if (goodsFlag){
 //                        setForecastGoods(0l);
 //                        setRecommendGoods(0l);
 //                        isNewUser = 1;
 //                        setTitle(0l,"New Customer",true);
-                    }else{
+//                    }else{
                         isNewUser = 1;
                         setTitle(0l,"New Customer",false);
-                        sleep(time);
-                        Bundle bundle = new Bundle();
-                        bundle.putLong("userId",0l);
-                        Intent intent = new Intent(context,GoodsActivity.class);
-                        intent.putExtra("bundle",bundle);
-//                        closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_defaultpeople));
-
-                        context.startActivity(intent);
-//                        setTitle(-1l,"",false);
-                        finish();
-                    }
+//                        sleep(time);
+//                        Bundle bundle = new Bundle();
+//                        bundle.putLong("userId",0l);
+//                        Intent intent = new Intent(context,GoodsActivity.class);
+//                        intent.putExtra("bundle",bundle);
+////                        closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_defaultpeople));
+//
+//                        context.startActivity(intent);
+////                        setTitle(-1l,"",false);
+//                        finish();
+//                    }
                 }
             }
         }

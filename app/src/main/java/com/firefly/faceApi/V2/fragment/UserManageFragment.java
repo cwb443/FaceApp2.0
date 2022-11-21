@@ -25,6 +25,7 @@ import com.firefly.faceEngine.App;
 import com.firefly.faceEngine.dblib.DBManager;
 import com.firefly.faceEngine.dblib.SettingManage;
 import com.firefly.faceEngine.dblib.bean.Person;
+import com.firefly.faceEngine.dblib.bean.Setting;
 import com.intellif.YTLFFaceManager;
 
 import org.greenrobot.eventbus.EventBus;
@@ -47,7 +48,7 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
     ImageView delete;
     private ArrayList<String> showList;
     private ArrayList<Person> connectList;
-    private int customerList = settingManage.getSaveInformation().get(0).getCustomerList();
+    private int customerList;
 
     Dialog dialog;
 
@@ -62,6 +63,11 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
         View view= inflater.inflate(R.layout.fragment_user_manage,container,false);
         listView=view.findViewById(R.id.main_list_view);
         chatAdapter=new ChatAdapter(getActivity(),showList, UserManageFragment.this);
+
+        List<Setting> saveInformation = settingManage.getSaveInformation();
+        if (saveInformation.size()!=0){
+            customerList = saveInformation.get(0).getCustomerList();
+        }
 
         if (customerList==1){
             listView.setAdapter(chatAdapter);

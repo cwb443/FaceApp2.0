@@ -544,13 +544,14 @@
         <ImageView
             android:id="@+id/close_goods_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@drawable/close_defaultpeople"/>
     </RelativeLayout>
 
     <!--    按钮-->
     <ImageView
-        android:layout_width="35dp"
-        android:layout_height="28dp"
+        android:layout_width="40dp"
+        android:layout_height="32dp"
         android:layout_marginLeft="640dp"
         android:layout_marginTop="45dp"
         android:background="@drawable/settinghome"
