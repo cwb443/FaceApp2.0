@@ -2,8 +2,11 @@ package com.firefly.faceEngine.activity;
 
 import static com.firefly.faceEngine.App.getContext;
 
+import static java.lang.Thread.sleep;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,6 +17,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,16 +44,16 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
 
     private long userId;
 
-    //人脸识别部分++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // 在线获取授权 API_KEY
+    //Face recognition part++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // Get Authorized Online API_KEY
     public final String API_KEY = "xrZEJz51qfiBI3FB";
 
-    // 指定本地SD卡目录，用于存放models和license公钥等文件
+    // Specifies the local SD card directory where the models and license public keys will be stored
     public static String FACE_PATH = "/sdcard/firefly/";
 
     // SDK
     private YTLFFaceManager YTLFFace = YTLFFaceManager.getInstance().initPath(FACE_PATH);
-    //人脸识别部分-------------------------------------------------------------------------------
+    //Face recognition part-------------------------------------------------------------------------------
 
     private DBManager dbManager = App.getInstance().getDbManager();
 
@@ -61,7 +65,9 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
     private TextView prePrice1,prePrice2,prePrice3;
     private ImageView imageview;
     private TextView imageText,imageWel;
+    private Button backHome;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,6 +112,8 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
 
         imageText = findViewById(R.id.image_text);
 
+        backHome = findViewById(R.id.back_home);
+
         Person person = dbManager.getPersonById(userId);
 
         if (person == null){
@@ -120,9 +128,22 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
         }
 
 
+        backHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backHome.setClickable(false);
+                backFace();
+            }
+        });
 
         getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        backHome.setClickable(true);
     }
 
     @Override
@@ -136,9 +157,7 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
     private void hideSystemUI() {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY //(修改这个选项，可以设置不同模式)
-                        //使用下面三个参数，可以使内容显示在system bar的下面，防止system bar显示或
-                        //隐藏时，Activity的大小被resize。
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                         | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -148,11 +167,7 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
     }
 
 
-    /**
-     * 对头部信息进行修改
-     * @param userId 用户id
-     * @param name 用户名或New User
-     */
+    //Modify the header information
     public void setTitle(Long userId,String name){
         runOnUiThread(new Runnable() {
             @Override
@@ -170,14 +185,8 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
         });
     }
 
-    /**
-     * 获取Predicted Orders商品
-     * @param userId 用户id
-     */
+    //Get the Predicted Orders product
     public void setForecastGoods(Long userId){
-
-        Log.e("", "setForecastGoods: " );
-
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -205,10 +214,7 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
         }).start();
     }
 
-    /**
-     * 获取Recommended Products商品数据
-     * @param userId 用户id
-     */
+    //Get the Recommended Products data
     public void setRecommendGoods(Long userId){
         new Thread(new Runnable() {
             @Override
@@ -216,12 +222,10 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
                 try {
                     ArrayList<Goods> recommendGoods = getRecommendGoods(userId);
                     for (int i=0;i<recommendGoods.size();i++){
-                        Log.e("TAG", "onClick: 2" );
                         int q = i;
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                Log.e("TAG", "setRecommendGoods: " );
                                 Bitmap bmp = getURLimage(recommendGoods.get(q).getPicture());
                                 Message msg = new Message();
                                 GoodsMessage goodsMessage = new GoodsMessage(bmp,recommendGoods.get(q).getName(),recommendGoods.get(q).getPrice(),recommendGoods.get(q).getDescription(),recommendGoods.get(q).getQuantity());
@@ -238,9 +242,7 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
         }).start();
     }
 
-    /**
-     * 对首页商品进行实时渲染
-     */
+    //Render the home page products
     private Handler handle = new Handler() {
         public void handleMessage(Message msg) {
             GoodsMessage goodsMessage = (GoodsMessage)msg.obj;
@@ -287,19 +289,18 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
 
     };
 
-    //加载图片
+    //Loading product images
     public Bitmap getURLimage(String url) {
         Bitmap bmp = null;
         try {
             URL myurl = new URL(url);
-            // 获得连接
             HttpURLConnection conn = (HttpURLConnection) myurl.openConnection();
-            conn.setConnectTimeout(6000);//设置超时
+            conn.setConnectTimeout(6000);
             conn.setDoInput(true);
-            conn.setUseCaches(false);//不缓存
+            conn.setUseCaches(false);
             conn.connect();
-            InputStream is = conn.getInputStream();//获得图片的数据流
-            bmp = BitmapFactory.decodeStream(is);//读取图像数据
+            InputStream is = conn.getInputStream();
+            bmp = BitmapFactory.decodeStream(is);
             is.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -307,7 +308,7 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
         return bmp;
     }
 
-    //获取推荐商品
+    //Get recommended products
     public ArrayList<Goods> getRecommendGoods(Long userId) throws Exception {
         String recommendGoods = GoodsUtils.getRecommendGoods(userId);
         if (recommendGoods.equals("Network connection failure"))
@@ -315,7 +316,7 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
         return MyJsonParser.getGoods(recommendGoods);
     }
 
-    //获取预测商品
+    //Getting predicted products
     public ArrayList<Goods> getPredict(Long userId) throws Exception {
         String predictGoods = GoodsUtils.getPredictGoods(userId);
 
@@ -333,14 +334,16 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
         return super.onKeyDown(keyCode, event);
     }
 
-    public void back(View view){
-        backFace();
-    }
 
     public void backFace(){
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
+                try {
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 Intent intent = new Intent(context, FaceDetectActivity.class);
                 startActivity(intent);
             }
@@ -356,7 +359,6 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
 
     }
 
-    // 检测环境，并运行
     private void runOnFaceSdkReady(Runnable runnable) {
         if (isFaceSdkReady()) {
             if (runnable != null) {
@@ -371,7 +373,6 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
         return YTLFFaceManager.isSDKRuning && YTLFFaceManager.isLoadDB;
     }
 
-    // 初始化SDK
     private void initSdk(Runnable runnable) {
         Tools.showLoadingProgress(this, false);
         new Thread(new Runnable() {
@@ -402,13 +403,11 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
         }).start();
     }
 
-    // 加载授权license
     public boolean initLicenseBySecret() {
         return YTLFFace.initLicense(API_KEY);
         //return YTLFFace.initLicenseBySecret();
     }
 
-    // 启动FaceSDK
     public boolean startFaceSDK() {
         if (!YTLFFaceManager.isSDKRuning) {
             int flag = YTLFFace.startFaceSDK();
@@ -422,7 +421,6 @@ public class GoodsActivity extends BaseActivity implements View.OnClickListener 
         return YTLFFaceManager.isSDKRuning;
     }
 
-    // 加载人脸库
     public boolean loadDB() {
         DBManager dbManager = App.getInstance().getDbManager();
         List<Person> personList = dbManager.getPersonList();

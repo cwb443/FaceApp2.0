@@ -3,15 +3,10 @@ package com.firefly.faceEngine.goods.bean;
 public class Goods {
 
     private Integer id;
-    //名称
     private String name;
-    //价格
     private Double price;
-    //描述
     private String description;
-    //图片
     private String picture;
-
     private Integer quantity;
 
     @Override

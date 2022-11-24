@@ -120,7 +120,9 @@
         <SeekBar
             android:id="@+id/led_bar"
             android:layout_width="388dp"
-            android:layout_height="15dp"
+            android:layout_height="20dp"
+            android:minHeight="80dp"
+            android:maxHeight="100dp"
             android:layout_gravity="center_vertical|right"
             android:layout_marginRight="27dp"
             android:max="8" />
@@ -208,11 +210,7 @@
             android:textSize="0sp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"/>
-
-
     </RelativeLayout>
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -227,22 +225,33 @@
             android:text="Jump Interval"
             android:textSize="24sp"
             android:layout_centerVertical="true" />
-
-        <EditText
-            android:id="@+id/id_jump"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:gravity="right"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="55dp"
-            android:text="1"
-            android:hint="default"
-            android:background="@null"
-            android:textCursorDrawable="@null"
-            android:textSize="24sp" />
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/id_jump"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="right"
+                android:textCursorDrawable="@null"
+                android:textSize="24sp" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="0.2px"
+                android:background="#858181"/>
+
+        </LinearLayout>
+
+
+
         <TextView
             android:layout_width="20dp"
-            android:layout_marginLeft="655dp"
+            android:layout_marginLeft="657dp"
             android:layout_height="40dp"
             android:text="s"
             android:textSize="24dp"/>
@@ -261,18 +270,30 @@
             android:text="Predicted Orders"
             android:textSize="24sp"
             android:layout_centerVertical="true" />
-
-        <EditText
-            android:id="@+id/id_forecast_orders"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="40dp"
-            android:text="124.221.187.242:8081"
-            android:hint="default"
-            android:background="@null"
-            android:textCursorDrawable="@null"
-            android:textSize="24sp" />
+            android:layout_marginRight="40dp">
+            <EditText
+                android:id="@+id/id_forecast_orders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="124.221.187.242:8081"
+                android:hint="default"
+                android:background="@null"
+                android:textCursorDrawable="@null"
+                android:textSize="24sp" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="0.2px"
+                android:background="#858181"/>
+
+
+        </LinearLayout>
+
+
 
     </RelativeLayout>
     <RelativeLayout
@@ -289,18 +310,30 @@
             android:text="Recommended Products"
             android:textSize="24sp"
             android:layout_centerVertical="true"/>
-
-        <EditText
-            android:id="@+id/id_recommended_products"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="124.221.187.242:8081"
-            android:hint="default"
-            android:textSize="24sp"
-            android:background="@null"
-            android:textCursorDrawable="@null"
             android:layout_marginRight="40dp"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/id_recommended_products"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="124.221.187.242:8081"
+                android:hint="default"
+                android:textSize="24sp"
+                android:background="@null"
+                android:textCursorDrawable="@null"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="0.2px"
+                android:background="#858181"/>
+
+        </LinearLayout>
+
+
     </RelativeLayout>
     <TextView
         android:layout_width="match_parent"

@@ -42,18 +42,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-/**
- * @ProjectName: FaceApiDemoExternal_mast29
- * @Package: Keep
- * @ClassName: KeepLiveActivity
- * @Description: java类作用描述
- * @Author: SQL
- * @CreateDate: 2022/11/1 21:48
- * @UpdateUser: 更新者
- * @UpdateDate: 2022/11/1 21:48
- * @UpdateRemark: 更新说明
- * @Version: 1.0
- */
 
 public class KeepLiveActivity  extends BaseActivity implements TrackCallBack, AttributeCallBack, SearchCallBack, ExtractCallBack {
     private ArcternImage irImage = null;
@@ -74,27 +62,6 @@ public class KeepLiveActivity  extends BaseActivity implements TrackCallBack, At
     private long lastOnAttributeCallBackTime;
     private long lastOnSearchCallBackTime;
 
-//    @Override
-//    protected void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//        Log.d("KeepLiveActivity","开启KeepLiveActivity");
-//
-//        //左上角显示
-//        Window window = getWindow();
-//        window.setGravity(Gravity.START|Gravity.TOP);
-//
-//        //设置为1像素大小
-//        WindowManager.LayoutParams params = window.getAttributes();
-//        params.x = 0;
-//        params.y = 0;
-//        params.width = 1;
-//        params.height = 1;
-//        window.setAttributes(params);
-//
-//        KeepLiveManager.getInstance().setKeepLiveActivity(this);
-//
-//    }
 
     @Override
     protected void onDestroy() {
@@ -112,15 +79,14 @@ public class KeepLiveActivity  extends BaseActivity implements TrackCallBack, At
         initView();
         getViewWH();
         startCountDownTimer();
-        setInfraredFillLight(false); //补光灯
+        setInfraredFillLight(false); //fill light
 
-        Log.d("KeepLiveActivity","开启KeepLiveActivity");
 
-        //左上角显示
+        //Shown in the top left corner
         Window window = getWindow();
         window.setGravity(Gravity.START|Gravity.TOP);
 
-        //设置为1像素大小
+        //Set to 1 pixel in size
         WindowManager.LayoutParams params = window.getAttributes();
         params.x = 0;
         params.y = 0;
@@ -133,7 +99,6 @@ public class KeepLiveActivity  extends BaseActivity implements TrackCallBack, At
 
     private void initView() {
         setActionBarTitle(com.firefly.arcterndemo.R.string.app_name);
-//        texttxt = findViewById(com.firefly.arcterndemo.R.id.test);
         txt1 = findViewById(com.firefly.arcterndemo.R.id.txt1);
         txt2 = findViewById(com.firefly.arcterndemo.R.id.txt2);
         txt3 = findViewById(com.firefly.arcterndemo.R.id.txt3);
@@ -141,7 +106,6 @@ public class KeepLiveActivity  extends BaseActivity implements TrackCallBack, At
         imgLandmark = findViewById(com.firefly.arcterndemo.R.id.img_landmark);
 
         grayInterface = findViewById(com.firefly.arcterndemo.R.id.grayInterface);
-//        grayInterface.setZOrderOnTop(true);
         grayInterface.getHolder().setFormat(PixelFormat.TRANSLUCENT);
 
         LivingInterface.getInstance().init(this);
@@ -175,7 +139,7 @@ public class KeepLiveActivity  extends BaseActivity implements TrackCallBack, At
         }
     }
 
-    //人脸属监听回调
+    //Face belongs to the listener callback
     @Override
     public void onAttributeListener(ArcternImage arcternImage, long[] trackIds, ArcternRect[] arcternRects, ArcternAttribute[][] arcternAttributes, int[] landmarks) {
         ArcternAttribute[] attributes = arcternAttributes[0];
@@ -221,7 +185,6 @@ public class KeepLiveActivity  extends BaseActivity implements TrackCallBack, At
         }
     };
 
-    // 用线程池
     private void doDelivery(final ArcternImage rbgImage, final ArcternImage irImage) {
         if (future != null && !future.isDone()) {
             return;
@@ -234,9 +197,9 @@ public class KeepLiveActivity  extends BaseActivity implements TrackCallBack, At
         future = executorService.submit(new Runnable() {
             @Override
             public void run() {
-                LivingInterface.rotateYUV420Degree90(rbgImage); //旋转90度
-                LivingInterface.rotateYUV420Degree90(irImage); //旋转90度
-                MatrixYuvUtils.mirrorForNv21(rbgImage.gdata, rbgImage.width, rbgImage.height);  //rbg 数据左右镜像
+                LivingInterface.rotateYUV420Degree90(rbgImage);
+                LivingInterface.rotateYUV420Degree90(irImage);
+                MatrixYuvUtils.mirrorForNv21(rbgImage.gdata, rbgImage.width, rbgImage.height);
                 Tools.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -247,7 +210,7 @@ public class KeepLiveActivity  extends BaseActivity implements TrackCallBack, At
         });
     }
 
-    // 处理人员信息
+    // Handling personnel information
     private void handlePerson() {
         Person person = mMapPeople.get(faceInfo.getSearchId());
         StringBuffer s = new StringBuffer();
@@ -259,36 +222,35 @@ public class KeepLiveActivity  extends BaseActivity implements TrackCallBack, At
             s.append(getTimeShort()).append(" ").append(getString(com.firefly.arcterndemo.R.string.ytlf_dictionaries12));
         }
         showText(txt2, s);
-//        showText(texttxt, s);
     }
 
-    // 处理人脸属性信息
+    // Processing face attribute information
     private void handleAttribute() {
         ArcternAttribute[] attributes = faceInfo.getAttributes()[0];
 
         for (int i = 0; i < attributes.length; i++) {
             ArcternAttribute item = attributes[i];
             switch (i) {
-                case ArcternAttribute.ArcternFaceAttrTypeEnum.QUALITY://人脸质量
+                case ArcternAttribute.ArcternFaceAttrTypeEnum.QUALITY:
                     faceInfo.setFaceQualityConfidence(item.confidence);
                     break;
 
-                case ArcternAttribute.ArcternFaceAttrTypeEnum.LIVENESS_IR: //活体
+                case ArcternAttribute.ArcternFaceAttrTypeEnum.LIVENESS_IR:
                     faceInfo.setLiveLabel(item.label);
                     faceInfo.setLivenessConfidence(item.confidence);
                     break;
 
-                case ArcternAttribute.ArcternFaceAttrTypeEnum.FACE_MASK: //口罩
+                case ArcternAttribute.ArcternFaceAttrTypeEnum.FACE_MASK:
                     faceInfo.setFaceMask(item.label == ArcternAttribute.LabelFaceMask.MASK);
                     break;
 
-                case ArcternAttribute.ArcternFaceAttrTypeEnum.GENDER: //性别
+                case ArcternAttribute.ArcternFaceAttrTypeEnum.GENDER:
                     Tools.debugLog("性别:%s", item.toString());
                     faceInfo.setGender(item.label);
                     faceInfo.setGenderConfidence(item.confidence);
                     break;
 
-                case ArcternAttribute.ArcternFaceAttrTypeEnum.AGE: //年龄
+                case ArcternAttribute.ArcternFaceAttrTypeEnum.AGE:
                     Tools.debugLog("年龄:%s", item.toString());
                     faceInfo.setAge((int) item.confidence);
                     break;
@@ -296,7 +258,7 @@ public class KeepLiveActivity  extends BaseActivity implements TrackCallBack, At
         }
     }
 
-    // 处理人脸关键坐标
+    // Processing the face key coordinates
     private void handleLandmark(ArcternImage arcternImage, int[] landmarks) {
         try {
             Bitmap bitmap = Tools.bgr2Bitmap(arcternImage.gdata, arcternImage.width, arcternImage.height);
@@ -312,19 +274,15 @@ public class KeepLiveActivity  extends BaseActivity implements TrackCallBack, At
                     }
                 }
             });
-
-            //保存bitmap本地图片
-            //saveBitmap2Jpeg(bitmap);
         } catch (Throwable e) {
             Tools.printStackTrace(e);
         }
     }
 
-    // 显示log
     private void refreshLogTextView(){
         StringBuilder attribute = new StringBuilder();
 
-        if (faceInfo.isFaceMask()) {    //口罩时，不处理人脸质量和活体
+        if (faceInfo.isFaceMask()) {
             attribute.append(getString(com.firefly.arcterndemo.R.string.ytlf_dictionaries8))
                     .append("\n");
 
@@ -359,7 +317,7 @@ public class KeepLiveActivity  extends BaseActivity implements TrackCallBack, At
                     .append("\n");
         }
 
-        if (!faceInfo.isFaceMask() && faceInfo.getFaceQualityConfidence() < 0.4) {//无口罩且质量 < 0.4
+        if (!faceInfo.isFaceMask() && faceInfo.getFaceQualityConfidence() < 0.4) {
             faceView.isRed = false;
             showText(txt1, "--");
             return;
@@ -391,20 +349,18 @@ public class KeepLiveActivity  extends BaseActivity implements TrackCallBack, At
     }
 
     private int times=0;
-    //保存bitmap本地图片 10次
     private void saveBitmap2Jpeg(Bitmap bitmap){
         if(times > 10){
             return;
         }
 
         times ++;
-        //"/sdcard/firefly/ytlf_v2/"
         String path = YTLFFaceManager.getInstance().getYTIFFacthPath() + "img/" + System.currentTimeMillis() + ".jpg";
         boolean result = Tools.saveBitmap2Jpeg(bitmap, path);
         Tools.debugLog("result=%s, path=%s", result, path);
     }
 
-    //获得容器的高度
+
     private void getViewWH() {
         ViewTreeObserver vto = faceView.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -417,7 +373,6 @@ public class KeepLiveActivity  extends BaseActivity implements TrackCallBack, At
         });
     }
 
-    //刷新
     private void startCountDownTimer() {
         if (mCountDownTimer != null) {
             return;

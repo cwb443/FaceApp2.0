@@ -54,13 +54,13 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
     EditText newName;
     Integer position;
 
-    TextView confirm;//提交
+    TextView confirm;
 
     TextView takePho;
 
     ImageView image;
 
-    Person person;//当前修改的用户
+    Person person;//The currently modified user
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -75,10 +75,10 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
         takePho = findViewById(R.id.take_pho);
         image = findViewById(R.id.pho_btn);
 
-        //获取当前用户
-        List<Person> personList = dbManager.getPersonList();//从数据库中拉取
-        List<Person> personArrayList = new ArrayList<>();//将showList与personList的顺序进行关联使其与数据库中的id匹配
-        List<String> showList = new ArrayList<>();//显示在页面用户的顺序
+        //Get the current user
+        List<Person> personList = dbManager.getPersonList();//Pull from the database
+        List<Person> personArrayList = new ArrayList<>();//Associating showList with the order of personList matches the id in the database
+        List<String> showList = new ArrayList<>();//Display in the order of the user on the page
         for (Person person : personList) {
             personArrayList.add(person);
             showList.add(person.getName());
@@ -103,7 +103,7 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
             }
         });
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); //隐藏状态栏、
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); //Hide the status bar
 
         init();
 
@@ -111,17 +111,13 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
 
     public void init(){
         EditText hint = (EditText) findViewById(R.id.name_text_edit);
-        // 新建一个可以添加属性的文本对象
         SpannableString ss = new SpannableString("Enter your name");
-        // 新建一个属性对象,设置文字的大小
         AbsoluteSizeSpan ass = new AbsoluteSizeSpan(20,true);
-        // 附加属性到文本
         ss.setSpan(ass, 0, ss.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        // 设置hint
-        hint.setHint(new SpannedString(ss)); // 一定要进行转换,否则属性会消失
+        hint.setHint(new SpannedString(ss));
     }
 
-    //隐藏状态栏
+    //Hide status bar
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -130,21 +126,20 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
         }
     }
 
+    //Hide status bar
     private void hideSystemUI() {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY //(修改这个选项，可以设置不同模式)
-                        //使用下面三个参数，可以使内容显示在system bar的下面，防止system bar显示或
-                        //隐藏时，Activity的大小被resize。
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                         | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        // 隐藏导航栏和状态栏
+                        //Hide the navigation and status bars
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 
-    //修改用户
+    //Changing users
     public void changePerson(){
         String name=newName.getText().toString();
 
@@ -173,7 +168,6 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
 
             else if (bitmapFeature != null) {
                 long id = dbManager.updatePersonById(person.getId(), s, bitmapFeature);
-                //载入内存
                 YTLFFace.dataBaseDelete(id);
 
                 result = YTLFFace.dataBaseAdd(id, bitmapFeature);
@@ -181,7 +175,6 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
             }
             showShortToast(v);
             if (result == 0) {
-                //全部置空
                 newName.setText("");
                 newName.setHint("Enter your name");
                 image.setImageResource(R.drawable.photo);
@@ -191,10 +184,7 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
             }
             finish();
         }
-
     }
-
-
 
     public static Bitmap getLoacalBitmap(String url) {
         try {
@@ -206,12 +196,10 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
         }
     }
 
-
     public void selectImage(View view) {
         Intent intent = new Intent(this, ImageGridActivity.class);
         startActivityForResult(intent, IMAGE_PICKER_ONE);
     }
-
 
     public String removeSpace(String str){
         if ((str.equals("")||str == null)||(str.charAt(0) != ' '&&str.charAt(str.length()-1)!=' '))
@@ -220,7 +208,6 @@ public class EditUserActivity extends BaseActivity implements ExtractCallBack {
         return removeSpace(trim);
     }
 
-    //获取人脸特征值
     private int getFeature(String bitmapPath) {
         return YTLFFace.doFeature(bitmapPath, this);
     }

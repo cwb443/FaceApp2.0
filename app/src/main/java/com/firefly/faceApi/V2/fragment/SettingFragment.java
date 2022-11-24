@@ -29,7 +29,7 @@ import com.firefly.faceEngine.dblib.bean.Setting;
 import java.util.List;
 
 /**
- * Setting页面
+ * The Settings page
  */
 public class SettingFragment extends Fragment {
 
@@ -73,15 +73,14 @@ public class SettingFragment extends Fragment {
     }
 
     /**
-     * 对setting页面所对应的数据库进行初始化
-     * 以及对setting页面的信息进行即使的修改
+     * Initialize the database corresponding to the Settings page and modify the information of the Settings page
      */
     public void flushed(){
         List<Setting> saveInformation = settingManage.getSaveInformation();
         //对setting数据库进行初始化
         if (saveInformation.size() == 0){
             Setting setting = new Setting(null,0,0,0,0,
-                    "124.221.187.242:8081","124.221.187.242:8081",0,0,"0.5");
+                    "124.221.187.242:8081","124.221.187.242:8081",0,0,"1");
             settingManage.SaveInformation(setting);
             button1.setChecked(false);
             button2.setChecked(false);
@@ -158,7 +157,7 @@ public class SettingFragment extends Fragment {
             else
                 recommended.setText(setting.getRecommended());
             if ("".equals(setting.getRecommended()))
-                jump.setText("0.5");
+                jump.setText("1");
             else
                 jump.setText(setting.getJumpInterval());
         }
@@ -231,6 +230,11 @@ public class SettingFragment extends Fragment {
                 flag1=b;
                 button1.setSelected(b);
 
+                if(b)
+                    Toast.makeText(getContext(), "Face recognition is open", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getContext(), "Face recognition is close", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -242,24 +246,13 @@ public class SettingFragment extends Fragment {
                 seekBar.setEnabled(flag2);
                 seekBar.setEnabled(flag2);
                 button2.setSelected(b);
-
-//                if (flag2){
-//                    flag3 = true;
-//                    button3.setSelected(true);
-//                    button3.setChecked(true);
-//                }
             }
         });
         button3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-//                if(!flag2){
-                    flag3 = b;
-                    button3.setSelected(b);
-//                }else if (!b){
-//                    Toast.makeText(getContext(), "When white light is on, infrared light is on by default", Toast.LENGTH_SHORT).show();
-//                }
+                flag3 = b;
+                button3.setSelected(b);
             }
         });
 

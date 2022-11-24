@@ -22,7 +22,6 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-//        Log.i("生命周期","onCreate");
         super.onCreate(savedInstanceState);
         context = this;
 
@@ -83,7 +82,7 @@ public class BaseActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //是否支持红外补光灯
+    //Whether IR fill light is supported
     protected boolean isSupportInfraredFillLight() {
         try {
             return HardwareCtrl.isSupportInfraredFillLight();
@@ -93,7 +92,7 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    //打开/关闭 红外补光灯
+    //Turn on/off IR fill light
     protected void setInfraredFillLight(boolean enable) {
         try {
             SettingManage settingManage = App.getInstance().getSettingManage();

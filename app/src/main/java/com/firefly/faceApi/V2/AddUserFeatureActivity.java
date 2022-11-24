@@ -49,7 +49,7 @@ import java.util.ArrayList;
 
 
 /**
- * 添加用户信息
+ * Adding user information
  */
 public class AddUserFeatureActivity extends BaseActivity implements ExtractCallBack {
 
@@ -59,7 +59,6 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
     private EditText et_name;
     private TextView take_pho;
 
-//    private Button btn_register;
     private DBManager dbManager = App.getInstance().getDbManager();
     private Bitmap faceBitmap;
     private String mBitmapPath = "";
@@ -67,7 +66,6 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
 
 
     TextView confirm_btn;
-//    EditText name;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -107,20 +105,13 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
 
     public void init(){
         EditText hint = (EditText) findViewById(R.id.name_text);
-        // 新建一个可以添加属性的文本对象
         SpannableString ss = new SpannableString("Enter your name");
-        // 新建一个属性对象,设置文字的大小
         AbsoluteSizeSpan ass = new AbsoluteSizeSpan(20,true);
-        // 附加属性到文本
         ss.setSpan(ass, 0, ss.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        // 设置hint
-        hint.setHint(new SpannedString(ss)); // 一定要进行转换,否则属性会消失
+        hint.setHint(new SpannedString(ss));
     }
 
-    /**
-     * 隐藏状态栏
-     * @param hasFocus
-     */
+    //Hide status bar
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -129,31 +120,27 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
         }
     }
 
+    //Hide status bar
     private void hideSystemUI() {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY //(修改这个选项，可以设置不同模式)
-                        //使用下面三个参数，可以使内容显示在system bar的下面，防止system bar显示或
-                        //隐藏时，Activity的大小被resize。
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                         | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        // 隐藏导航栏和状态栏
+                        // Hide the navigation and status bars
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 
 
-    /**
-     * 调用图库以及拍照
-     * @param view
-     */
+    //Call the gallery and take a picture
     public void selectImage(View view) {
         Intent intent = new Intent(this, ImageGridActivity.class);
         startActivityForResult(intent, IMAGE_PICKER_ONE);
     }
 
-    //去除输入名字前后的空格
+    //Remove Spaces before and after the name
     public String removeSpace(String str){
         if ((str.equals("")||str == null)||(str.charAt(0) != ' '&&str.charAt(str.length()-1)!=' '))
             return str;
@@ -161,10 +148,6 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
         return removeSpace(trim);
     }
 
-    /**
-     * 提交
-     * @param view
-     */
     public void onRegister(View view) {
         String name = et_name.getText().toString();
         name = removeSpace(name);
@@ -194,7 +177,6 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
                     String s = result == 0 ? "registered successfully" : "fail to register";
                     showShortToast(s);
                     if (result == 0) {
-                        //全部置空
                         et_name.setText("");
                         image.setImageResource(R.drawable.photo);
 
@@ -209,14 +191,11 @@ public class AddUserFeatureActivity extends BaseActivity implements ExtractCallB
 
 
 
-    //获取人脸特征值
+    //Get the facial feature values
     private int getFeature(String bitmapPath) {
         return YTLFFace.doFeature(bitmapPath, this);
     }
 
-    private int getFeature(Bitmap bitmap) {
-        return YTLFFace.doFeature(bitmap, this);
-    }
 
     @Override
     public void onExtractFeatureListener(ArcternImage arcternImage, byte[][] features, ArcternRect[] arcternRects) {

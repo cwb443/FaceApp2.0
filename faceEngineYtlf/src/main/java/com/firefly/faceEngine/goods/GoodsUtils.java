@@ -18,7 +18,6 @@ public class GoodsUtils {
     private static String goods;
 
 
-    //预测
     public static String getPredictGoods(Long userId) {
         try {
             SettingManage settingManage = App.getInstance().getSettingManage();
@@ -44,7 +43,6 @@ public class GoodsUtils {
         return goods;
     }
 
-    //推荐
     public static String getRecommendGoods(Long userId) {
         try {
             SettingManage settingManage = App.getInstance().getSettingManage();

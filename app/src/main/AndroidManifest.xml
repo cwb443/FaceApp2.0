@@ -17,6 +17,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label">
+
+        <activity
+            android:name="com.firefly.faceEngine.activity.FaceDetectActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
         <activity
             android:name=".EditUserActivity"
             android:exported="false">
@@ -38,13 +47,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name="com.firefly.faceEngine.activity.FaceDetectActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
         <activity
             android:name="com.firefly.faceEngine.activity.GoodsActivity"
             android:exported="false">

@@ -7,21 +7,12 @@
     android:layout_height="match_parent"
     tools:context="com.firefly.faceEngine.activity.GoodsActivity">
 
-
-    <!--    覆盖页面的控件   蓝色-->
 <RelativeLayout
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
 android:background="@color/white">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="36dp"
-    android:orientation="horizontal"
-    android:background="#ffffff"
-    android:layout_marginTop="13dp"
-    android:gravity="center_horizontal">
-</LinearLayout>
+
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -43,7 +34,7 @@ android:background="@color/white">
                 <RelativeLayout
                     android:layout_width="665dp"
                     android:layout_height="260dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="center">
 
                     <ImageView
@@ -51,11 +42,6 @@ android:background="@color/white">
                         android:layout_width="665dp"
                         android:layout_height="260dp"
                         android:background="@drawable/erweima" />
-                    <!--    <ImageView-->
-                    <!--        android:layout_width="665dp"-->
-                    <!--        android:layout_height="260dp"-->
-                    <!--        />-->
-
                 </RelativeLayout>
 
                 <TextView
@@ -84,14 +70,13 @@ android:background="@color/white">
                     android:textSize="35sp"
                     android:fontFamily="serif"/>
 
-                <!--    按钮-->
                 <Button
+                    android:id="@+id/back_home"
                     android:layout_width="40dp"
                     android:layout_height="32dp"
                     android:layout_marginLeft="610dp"
                     android:layout_marginTop="40dp"
-                    android:background="@drawable/settinghome"
-                    android:onClick="back" />
+                    android:background="@drawable/settinghome" />
             </RelativeLayout>
 
 
@@ -100,14 +85,14 @@ android:background="@color/white">
             android:layout_width="match_parent"
             android:layout_height="0.3px"
             android:background="#25131212"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="25dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:gravity="right">
             <TextView
                 android:id="@+id/test"
@@ -361,7 +346,7 @@ android:background="@color/white">
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="1dp"
             android:gravity="right">
 
             <TextView
@@ -379,7 +364,7 @@ android:background="@color/white">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="15dp">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

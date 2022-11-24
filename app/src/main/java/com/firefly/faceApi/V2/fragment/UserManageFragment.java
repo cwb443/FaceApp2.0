@@ -34,8 +34,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 用户管理页面
- * 对用户增删改查的入口
+ * User Administration page
+ * The entry point for users to add, delete, change and check
  */
 public class UserManageFragment extends Fragment  implements ListItemClickHelp {
 
@@ -113,9 +113,9 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
     }
 
     /**
-     * 删除ListView中的数据
+     * Delete the data in the ListView
      *
-     * @param postion item的位置
+     * @param postion The item's location
      */
     private void deleteItem(int postion) {
         chatAdapter.data.remove(postion);
@@ -148,27 +148,27 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
             View.OnClickListener {
 
         /**
-         * 布局文件
+         * layout file
          **/
         int layoutRes;
 
         /**
-         * 上下文对象
+         * Context object
          **/
         Context context;
 
         /**
-         * 取消按钮
+         * cancel button
          **/
         private Button bt_cancal;
 
         /**
-         * 按钮确定
+         * Submit button
          **/
         private Button bt_confirm;
 
         /**
-         * 收获地址id
+         * Harvest address id
          */
         private int postion_1;
         private TextView deleteTitle;
@@ -181,7 +181,7 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
         }
 
         /**
-         * 自定义布局的构造方法
+         * A custom layout constructor
          *
          * @param context
          * @param resLayout
@@ -193,7 +193,7 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
         }
 
         /**
-         * 自定义主题及布局的构造方法
+         * Custom theme and layout constructors
          *
          * @param context
          * @param theme
@@ -212,9 +212,8 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
-            // 指定布局
+            // Specifying the layout
             this.setContentView(layoutRes);
-            // 根据id在布局中找到控件对象
             bt_cancal = (Button) findViewById(R.id.id_dialog_cancel_btn);
             bt_confirm = (Button) findViewById(R.id.id_dialog_comfirm_btn);
             deleteTitle=(TextView) findViewById(R.id.id_dialog_title);
@@ -227,7 +226,7 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
 
 
 
-            // 为按钮绑定点击事件监听器
+            // Bind a click event listener to the button
             bt_cancal.setOnClickListener(this);
             bt_confirm.setOnClickListener(this);
 
@@ -235,8 +234,8 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
 
         @Override
         public void onClick(View v) {
-            int id = v.getId();// 确定按钮
-            if (id == R.id.id_dialog_comfirm_btn ) {// 修改
+            int id = v.getId();// Submit button
+            if (id == R.id.id_dialog_comfirm_btn ) {// amend
                 if (postion_1 == -1){
                     dbManager.deletePersonAll();
                     YTLFFaceManage.dataBaseClear();
@@ -251,7 +250,6 @@ public class UserManageFragment extends Fragment  implements ListItemClickHelp {
                 }
                 dialog.dismiss();
             }else {
-                // 取消按钮
                 dialog.dismiss();
             }
         }

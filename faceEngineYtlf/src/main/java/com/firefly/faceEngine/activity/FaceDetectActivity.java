@@ -13,8 +13,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
-import android.os.Message;
+
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -28,16 +27,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 
-import com.firefly.api.HardwareCtrl;
 import com.firefly.arcterndemo.R;
 import com.firefly.faceEngine.App;
 import com.firefly.faceEngine.dblib.SettingManage;
 import com.firefly.faceEngine.dblib.bean.Person;
 import com.firefly.faceEngine.dblib.bean.Setting;
-import com.firefly.faceEngine.goods.GoodsMessage;
-import com.firefly.faceEngine.goods.GoodsUtils;
-import com.firefly.faceEngine.goods.MyJsonParser;
-import com.firefly.faceEngine.goods.bean.Goods;
 import com.firefly.faceEngine.other.FaceInfo;
 import com.firefly.faceEngine.utils.MatrixYuvUtils;
 import com.firefly.faceEngine.utils.Tools;
@@ -55,11 +49,7 @@ import com.intellif.arctern.base.ExtractCallBack;
 import com.intellif.arctern.base.SearchCallBack;
 import com.intellif.arctern.base.TrackCallBack;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -93,21 +83,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
     private ImageView closeImage;
     private TextView closeTextWel,closeTextName;
 
-    private ImageView imageview;
-
-    private ImageView goods1,goods2,goods3,goods4,goods5,goods6;
-    private TextView Name1,Name2,Name3,Name4,Name5,Name6;
-    private TextView recPrice4,recPrice5,recPrice6;
-    private TextView description1,description2,description3;
-    private TextView query1,query2,query3;
-    private ImageView qrCode;
-    private TextView tileText;
-
-    private ImageView back;
-
-    private TextView prePrice1,prePrice2,prePrice3;
-
-    private TextView imageText,imageWel;
+    private ImageView backSetting;
 
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
@@ -125,64 +101,31 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         closeTextWel=findViewById(R.id.close_goods_text_wel);
         closeTextName=findViewById(R.id.close_goods_text_name);
 
-        goods1=findViewById(R.id.goods1);
-        goods2=findViewById(R.id.goods2);
-        goods3=findViewById(R.id.goods3);
-        goods4=findViewById(R.id.goods4);
-        goods5=findViewById(R.id.goods5);
-        goods6=findViewById(R.id.goods6);
-
-        Name1=findViewById(R.id.name_text1);
-        Name2=findViewById(R.id.name_text2);
-        Name3=findViewById(R.id.name_text3);
-        Name4=findViewById(R.id.name_text4);
-        Name5=findViewById(R.id.name_text5);
-        Name6=findViewById(R.id.name_text6);
-
-        prePrice1=findViewById(R.id.price1);
-        prePrice2=findViewById(R.id.price2);
-        prePrice3=findViewById(R.id.price3);
-        recPrice4=findViewById(R.id.price4);
-        recPrice5=findViewById(R.id.price5);
-        recPrice6=findViewById(R.id.price6);
-
-        description1 = findViewById(R.id.tv_describe1);
-        description2 = findViewById(R.id.tv_describe2);
-        description3 = findViewById(R.id.tv_describe3);
-
-        query1=findViewById(R.id.edit_query1);
-        query2=findViewById(R.id.edit_query2);
-        query3=findViewById(R.id.edit_query3);
-
-        imageview = findViewById(R.id.image_view);
-        imageWel=findViewById(R.id.image_wel);
-
-        imageText = findViewById(R.id.image_text);
+        backSetting = findViewById(R.id.back_setting);
 
         getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
+
+        backSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backSetting.setClickable(false);
+                showmyDialog();
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         noFace();
+        backSetting.setClickable(true);
     }
 
     public void noFace(){
         List<Setting> saveInformation = settingManage.getSaveInformation();
         Integer recognition = saveInformation.get(0).getRecognition();
         Integer goodsOpen = saveInformation.get(0).getGoodsOpen();
-
-        Log.e("TAG", "noFace: "+goodsOpen );
-
-        if (goodsOpen == 1){
-            if (recognition == 0){
-                setForecastGoods(0l);
-                setRecommendGoods(0l);
-            }
-        }else{
-            closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_defaultpeople));
-        }
+        closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_defaultpeople));
     }
 
     private void initView() {
@@ -230,7 +173,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         }
     }
 
-    //人脸属监听回调
+    //Face belongs to the listener callback
     @Override
     public void onAttributeListener(ArcternImage arcternImage, long[] trackIds, ArcternRect[] arcternRects, ArcternAttribute[][] arcternAttributes, int[] landmarks) {
         ArcternAttribute[] attributes = arcternAttributes[0];
@@ -280,7 +223,6 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         }
     };
 
-    // 用线程池
     private void doDelivery(final ArcternImage rbgImage, final ArcternImage irImage) {
         if (future != null && !future.isDone()) {
             return;
@@ -312,9 +254,9 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         });
     }
 
-    int isNewUser = 0;//0 初始 1 新用户 2 老用户
+    int isNewUser = 0;//0 Initial 1 New user 2 old user
     int isUserId = 0;
-    // 处理人员信息
+    // Handling personnel information
     private void handlePerson() throws InterruptedException {
 
         List<Setting> saveInformation = settingManage.getSaveInformation();
@@ -345,54 +287,30 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                 if(isNewUser != 2||isUserId!=userId) {
                     isNewUser = 2;
                     isUserId = Math.toIntExact(userId);
-                    if (goodsFlag){
-                        setTitle(userId,name,true);
-                        setForecastGoods(userId);
-                        setRecommendGoods(userId);
-                    }else {
-                        //如果关闭商品推荐只对Title进行修改
-                        setTitle(userId,name,false);
-                        sleep(time);
+                    //如果关闭商品推荐只对Title进行修改
+                    setTitle(userId,name,false);
+                    sleep(time);
 
-                        Bundle bundle = new Bundle();
-                        bundle.putLong("userId",userId);
-                        Intent intent = new Intent(context,GoodsActivity.class);
-                        intent.putExtra("bundle",bundle);
-//                        closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_defaultpeople));
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("userId",userId);
+                    Intent intent = new Intent(context,GoodsActivity.class);
+                    intent.putExtra("bundle",bundle);
 
-                        context.startActivity(intent);
-//                        setTitle(-1l,"",false);
-                        finish();
-                    }
+                    context.startActivity(intent);
+                    finish();
+
                 }
             } else {
                 faceView.isRed = true;
                 if(isNewUser != 1) {
-//                    if (goodsFlag){
-//                        setForecastGoods(0l);
-//                        setRecommendGoods(0l);
-//                        isNewUser = 1;
-//                        setTitle(0l,"New Customer",true);
-//                    }else{
                         isNewUser = 1;
                         setTitle(0l,"New Customer",false);
-//                        sleep(time);
-//                        Bundle bundle = new Bundle();
-//                        bundle.putLong("userId",0l);
-//                        Intent intent = new Intent(context,GoodsActivity.class);
-//                        intent.putExtra("bundle",bundle);
-////                        closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_defaultpeople));
-//
-//                        context.startActivity(intent);
-////                        setTitle(-1l,"",false);
-//                        finish();
-//                    }
                 }
             }
         }
     }
 
-    // 处理人脸属性信息
+    // Processing face attribute information
     private void handleAttribute() {
         ArcternAttribute[] attributes = faceInfo.getAttributes()[0];
 
@@ -426,7 +344,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         }
     }
 
-    // 处理人脸关键坐标
+    // Processing the face key coordinates
     private void handleLandmark(ArcternImage arcternImage, int[] landmarks) {
         try {
             Bitmap bitmap = Tools.bgr2Bitmap(arcternImage.gdata, arcternImage.width, arcternImage.height);
@@ -447,11 +365,10 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         }
     }
 
-    // 显示log
     private void refreshLogTextView(){
         StringBuilder attribute = new StringBuilder();
 
-        if (faceInfo.isFaceMask()) {    //口罩时，不处理人脸质量和活体
+        if (faceInfo.isFaceMask()) {
             attribute.append(getString(R.string.ytlf_dictionaries8))
                     .append("\n");
 
@@ -486,7 +403,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                     .append("\n");
         }
 
-        if (!faceInfo.isFaceMask() && faceInfo.getFaceQualityConfidence() < 0.4) {//无口罩且质量 < 0.4
+        if (!faceInfo.isFaceMask() && faceInfo.getFaceQualityConfidence() < 0.4) {
             faceView.isRed = false;
             showText(txt1, "--");
             return;
@@ -518,7 +435,6 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
     }
 
     private int times=0;
-    //保存bitmap本地图片 10次
     private void saveBitmap2Jpeg(Bitmap bitmap){
         if(times > 10){
             return;
@@ -530,7 +446,6 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         Tools.debugLog("result=%s, path=%s", result, path);
     }
 
-    //获得容器的高度
     private void getViewWH() {
         ViewTreeObserver vto = faceView.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -543,7 +458,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         });
     }
 
-    //刷新
+
     private void startCountDownTimer() {
         if (mCountDownTimer != null) {
             return;
@@ -584,200 +499,25 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         }
     }
 
-    /**
-     * 对头部信息进行修改
-     * @param userId 用户id
-     * @param name 用户名或New User
-     * @param goodsOpen 判断是否打开商品的获取
-     */
     public void setTitle(Long userId,String name,Boolean goodsOpen){
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (goodsOpen){
-                    if (userId==0l){
-                        imageview.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.bluepeople));
-                        imageWel.setText("Welcome");
-                        imageText.setText(name);
-                    }else {
-                        imageview.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.greenpeople));
-                        imageWel.setText("Welcome");
-                        imageText.setText(name);
-                    }
-
+                if (userId == 0l){
+                    closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_bluepeople));
+                    closeTextWel.setText("Welcome");
+                    closeTextName.setText(name);
+                }else if (userId == -1l){
+                    closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_defaultpeople));
+                    closeTextWel.setText("");
+                    closeTextName.setText(name);
                 }else {
-
-                    if (userId == 0l){
-                        closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_bluepeople));
-                        closeTextWel.setText("Welcome");
-                        closeTextName.setText(name);
-                    }else if (userId == -1l){
-                        closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_defaultpeople));
-                        closeTextWel.setText("");
-                        closeTextName.setText(name);
-                    }else {
-                        closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_greenpeople));
-                        closeTextWel.setText("Welcome");
-                        closeTextName.setText(name);
-                    }
-
+                    closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_greenpeople));
+                    closeTextWel.setText("Welcome");
+                    closeTextName.setText(name);
                 }
             }
         });
-    }
-
-    /**
-     * 获取Predicted Orders商品
-     * @param userId 用户id
-     */
-    public void setForecastGoods(Long userId){
-
-        Log.e("", "setForecastGoods: " );
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    ArrayList<Goods> forecastGoods = getPredict(userId);
-
-                    for (int i = 0;i<forecastGoods.size();i++){
-                        int q = i;
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Bitmap bmp = getURLimage(forecastGoods.get(q).getPicture());
-                                Message msg = new Message();
-                                GoodsMessage goodsMessage = new GoodsMessage(bmp,forecastGoods.get(q).getName(),forecastGoods.get(q).getPrice(),forecastGoods.get(q).getDescription(),forecastGoods.get(q).getQuantity());
-                                msg.what = q+1;
-                                msg.obj = goodsMessage;
-                                handle.sendMessage(msg);
-                            }
-                        }).start();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-    }
-
-    /**
-     * 获取Recommended Products商品数据
-     * @param userId 用户id
-     */
-    public void setRecommendGoods(Long userId){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    ArrayList<Goods> recommendGoods = getRecommendGoods(userId);
-                    for (int i=0;i<recommendGoods.size();i++){
-                        Log.e("TAG", "onClick: 2" );
-                        int q = i;
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Log.e("TAG", "setRecommendGoods: " );
-                                Bitmap bmp = getURLimage(recommendGoods.get(q).getPicture());
-                                Message msg = new Message();
-                                GoodsMessage goodsMessage = new GoodsMessage(bmp,recommendGoods.get(q).getName(),recommendGoods.get(q).getPrice(),recommendGoods.get(q).getDescription(),recommendGoods.get(q).getQuantity());
-                                msg.what = q+4;
-                                msg.obj = goodsMessage;
-                                handle.sendMessage(msg);
-                            }
-                        }).start();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-    }
-
-    /**
-     * 对首页商品进行实时渲染
-     */
-    private Handler handle = new Handler() {
-        public void handleMessage(Message msg) {
-            GoodsMessage goodsMessage = (GoodsMessage)msg.obj;
-            switch (msg.what) {
-                case 1:
-                    goods1.setImageBitmap(goodsMessage.getBitmap());
-                    Name1.setText(goodsMessage.getName());
-                    description1.setText(goodsMessage.getDescription());
-                    prePrice1.setText("$"+goodsMessage.getPrice());
-                    query1.setText("Qty:"+goodsMessage.getQuantity());
-                    break;
-                case 2:
-                    goods2.setImageBitmap(goodsMessage.getBitmap());
-                    Name2.setText(goodsMessage.getName());
-                    description2.setText(goodsMessage.getDescription());
-                    prePrice2.setText("$"+goodsMessage.getPrice());
-                    query2.setText("Qty:"+goodsMessage.getQuantity());
-                    break;
-                case 3:
-                    goods3.setImageBitmap(goodsMessage.getBitmap());
-                    Name3.setText(goodsMessage.getName());
-                    description3.setText(goodsMessage.getDescription());
-                    prePrice3.setText("$"+goodsMessage.getPrice());
-                    query3.setText("Qty:"+goodsMessage.getQuantity());
-                    break;
-                case 4:
-                    goods4.setImageBitmap(goodsMessage.getBitmap());
-                    Name4.setText(goodsMessage.getName());
-                    recPrice4.setText("$"+goodsMessage.getPrice().toString());
-                    break;
-                case 5:
-                    goods5.setImageBitmap(goodsMessage.getBitmap());
-                    Name5.setText(goodsMessage.getName());
-                    recPrice5.setText("$"+goodsMessage.getPrice().toString());
-                    break;
-                case 6:
-                    goods6.setImageBitmap(goodsMessage.getBitmap());
-                    Name6.setText(goodsMessage.getName());
-                    recPrice6.setText("$"+goodsMessage.getPrice().toString());
-                    break;
-
-            }
-        };
-
-    };
-
-    //加载图片
-    public Bitmap getURLimage(String url) {
-        Bitmap bmp = null;
-        try {
-            URL myurl = new URL(url);
-            // 获得连接
-            HttpURLConnection conn = (HttpURLConnection) myurl.openConnection();
-            conn.setConnectTimeout(6000);//设置超时
-            conn.setDoInput(true);
-            conn.setUseCaches(false);//不缓存
-            conn.connect();
-            InputStream is = conn.getInputStream();//获得图片的数据流
-            bmp = BitmapFactory.decodeStream(is);//读取图像数据
-            is.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return bmp;
-    }
-
-    //获取推荐商品
-    public ArrayList<Goods> getRecommendGoods(Long userId) throws Exception {
-        String recommendGoods = GoodsUtils.getRecommendGoods(userId);
-        if (recommendGoods.equals("Network connection failure"))
-            Toast.makeText(getContext(),"Network connection failure!",Toast.LENGTH_LONG).show();
-        return MyJsonParser.getGoods(recommendGoods);
-    }
-
-    //获取预测商品
-    public ArrayList<Goods> getPredict(Long userId) throws Exception {
-        String predictGoods = GoodsUtils.getPredictGoods(userId);
-
-        if (predictGoods.equals("Network connection failure"))
-            Toast.makeText(FaceDetectActivity.this,"Network connection failure!",Toast.LENGTH_LONG).show();
-        return MyJsonParser.getGoods(predictGoods) ;
     }
 
     @Override
@@ -791,20 +531,15 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
     private void hideSystemUI() {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY //(修改这个选项，可以设置不同模式)
-                        //使用下面三个参数，可以使内容显示在system bar的下面，防止system bar显示或
-                        //隐藏时，Activity的大小被resize。
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                         | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        // 隐藏导航栏和状态栏
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 
-    public void back(View view){
-        showmyDialog();
-    }
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -831,32 +566,32 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         dialog=new CustomDialog(this,R.style.mystyle,R.layout.dialog2);
         dialog.show();
     }
-    //弹窗
+    //Dialog
     public class CustomDialog extends Dialog implements
             View.OnClickListener {
 
         /**
-         * 布局文件
+         * layout file
          **/
         int layoutRes;
 
         /**
-         * 上下文对象
+         * Context object
          **/
         Context context;
 
         /**
-         * 取消按钮
+         * cancel button
          **/
         private Button bt_cancal;
 
         /**
-         * 按钮确定
+         * Button OK
          **/
         private Button bt_confirm;
 
         /**
-         * 收获地址id
+         * Harvest address id
          */
         private int postion_1;
         private EditText password;
@@ -867,7 +602,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         }
 
         /**
-         * 自定义布局的构造方法
+         * A custom layout constructor
          *
          * @param context
          * @param resLayout
@@ -879,7 +614,7 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         }
 
         /**
-         * 自定义主题及布局的构造方法
+         * Custom theme and layout constructors
          *
          * @param context
          * @param theme
@@ -896,14 +631,10 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
-            // 指定布局
             this.setContentView(layoutRes);
-            // 根据id在布局中找到控件对象
             bt_cancal = (Button) findViewById(R.id.id_cancel_btn);
             bt_confirm = (Button) findViewById(R.id.id_comfirm_btn);
             password=(EditText)findViewById(R.id.id_password);
-
-            // 为按钮绑定点击事件监听器
             bt_cancal.setOnClickListener(this);
             bt_confirm.setOnClickListener(this);
 
@@ -911,8 +642,8 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
 
         @Override
         public void onClick(View v) {
-            int id = v.getId();// 确定按钮
-            if (id == R.id.id_comfirm_btn ) {// 修改
+            int id = v.getId();
+            if (id == R.id.id_comfirm_btn ) {
 
                 if (password.getText().toString().equals("123456")){
                     dialog.dismiss();
@@ -921,16 +652,9 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
                     Toast.makeText(context,"Wrong Password",Toast.LENGTH_LONG).show();
                     dialog.dismiss();
                 }
-
-
             }else {
-                // 取消按钮
-
                 dialog.dismiss();
-
             }
-
-
         }
     }
 

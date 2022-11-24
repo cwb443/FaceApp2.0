@@ -21,9 +21,7 @@ public abstract class NoDoubleClickListener implements View.OnClickListener {
             lastClickTime = currentTime;
 
             onNoDoubleClick(v);
-
         }
-
     }
 
     protected abstract void onNoDoubleClick(View v);

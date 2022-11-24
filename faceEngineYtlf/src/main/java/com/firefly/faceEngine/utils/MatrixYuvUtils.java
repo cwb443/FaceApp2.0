@@ -24,7 +24,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-import static com.firefly.faceEngine.activity.ArcternMainActivity.FACE_PATH;
 
 /**
  * Created by firefly on 2017/3/13.

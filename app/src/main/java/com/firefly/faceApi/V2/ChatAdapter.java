@@ -24,14 +24,11 @@ public class ChatAdapter extends BaseAdapter  {
     private ListItemClickHelp callback;
     private Context contxet;
 
-
     public ChatAdapter(Context context, ArrayList<String> dataList, ListItemClickHelp callback) {
         //获得布局解析器
         this.callback=callback;
         data=dataList;
         this.contxet=context;
-
-
     }
 
     @Override
@@ -48,8 +45,6 @@ public class ChatAdapter extends BaseAdapter  {
     public long getItemId(int i) {
         return i;
     }
-
-
 
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
@@ -81,17 +76,9 @@ public class ChatAdapter extends BaseAdapter  {
                 callback.onClick(view, viewGroup, i, two);
             }
         });
-
-
         viewHolder.delete.setTag(i);
-
-
         return view;
     }
-
-
-
-
 
     public class ViewHolder{
 
