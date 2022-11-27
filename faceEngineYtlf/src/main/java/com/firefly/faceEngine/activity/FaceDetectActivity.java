@@ -124,7 +124,6 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
     public void noFace(){
         List<Setting> saveInformation = settingManage.getSaveInformation();
         Integer recognition = saveInformation.get(0).getRecognition();
-        Integer goodsOpen = saveInformation.get(0).getGoodsOpen();
         closeImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.close_defaultpeople));
     }
 
@@ -271,11 +270,6 @@ public class FaceDetectActivity extends BaseActivity implements TrackCallBack, A
             flag = false;
         else
             flag = true;
-
-        if (saveInformation.get(0).getGoodsOpen()==0)
-            goodsFlag = false;
-        else
-            goodsFlag = true;
 
         if (flag){
             Person person = mMapPeople.get(faceInfo.getSearchId());

@@ -80,7 +80,7 @@ public class SettingFragment extends Fragment {
         //对setting数据库进行初始化
         if (saveInformation.size() == 0){
             Setting setting = new Setting(null,0,0,0,0,
-                    "124.221.187.242:8081","124.221.187.242:8081",0,0,"1");
+                    "124.221.187.242:8081","124.221.187.242:8081",0,"1");
             settingManage.SaveInformation(setting);
             button1.setChecked(false);
             button2.setChecked(false);
@@ -126,15 +126,7 @@ public class SettingFragment extends Fragment {
                 flag3 = true;
             }
 
-            if (setting.getGoodsOpen() == 0){
-                button4.setChecked(false);
-                flag4 = false;
-            }
 
-            else {
-                button4.setChecked(true);
-                flag4 = true;
-            }
 
             if (setting.getCustomerList()==0){
                 button5.setChecked(false);
@@ -198,10 +190,7 @@ public class SettingFragment extends Fragment {
                     setting.setInfrared(1);
                 else
                     setting.setInfrared(0);
-                if (flag4)
-                    setting.setGoodsOpen(1);
-                else
-                    setting.setGoodsOpen(0);
+
                 if (flag5)
                     setting.setCustomerList(1);
                 else

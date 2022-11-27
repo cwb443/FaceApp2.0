@@ -14,13 +14,12 @@ public class Setting {
     private Integer infrared;//红外光
     private String predicted;//预测
     private String recommended;//推荐
-    private Integer goodsOpen;//商品推荐是否打开
     private Integer customerList;
     private String jumpInterval;
-    @Generated(hash = 137075545)
+    @Generated(hash = 1403419241)
     public Setting(Long id, Integer recognition, Integer white, Integer brightness,
             Integer infrared, String predicted, String recommended,
-            Integer goodsOpen, Integer customerList, String jumpInterval) {
+            Integer customerList, String jumpInterval) {
         this.id = id;
         this.recognition = recognition;
         this.white = white;
@@ -28,7 +27,6 @@ public class Setting {
         this.infrared = infrared;
         this.predicted = predicted;
         this.recommended = recommended;
-        this.goodsOpen = goodsOpen;
         this.customerList = customerList;
         this.jumpInterval = jumpInterval;
     }
@@ -76,12 +74,6 @@ public class Setting {
     }
     public void setRecommended(String recommended) {
         this.recommended = recommended;
-    }
-    public Integer getGoodsOpen() {
-        return this.goodsOpen;
-    }
-    public void setGoodsOpen(Integer goodsOpen) {
-        this.goodsOpen = goodsOpen;
     }
     public Integer getCustomerList() {
         return this.customerList;
